@@ -1,0 +1,2419 @@
+\documentclass[twocolumn]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+\singlespacing
+\setlength{\parskip}{0pt}  % Increases space between paragraphs
+
+
+
+\begin{document}
+
+\begin{spacing}{1}
+
+% \section{Linear Regression}
+
+% \subsection{Supervised Learning Pipeline}
+% \begin{itemize}
+%     \item Goal: Learn a real-valued mapping $f: \mathbb{R}^d \to \mathbb{R}$.
+%     \item Representation: Model specification.
+%     \item Evaluation Metric: Measures goodness of fit.
+% \end{itemize}
+
+% \subsection{Linear Regression}
+% \subsubsection{Model Representation}
+% \begin{itemize}
+%     \item Linear function: $f(x) = w^T x + w_0$.
+%     \item Homogeneous representation: $w = [w_1, ..., w_d, w_0]^T$ and $x = [x_1, ..., x_d, 1]^T$.
+% \end{itemize}
+
+% \subsubsection{Goodness of Fit}
+% \begin{itemize}
+%     \item Residual: $v_i = y_i - f(x_i)$.
+%     \item Least-squares cost function:
+%     \begin{equation}
+%         R(w) = \sum_{i=1}^{n} (y_i - w^T x_i)^2.
+%     \end{equation}
+% \end{itemize}
+
+% \subsection{Optimization Methods}
+% \subsubsection{Closed-form Solution}
+% \begin{itemize}
+%     \item Solution obtained by minimizing squared loss:
+%     \begin{equation}
+%         w^* = (X^T X)^{-1} X^T y.
+%     \end{equation}
+% \end{itemize}
+
+% \subsubsection{Gradient Descent}
+% \begin{itemize}
+%     \item Iterative update:
+%     \begin{equation}
+%         w^{(t+1)} = w^{(t)} - \eta \nabla R(w^{(t)}).
+%     \end{equation}
+%     \item Convergence: Under proper step size, gradient descent converges to an optimal solution for convex functions.
+% \end{itemize}
+
+% \subsection{Extensions}
+% \begin{itemize}
+%     \item Other loss functions: Absolute error, RMSE.
+%     \item Nonlinear regression: Use polynomial basis functions.
+% \end{itemize}
+
+% \section{Model Selection}
+
+% \subsection{Introduction}
+% \begin{itemize}
+%     \item Goal: Select the best model that generalizes well to unseen data.
+%     \item Challenge: Balancing bias and variance.
+% \end{itemize}
+
+% \subsection{Generalization and Overfitting}
+% \begin{itemize}
+%     \item Data is assumed to be independently and identically distributed (i.i.d.).
+%     \item True risk vs. Empirical risk:
+%     \begin{equation}
+%         R(f) = \mathbb{E}[L(y, f(x))], \quad R_n(f) = \frac{1}{n} \sum_{i=1}^{n} L(y_i, f(x_i)).
+%     \end{equation}
+%     \item Overfitting: Model fits training data well but performs poorly on new data.
+% \end{itemize}
+
+% \subsection{Estimating Generalization Error}
+% \begin{itemize}
+%     \item Use a separate test set to estimate error.
+%     \item Avoid optimizing directly on test data.
+% \end{itemize}
+
+% \subsection{Cross-Validation}
+% \begin{itemize}
+%     \item Monte Carlo Cross-Validation: Randomly split training/validation multiple times.
+%     \item k-Fold Cross-Validation:
+%     \begin{itemize}
+%         \item Partition data into $k$ subsets.
+%         \item Train on $k-1$ subsets, validate on remaining.
+%         \item Average validation errors.
+%     \end{itemize}
+%     \item Leave-One-Out Cross-Validation (LOOCV): Special case where $k=n$.
+% \end{itemize}
+
+% \subsection{Best Practices}
+% \begin{itemize}
+%     \item Always separate training and test data.
+%     \item Use cross-validation on training set to select model.
+%     \item Never optimize on the test set.
+%     \item Ensure i.i.d. assumption is valid when interpreting results.
+% \end{itemize}
+
+% \section{Model Selection and Linear Classification}
+
+% \subsection{Model Selection}
+% \begin{itemize}
+%     \item Goal: Select a model that generalizes well to unseen data.
+%     \item Cross-validation techniques:
+%     \begin{itemize}
+%         \item $k$-fold cross-validation: Partition data into $k$ subsets, train on $k-1$ subsets, validate on the remaining subset.
+%         \item Leave-One-Out Cross-Validation (LOOCV): A special case where $k=n$.
+%     \end{itemize}
+%     \item Regularization:
+%     \begin{itemize}
+%         \item Ridge Regression: Adds an $L_2$ norm penalty to control model complexity.
+%         \item Regularization parameter selection via cross-validation.
+%     \end{itemize}
+% \end{itemize}
+
+% \subsection{Linear Classification}
+% \begin{itemize}
+%     \item Supervised learning with discrete labels (e.g., binary classification).
+%     \item Linear classifiers: Decision function of the form $f(x) = \text{sign}(w^T x)$. 
+%     \item Optimization problem:
+%     \begin{itemize}
+%         \item Goal: Minimize misclassification error (0/1 loss).
+%         \item Use surrogate losses (e.g., perceptron loss) to make optimization tractable.
+%     \end{itemize}
+% \end{itemize}
+
+% \subsection{Gradient Descent and Stochastic Gradient Descent (SGD)}
+% \begin{itemize}
+%     \item Gradient descent minimizes loss iteratively using updates:
+%     \begin{equation}
+%         w^{(t+1)} = w^{(t)} - \eta \nabla R(w^{(t)}).
+%     \end{equation}
+%     \item Stochastic Gradient Descent (SGD): Updates weights based on a single random sample per iteration.
+%     \item Mini-batch SGD: Reduces variance in updates by averaging over small batches.
+%     \item Adaptive learning rates: AdaGrad, RMSProp, Adam.
+% \end{itemize}
+
+% \subsection{Best Practices}
+% \begin{itemize}
+%     \item Always separate training and test data.
+%     \item Use cross-validation to select model and hyperparameters.
+%     \item Never optimize directly on the test set.
+%     \item Ensure data assumptions (e.g., i.i.d.) hold when interpreting results.
+% \end{itemize}
+
+% \section{Linear Classification}
+
+% \subsection{Linear Classification}
+% \begin{itemize}
+%     \item Goal: Learn a decision boundary that separates data into classes.
+%     \item Challenge: 0/1 loss is non-convex and non-differentiable.
+%     \item Solution: Use surrogate losses such as perceptron loss or hinge loss.
+% \end{itemize}
+
+% \subsection{Perceptron Algorithm}
+% \begin{itemize}
+%     \item Iteratively updates weight vector using:
+%     \begin{equation}
+%         w^{(t+1)} = w^{(t)} + y_i x_i, \quad \text{if } y_i w^T x_i \leq 0.
+%     \end{equation}
+%     \item Theorem: If data is linearly separable, the perceptron algorithm finds a solution.
+% \end{itemize}
+
+% \subsection{Stochastic Gradient Descent (SGD)}
+% \begin{itemize}
+%     \item Instead of summing over all data, updates weights using a single random sample per iteration:
+%     \begin{equation}
+%         w^{(t+1)} = w^{(t)} - \eta \nabla R(w^{(t)}).
+%     \end{equation}
+%     \item Mini-batch SGD: Averages gradient over small batches to reduce variance.
+%     \item Adaptive learning rates: AdaGrad, RMSProp, Adam.
+% \end{itemize}
+
+% \subsection{Support Vector Machines (SVMs)}
+% \begin{itemize}
+%     \item Optimizes hinge loss instead of perceptron loss:
+%     \begin{equation}
+%         R(w) = \sum_{i} \max(0, 1 - y_i w^T x_i) + \lambda ||w||^2.
+%     \end{equation}
+%     \item Maximizes margin while minimizing classification error.
+%     \item Can be optimized using stochastic gradient descent.
+% \end{itemize}
+
+% \subsection{Best Practices}
+% \begin{itemize}
+%     \item Use cross-validation to select regularization parameters.
+%     \item Mini-batch SGD balances efficiency and convergence stability.
+%     \item Choose loss functions based on problem constraints (e.g., hinge loss for SVMs).
+% \end{itemize}
+
+% \section{Feature Selection and Class Imbalance}
+
+% \subsection{Feature Selection}
+% \begin{itemize}
+%     \item Motivation:
+%     \begin{itemize}
+%         \item Improves interpretability by identifying important variables.
+%         \item Enhances generalization by avoiding overfitting.
+%         \item Reduces computational cost.
+%     \end{itemize}
+%     \item Methods:
+%     \begin{itemize}
+%         \item Greedy Forward Selection: Iteratively adds features that improve cross-validation accuracy.
+%         \item Greedy Backward Selection: Starts with all features and removes the least useful ones.
+%         \item Lasso Regression: Uses $L_1$ regularization to enforce sparsity in model coefficients.
+%     \end{itemize}
+% \end{itemize}
+
+% \subsection{Class Imbalance}
+% \begin{itemize}
+%     \item Issues:
+%     \begin{itemize}
+%         \item Accuracy is misleading when classes are imbalanced.
+%         \item Minority class instances may be ignored in optimization.
+%     \end{itemize}
+%     \item Solutions:
+%     \begin{itemize}
+%         \item Cost-sensitive learning: Assigns higher weight to minority class errors.
+%         \item Adjusting classification threshold to balance precision and recall.
+%         \item Evaluation metrics:
+%         \begin{itemize}
+%             \item Precision, Recall, F1-score.
+%             \item Receiver Operating Characteristic (ROC) and Precision-Recall (PR) curves.
+%             \item Area Under Curve (AUC) for ROC/PR curves.
+%         \end{itemize}
+%     \end{itemize}
+% \end{itemize}
+
+% \subsection{Best Practices}
+% \begin{itemize}
+%     \item Use cross-validation to tune regularization parameters.
+%     \item Select evaluation metrics based on class distribution.
+%     \item Consider cost-sensitive approaches for imbalanced data.
+% \end{itemize}
+
+% \section{Kernel Methods}
+
+% \subsection{Introduction to Kernel Methods}
+% \begin{itemize}
+%     \item Kernel methods allow for non-linear classification by transforming input features into higher-dimensional spaces.
+%     \item Avoids explicit computation of feature transformations via the \textbf{kernel trick}.
+% \end{itemize}
+
+% \subsection{Kernels and Inner Products}
+% \begin{itemize}
+%     \item A kernel function $k(x, x')$ computes inner products in a transformed space: 
+%     \begin{equation}
+%         k(x, x') = \phi(x) \cdot \phi(x')
+%     \end{equation}
+%     \item Examples:
+%     \begin{itemize}
+%         \item Linear kernel: $k(x, x') = x^T x'$.
+%         \item Polynomial kernel: $k(x, x') = (x^T x' + c)^d$.
+%         \item Gaussian RBF kernel: $k(x, x') = \exp(-\gamma ||x - x'||^2)$.
+%     \end{itemize}
+% \end{itemize}
+
+% \subsection{Kernelized Perceptron and SVM}
+% \begin{itemize}
+%     \item Kernelized Perceptron replaces inner products with kernel functions.
+%     \item Support Vector Machines (SVMs) maximize the margin and optimize hinge loss:
+%     \begin{equation}
+%         R(w) = \sum_{i} \max(0, 1 - y_i w^T x_i) + \lambda ||w||^2.
+%     \end{equation}
+% \end{itemize}
+
+% \subsection{Properties of Kernels}
+% \begin{itemize}
+%     \item Must be symmetric and positive semi-definite.
+%     \item Gram matrix $K$ formed by kernel evaluations must be positive semi-definite.
+% \end{itemize}
+
+% \subsection{Choosing Kernels and Overfitting}
+% \begin{itemize}
+%     \item Kernel choice depends on data characteristics.
+%     \item Regularization is essential to prevent overfitting.
+%     \item Cross-validation helps in selecting optimal kernel parameters.
+% \end{itemize}
+
+% \subsection{Best Practices}
+% \begin{itemize}
+%     \item Use kernel trick to transform data implicitly.
+%     \item Select kernels based on prior knowledge and empirical validation.
+%     \item Regularize models to prevent overfitting in high-dimensional spaces.
+% \end{itemize}
+
+% \end{spacing}
+
+% \section{Representation Learning and Neural Networks}
+
+% \subsection{Introduction to Representation Learning}
+% Representation learning aims to automatically discover useful features from data, reducing the need for hand-engineered features. Traditional approaches require domain knowledge to design features (e.g., edges, strokes, pixel values for image classification). An alternative is to learn feature representations directly from data using parameterized models.
+
+% \subsection{Feature Learning and Parameterization}
+% Instead of manually selecting features, we define a parametric mapping $\phi(x; \theta)$, where $\theta$ are learnable parameters. This transformation can be realized using neural networks, where layers of computations define increasingly complex feature representations.
+
+% \subsection{Activation Functions}
+% Activation functions introduce non-linearity into neural networks, allowing them to learn complex mappings. Common activation functions include:
+% \begin{itemize}
+%     \item \textbf{Sigmoid:} $\sigma(z) = \frac{1}{1 + e^{-z}}$, useful for probabilities but prone to vanishing gradients.
+%     \item \textbf{Tanh:} $\tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}$, centered around zero but still suffers from saturation.
+%     \item \textbf{ReLU:} $\mathrm{ReLU}(z) = \max(0, z)$, widely used due to its computational efficiency and reduced gradient saturation.
+% \end{itemize}
+
+% \subsection{Artificial Neural Networks (ANNs)}
+% Neural networks are hierarchical models where each layer transforms the representation of the input. A simple feedforward neural network with one hidden layer follows:
+% \[
+%     h = \sigma(W^{(1)}x + b^{(1)}), \quad
+%     \hat{y} = W^{(2)}h + b^{(2)}.
+% \]
+% Deeper networks apply multiple transformations iteratively, leading to \emph{deep learning}.
+
+% \subsection{Forward Propagation}
+% Neural networks compute outputs layer by layer:
+% \begin{align*}
+%     h^{(1)} &= \sigma(W^{(1)}x + b^{(1)}) \\
+%     h^{(2)} &= \sigma(W^{(2)}h^{(1)} + b^{(2)}) \\
+%     \hat{y} &= W^{(L)}h^{(L-1)} + b^{(L)}
+% \end{align*}
+% where $h^{(l)}$ represents hidden layer activations.
+
+% \subsection{Loss Functions}
+% The choice of loss function depends on the learning task:
+% \begin{itemize}
+%     \item \textbf{Regression:} Mean squared error loss:
+%     \[
+%         R(w) = \frac{1}{2} \sum_{i=1}^{n} \|\hat{y}_i - y_i\|^2.
+%     \]
+%     \item \textbf{Classification:} Cross-entropy or hinge loss:
+%     \[
+%         R(w) = \sum_{i=1}^{n} \ell(\hat{y}_i, y_i).
+%     \]
+% \end{itemize}
+
+% \subsection{Optimization via Gradient Descent}
+% Training neural networks involves optimizing weights using gradient descent. Given a loss function $R(w)$, gradient descent updates weights iteratively:
+% \[
+%     w^{(t+1)} = w^{(t)} - \eta \nabla_w R(w^{(t)}).
+% \]
+% For large datasets, stochastic gradient descent (SGD) updates weights using a randomly selected mini-batch.
+
+% \subsection{Backpropagation}
+% Gradient descent requires computing gradients efficiently. Backpropagation applies the chain rule to compute gradients layer by layer:
+% \begin{align*}
+%     \delta^{(L)} &= \nabla_{\hat{y}} R \odot \sigma'(z^{(L)}) \\
+%     \delta^{(l)} &= (W^{(l+1)})^T \delta^{(l+1)} \odot \sigma'(z^{(l)}).
+% \end{align*}
+% This allows efficient weight updates across all layers.
+
+% \section{Deep Neural Networks}
+
+% \subsection{Introduction}
+% Deep neural networks (DNNs) extend the idea of basic neural networks by stacking multiple hidden layers, each potentially with numerous parameters. While this increased depth often provides greater modeling power, it also raises important challenges:
+% \begin{itemize}
+%     \item \textbf{Non-convexity:} Weight optimization is non-convex, so initialization becomes crucial.
+%     \item \textbf{Hyperparameter Tuning:} Learning rates, number of layers, units per layer, and activation choices must be carefully tuned.
+%     \item \textbf{Overfitting:} Large networks are prone to overfitting, so regularization methods are essential.
+% \end{itemize}
+
+% \subsection{Weight Initialization}
+% \begin{itemize}
+%     \item \textbf{Significance:} In non-convex optimization, different initial weights can yield different local minima.
+%     \item \textbf{Random Initialization:} A common approach is to set each weight to a small, random value. If all weights start at zero or identical values, the network cannot learn effectively.
+%     \item \textbf{Input Standardization:} Standardizing inputs to have zero mean and unit variance makes weight initialization more stable and helps training converge more reliably.
+% \end{itemize}
+
+% \subsection{Activation-Aware Initialization}
+% \begin{itemize}
+%     \item \textbf{Vanishing Gradients:} If initial weights are too large or too small, gradients for sigmoid/tanh activations can saturate or vanish.
+%     \item \textbf{He Initialization (for ReLU):} Ensures the variance of layer outputs remains stable, improving the flow of gradients through deep layers.
+%     \item \textbf{Alternative Activations:} Using ReLU or leaky ReLU reduces saturation issues common with sigmoid functions.
+% \end{itemize}
+
+% \subsection{Learning Rate and Momentum}
+% \begin{itemize}
+%     \item \textbf{Learning Rate:} A proper learning rate $\eta$ is crucial. Too large and training may diverge; too small and convergence slows. Often, $\eta$ is gradually decreased during training.
+%     \item \textbf{Momentum:} Moves weights in the direction of the previous update as well as the current gradient, allowing escape from local minima and smoothing noisy gradients. A typical update rule with momentum ($\alpha$) might be:
+%     \[
+%         v^{(t+1)} = \alpha \, v^{(t)} + \eta \,\nabla R(w^{(t)}), 
+%         \quad w^{(t+1)} = w^{(t)} - v^{(t+1)}.
+%     \]
+% \end{itemize}
+
+% \subsection{Mini-Batch Stochastic Gradient Descent}
+% \begin{itemize}
+%     \item \textbf{Full-Batch vs. Pure Stochastic:}
+%     \begin{itemize}
+%         \item \emph{Full-batch gradient descent} uses the entire dataset for each weight update, which can be computationally expensive for large datasets.
+%         \item \emph{Stochastic gradient descent (SGD)} updates weights after each single data point, which can be noisy.
+%     \end{itemize}
+%     \item \textbf{Mini-Batch:} A compromise that processes small batches (e.g., 32 to 256 samples). It stabilizes updates while retaining computational efficiency.
+% \end{itemize}
+
+% \subsection{Overfitting and Regularization}
+% \begin{itemize}
+%     \item \textbf{Risk of Overfitting:} Deep networks, with vast parameter spaces, can easily overfit training data.
+%     \item \textbf{Countermeasures:}
+%     \begin{itemize}
+%         \item \emph{Early Stopping:} Monitor validation set performance and halt training when validation error worsens.
+%         \item \emph{Weight Decay (L2 penalty):} Keeps weights from growing too large.
+%         \item \emph{Dropout:} Randomly “drop out” (set to zero) a fraction of hidden units during training to prevent co-adaptation. At test time, the full network is used, but weights are scaled to account for the dropout probability.
+%     \end{itemize}
+% \end{itemize}
+
+% \subsection{Convolutional Neural Networks (CNNs)}
+% \begin{itemize}
+%     \item \textbf{Motivation:} For image, video, or certain sequential data, invariances to translations and local structure can be leveraged by \emph{convolutional} layers.
+%     \item \textbf{Convolutional Layers:} Instead of fully connecting each unit to every input dimension, a small \emph{filter} (kernel) slides across the spatial or temporal dimension. Parameters are shared among different spatial locations.
+%     \item \textbf{Pooling:} After convolutional layers, \emph{pooling} (e.g., max or average) reduces spatial dimension and helps with translational invariances.
+%     \item \textbf{Implementation:} Convolution, pooling, and fully-connected layers can be combined, then trained end-to-end using backpropagation.
+% \end{itemize}
+
+% \subsection{Hardware Acceleration}
+% \begin{itemize}
+%     \item \textbf{Matrix Operations:} Backpropagation heavily uses matrix-matrix and matrix-vector multiplications.
+%     \item \textbf{GPUs/TPUs:} Specialized hardware accelerators exploit parallelism for significant speedups, enabling modern deep learning breakthroughs.
+% \end{itemize}
+
+% \subsection{Comparison with Kernel Methods}
+% \begin{itemize}
+%     \item \textbf{Kernel Methods:} Solve a convex optimization problem, but often scale poorly with large datasets and lack built-in hierarchical feature extraction.
+%     \item \textbf{Neural Networks:} Non-convex, requiring careful tuning. However, they can learn deep, hierarchical representations and scale efficiently on modern hardware.
+% \end{itemize}
+
+% \section{Clustering}
+
+% \subsection{Unsupervised Learning Overview}
+% In unsupervised learning, we have data but no labels. The goal is to discover structure in the data:
+% \begin{itemize}
+%     \item \textbf{Clustering:} Group similar points together, separate dissimilar points.
+%     \item \textbf{Dimension Reduction:} Learn lower-dimensional representations.
+%     \item \textbf{Anomaly Detection:} Identify outliers that don't fit into clusters.
+% \end{itemize}
+
+% \subsection{Clustering Tasks}
+% \begin{itemize}
+%     \item \textbf{Objective:} Partition data into clusters such that:
+%     \begin{itemize}
+%         \item Within each cluster, points are similar.
+%         \item Between different clusters, points are dissimilar.
+%     \end{itemize}
+%     \item Data typically reside in a (possibly high-dimensional) Euclidean space, or are associated with a well-defined distance function.
+% \end{itemize}
+
+% \subsection{Clustering Approaches}
+% Common clustering paradigms:
+% \begin{itemize}
+%     \item \textbf{Hierarchical Clustering:}
+%     \begin{itemize}
+%         \item Produces a hierarchy (dendrogram) of clusters.
+%         \item \emph{Bottom-up (agglomerative):} Merge clusters step by step.
+%         \item \emph{Top-down (divisive):} Split clusters iteratively.
+%         \item Linkage criteria (e.g., single-linkage, average-linkage) define cluster distances.
+%     \end{itemize}
+%     \item \textbf{Partition-based Approaches:}
+%     \begin{itemize}
+%         \item Explicitly define and minimize a cost function on cluster assignments.
+%         \item \emph{Spectral Clustering} uses graph cuts and eigen-decomposition of the Laplacian.
+%     \end{itemize}
+%     \item \textbf{Model-based Approaches:}
+%     \begin{itemize}
+%         \item Assume each cluster arises from a probabilistic model.
+%         \item \emph{Gaussian Mixture Models} or \emph{k-means} (which can be viewed as a special case).
+%     \end{itemize}
+% \end{itemize}
+
+% \subsection{k-means Clustering}
+% One of the most popular clustering algorithms in Euclidean spaces is \emph{k-means}:
+% \begin{itemize}
+%     \item \textbf{Representation:} Each cluster is represented by a single center $\mu_j \in \mathbb{R}^d$.
+%     \item \textbf{Assignment Rule:} Assign each data point to its closest cluster center.
+%     \item \textbf{Optimization Objective:}
+%     \[
+%       \min_{\{\mu_j\}} \sum_{i=1}^{n} \min_{1 \le j \le k} \| x_i - \mu_j \|^2.
+%     \]
+%     \item \textbf{Non-convex Objective:} Finding the global optimum is generally NP-hard. Instead, we apply a heuristic known as \emph{Lloyd's algorithm}.
+% \end{itemize}
+
+% \subsubsection{Lloyd's Algorithm}
+% \begin{enumerate}
+%     \item \textbf{Initialize} $k$ cluster centers randomly (or via some heuristic).
+%     \item \textbf{Assign} each data point $x_i$ to the cluster with the nearest center:
+%     \[
+%         c_i \;=\; \arg\min_j \|x_i - \mu_j\|^2.
+%     \]
+%     \item \textbf{Update} each cluster center $\mu_j$ to be the mean of all points assigned to it:
+%     \[
+%         \mu_j \;=\; \frac{1}{|C_j|} \sum_{x_i \in C_j} x_i,
+%     \]
+%     where $C_j$ is the set of points assigned to cluster $j$.
+%     \item Repeat until assignments no longer change (or until some convergence criterion is met).
+% \end{enumerate}
+% Lloyd's method monotonically decreases the average squared distance at each iteration, ensuring convergence to a local optimum.
+
+% \subsubsection{k-means}
+% \begin{itemize}
+%     \item \textbf{Local Minima:} The final solution depends on initialization.
+%     \item \textbf{Number of Clusters}: Must specify $k$ in advance; choosing $k$ is often non-trivial.
+%     \item \textbf{Limited Cluster Shapes:} k-means favors “spherical” or convex clusters. For complex shapes, kernel-based or density-based methods may be more suitable.
+%     \item \textbf{Initialization Strategies:}
+%     \begin{itemize}
+%         \item \emph{Multiple Restarts:} Re-run k-means from different random centers.
+%         \item \emph{Farthest Points Heuristic:} Iteratively pick new centers farthest from existing ones.
+%         \item \emph{k-means++ Seeding:} Probabilistically select centers with probability proportional to squared distance from already-chosen centers; yields an expected $O(\log k)$ approximation to the optimal solution.
+%     \end{itemize}
+% \end{itemize}
+
+% \subsection{Model Selection for Clustering}
+% Choosing the number of clusters $k$ is a fundamental open problem in unsupervised learning. Common heuristics include:
+% \begin{itemize}
+%     \item \textbf{Elbow Method:} Plot the clustering loss (e.g., sum of squared distances to centers) versus $k$; choose $k$ around the “elbow” where diminishing returns appear.
+%     \item \textbf{Regularization:} Penalize large $k$ or incorporate a prior that prefers simpler solutions.
+%     \item \textbf{Domain Knowledge:} When domain context suggests a natural number of clusters.
+% \end{itemize}
+% Since there are no labels, traditional validation set approaches (e.g., cross-validation) do not directly apply for pure unsupervised problems.
+
+
+\section{Dimensionality Reduction}
+
+% \subsection{Overview and Motivation}
+% Dimensionality reduction aims to embed high-dimensional data into a lower-dimensional space, preserving as much information as possible. Key motivations include:
+% \begin{itemize}
+%     \item \textbf{Visualization:} Reducing to 2D or 3D enables data inspection.
+%     \item \textbf{Regularization:} Simplifying models can mitigate overfitting.
+%     \item \textbf{Feature Discovery:} Uncover lower-dimensional latent factors or hidden structure.
+% \end{itemize}
+
+% \subsection{Typical Approaches}
+% We consider mappings $f: \mathbb{R}^d \rightarrow \mathbb{R}^k$, where $k < d$. Two broad categories:
+% \begin{itemize}
+%     \item \textbf{Linear Methods:} Assume $f(x) = W^T x$, for some $d \times k$ matrix $W$.
+%         \begin{itemize}
+%             \item \emph{Principal Component Analysis (PCA)} is the most common linear technique.
+%         \end{itemize}
+%     \item \textbf{Nonlinear Methods:} Use more general transformations.
+%         \begin{itemize}
+%             \item \emph{Autoencoders, kernel PCA,} and manifold learning methods.
+%         \end{itemize}
+% \end{itemize}
+
+\subsection{Linear Dimensionality Reduction}
+\textbf{Goal:} Find a linear embedding to minimize the \emph{reconstruction error} of the original data.
+
+\subsubsection{Compression Perspective}
+For $k=1$, we approximate each data point $x_i \in \mathbb{R}^d$ by a scalar $z_i \in \mathbb{R}$, and a direction $w \in \mathbb{R}^d$, so that $x_i \approx z_i w$. We want:
+\[
+    \min_{w, \{z_i\}} \sum_{i=1}^n \| x_i - z_i w \|^2 \quad
+    \text{subject to} \quad \|w\| = 1.
+\]
+If the data are centered (mean zero), the optimal $z_i$ is given by $z_i = w^T x_i$. Hence, it suffices to optimize $w$.
+
+\subsubsection{General Case: k-Dimensional Subspace}
+For $k>1$, we choose a matrix $W \in \mathbb{R}^{d \times k}$ with orthonormal columns and represent each $x_i$ by coordinates $z_i \in \mathbb{R}^k$. The best reconstruction is
+\[
+    x_i \approx W z_i, 
+    \quad z_i = W^T x_i.
+\]
+We minimize
+\[
+    \sum_{i=1}^n \| x_i - W(W^T x_i) \|^2.
+\]
+This is the \emph{Principal Component Analysis (PCA)} problem.
+
+\subsection{Principal Component Analysis (PCA)}
+\begin{itemize}
+    \item \textbf{Covariance Matrix:} Assume data are centered. The sample covariance is $C = \frac{1}{n}\sum_{i=1}^n x_i x_i^T$.
+    \item \textbf{Eigen-Decomposition:} PCA chooses $W$ whose columns are the top $k$ eigenvectors of $C$. These eigenvectors (principal components) maximize variance along each axis while being orthonormal.
+    \item \textbf{Minimize Reconstruction Error:} The chosen subspace is optimal for squared-error reconstruction.
+\end{itemize}
+
+\subsubsection{SVD Connection}
+Let $X$ be the $n \times d$ data matrix (rows are data points). A singular value decomposition is $X = U \Sigma V^T$, with $V \in \mathbb{R}^{d \times d}$ orthogonal. The columns of $V$ are eigenvectors of $X^T X$. The first $k$ columns of $V$ correspond to the top $k$ principal components.
+
+\subsubsection{Comparison to Other Methods}
+\begin{itemize}
+    \item \textbf{K-means vs. PCA:} Both can be viewed as “compression” but impose different structural constraints (PCA requires orthogonality, k-means uses cluster centers).
+    \item \textbf{Autoencoders vs. PCA:} When autoencoders use linear activations, they are equivalent to PCA. Nonlinear activations can capture more complex low-dimensional structures.
+\end{itemize}
+
+\subsection{Autoencoders}
+Autoencoders learn a function $f$ such that $f(x) \approx x$, thereby forcing an intermediate bottleneck layer of dimension $k$ to capture essential structure. Concretely:
+\[
+    \hat{x} = g(h(x)),
+\]
+where $h: \mathbb{R}^d \rightarrow \mathbb{R}^k$ (the encoder) and $g: \mathbb{R}^k \rightarrow \mathbb{R}^d$ (the decoder). We train weights to minimize
+\[
+    \sum_{i=1}^n \| x_i - \hat{x}_i \|^2.
+\]
+\begin{itemize}
+    \item \textbf{Neural Network Autoencoder:} Typically a multi-layer neural network used as $h$ and $g$. 
+    \item \textbf{Linear Autoencoder:} Reduces to PCA.
+    \item \textbf{Nonlinear Autoencoder:} Can capture manifolds or other complexities unreachable by linear PCA.
+\end{itemize}
+
+\subsubsection{Training}
+\begin{itemize}
+    \item Use gradient-based methods (e.g., stochastic gradient descent) to learn network parameters.
+    \item Initialization can be challenging; random starting points can lead to local minima or poor reconstructions.
+\end{itemize}
+
+
+\section{Probabilistic Modeling \& Parameter Estimation}
+
+\subsection{Motivation for Probabilistic Modeling}
+\begin{itemize}
+    \item Traditional approaches: Fit functions $h(x)$ in supervised/unsupervised settings to minimize a loss (e.g., squared loss, hinge loss).
+    \item \textbf{Limitation:} Purely deterministic viewpoint provides no direct measure of \emph{uncertainty}.
+    \item \textbf{Goal of Probabilistic Modeling:}
+    \begin{itemize}
+        \item Quantify uncertainty about predictions.
+        \item Incorporate \emph{prior assumptions} or domain knowledge about the data-generating process.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Connecting Risk Minimization and Probability Distributions}
+\begin{itemize}
+    \item \textbf{Supervised Learning Recap:} We typically assume i.i.d. data $D = \{(x_i, y_i)\}$ from an unknown distribution $P(X,Y)$.
+    \item \textbf{Risk (Expected Error):}
+    \[
+        R(h) \;=\; \mathbb{E}_{x,y}\!\big[\ell(y,\,h(x))\big],
+    \]
+    where $\ell$ is a chosen loss (e.g., squared loss).
+    \item \textbf{Bayes’ Optimal Predictor:} For squared error, the risk is minimized by $h^*(x) = \mathbb{E}[Y \mid X=x]$. In practice, $P(X,Y)$ is unknown; we must estimate from finite data.
+\end{itemize}
+
+\subsection{Estimating Conditional Distributions}
+\begin{itemize}
+    \item We can try to learn an estimate $\hat P(Y|X)$ and use $\hat{y} = \mathbb{E}_{\hat P}[\,Y \mid X=x\,]$.
+    \item \textbf{Parametric Estimation:} Assume a form $P(Y|X,\theta)$, then estimate parameters $\theta$ from data by maximizing the (conditional) likelihood:
+    \[
+        \theta^* \;=\; \arg\max_\theta \; P(y_1,\dots,y_n \mid x_1,\dots,x_n,\theta).
+    \]
+    \item This \emph{maximum likelihood estimation (MLE)} often coincides with standard methods. For example, under Gaussian noise, MLE aligns with least squares.
+\end{itemize}
+
+\subsection{Example: Linear Regression with Gaussian Noise}
+\begin{itemize}
+    \item Suppose $y_i = w^T x_i + \epsilon_i$, where $\epsilon_i \sim \mathcal{N}(0,\sigma^2)$ i.i.d.
+    \item Then:
+    \[
+        P(y_i \mid x_i, w) \;=\; \mathcal{N}(w^T x_i,\; \sigma^2).
+    \]
+    \item \textbf{Log-Likelihood:}
+    \[
+        -\log P(y_1,\dots,y_n \mid x_1,\dots,x_n, w)
+        \;\propto\; \sum_{i=1}^n \bigl(y_i - w^T x_i\bigr)^2.
+    \]
+    \item \textbf{Result:} MLE under this assumption reduces to solving a least squares problem. More generally, for any hypothesis class $H$, MLE with i.i.d. Gaussian noise is equivalent to minimizing $\sum (y_i - h(x_i))^2$.
+\end{itemize}
+
+\subsection{Bias--Variance--Noise Decomposition}
+\begin{itemize}
+    \item Even if $h^* \in H$, finite data cause estimation error (variance). We also have irreducible noise.
+    \item For squared error, expected risk can be decomposed as:
+    \[
+        \mathbb{E}_{D,x,y}\bigl[(y - \hat{h}_D(x))^2\bigr]
+        \;=\;
+    \]
+    \[
+        \underbrace{\bigl(\hat{h}_D(x) - h^*(x)\bigr)^2}_{\text{Bias}^2}
+        \;+\;
+        \underbrace{\mathrm{Var}[\hat{h}_D(x)]}_{\text{Variance}}
+        \;+\;
+        \underbrace{\mathbb{E}[(y - h^*(x))^2]}_{\text{Noise}}.
+    \]
+    \item \textbf{Tradeoff:} High-capacity models have low bias but high variance; simpler models can reduce variance at the cost of higher bias. Regularization methods (e.g., Ridge, Lasso) strategically \emph{add bias} to reduce variance.
+\end{itemize}
+
+\subsection{Bayesian Interpretations}
+\begin{itemize}
+    \item \textbf{Prior Knowledge:} Instead of purely maximizing likelihood, we can incorporate a \emph{prior} $P(w)$ over parameters.
+    \item \textbf{MAP Estimation:} 
+    \[
+        w_{\text{MAP}}
+        = \arg\max_w \; P(w \mid D)
+        = \arg\max_w \; P(w)\,\prod_{i=1}^n P(y_i \mid x_i, w).
+    \]
+    \item For Gaussian priors on $w$, MAP estimation yields \emph{Ridge Regression}. Different priors correspond to different regularizers.
+\end{itemize}
+
+\section{Logistic Regression}
+
+\subsection{Motivation for Statistical Classification}
+\begin{itemize}
+    \item In regression, we modeled continuous values (e.g., via least squares).
+    \item In \textbf{classification}, the target $y$ is a discrete label (e.g., $\{+1, -1\}$ or multiple classes).
+    \item \textbf{Bayes’ Optimal Classifier}:
+    \[
+        h^*(x) \;=\; \arg\max_{y} P(Y = y \mid X = x).
+    \]
+    Finding $P(Y \mid X)$ from data is thus a natural approach.  
+\end{itemize}
+
+\subsection{Logistic Regression for Binary Classification}
+\begin{itemize}
+    \item \textbf{Model Assumption:} 
+    \[
+        P(Y = +1 \mid X = x, w) \;=\; \sigma(w^\top x) 
+        \quad\text{where}\; \sigma(z) = \frac{1}{1+e^{-z}}.
+    \]
+    \item Here, $w \in \mathbb{R}^d$ is the parameter vector. The predicted probability for the positive class ($+1$) is $\sigma(w^\top x)$; for the negative class ($-1$), it is $1 - \sigma(w^\top x)$.
+    \item \textbf{Interpretation:} Rather than modeling $y$ directly with a linear function, we model the \emph{log odds} of class membership linearly:
+    \[
+        \log \frac{P(Y=+1 \mid x)}{P(Y=-1 \mid x)} \;=\; w^\top x.
+    \]
+\end{itemize}
+
+\subsection{Bernoulli Likelihood and Logistic Loss}
+\begin{itemize}
+    \item The binary label $y_i$ is assumed to be drawn from a Bernoulli distribution:
+    \[
+        P(y_i \mid x_i, w) \;=\; \sigma\bigl(y_i \, w^\top x_i\bigr),
+    \]
+    where we encode $y_i \in \{+1, -1\}$, so $\sigma\bigl(y_i\,w^\top x_i\bigr) = \frac{1}{1+\exp(-\,y_i\,w^\top x_i)}.$
+    \item \textbf{Log-likelihood:} Given $n$ i.i.d. samples, the log-likelihood is
+    \[
+        \ell(w) \;=\; \sum_{i=1}^n \log \sigma\bigl(y_i\,w^\top x_i\bigr).
+    \]
+    \item \textbf{Negative Log-likelihood (Logistic Loss):}
+    \[
+        -\ell(w) \;=\; \sum_{i=1}^n \log \Bigl(1 + \exp\bigl(-\,y_i\,w^\top x_i\bigr)\Bigr).
+    \]
+    Minimizing this loss corresponds to \emph{maximum likelihood estimation (MLE)} for logistic regression.
+\end{itemize}
+
+\subsection{Gradient Computation}
+\begin{itemize}
+    \item For a single training example $(x, y)$, the logistic loss is:
+    \[
+        \ell\bigl(w; x, y\bigr)
+        \;=\;
+        \log\bigl(1 + \exp(-\,y\,w^\top x)\bigr).
+    \]
+    \item \textbf{Gradient:}
+    \[
+        \nabla_w \,\ell\bigl(w; x, y\bigr)
+        \;=\;
+        \frac{-\,y \, x}{1 + \exp\bigl(y\, w^\top x\bigr)}.
+    \]
+    \item For the full dataset, we sum the gradients or apply mini-batch / stochastic gradient descent.
+\end{itemize}
+
+\subsection{Regularized Logistic Regression}
+\begin{itemize}
+    \item \textbf{Motivation:} Prevent overfitting and control model complexity.
+    \item \textbf{Ridge (L2) Regularization:} Add $\lambda \|w\|_2^2$ to the logistic loss:
+    \[
+        \min_{w} \;\sum_{i=1}^n \log\bigl(1 + e^{-\,y_i\,w^\top x_i}\bigr) \;+\; \lambda \|w\|_2^2.
+    \]
+    \item \textbf{Lasso (L1) Regularization:} Add $\lambda \|w\|_1$ to the logistic loss (enforces sparsity):
+    \[
+        \min_{w} \;\sum_{i=1}^n \log\bigl(1 + e^{-\,y_i\,w^\top x_i}\bigr) \;+\; \lambda \|w\|_1.
+    \]
+    \item \textbf{Interpretation:} These can be seen as \emph{Maximum A Posteriori (MAP)} estimates with Gaussian (L2) or Laplace (L1) priors on $w$.
+\end{itemize}
+
+\subsection{Algorithmic Outline}
+\begin{enumerate}
+    \item \textbf{Initialize} parameters $w^{(0)}$ (e.g., to small random values or zeros).
+    \item \textbf{Repeat} (for $t = 1, 2, \ldots$):
+    \begin{enumerate}
+        \item Draw a mini-batch (or single sample) $(x_i, y_i)$ from the training set.
+        \item Compute gradient of the (regularized) logistic loss.
+        \item Update $w^{(t+1)} = w^{(t)} - \eta \,\nabla_{w} \bigl[\text{loss}\bigr]$,
+        where $\eta$ is the learning rate.
+    \end{enumerate}
+    \item \textbf{Convergence} can be checked by monitoring changes in $w$ or by evaluating a separate validation set.
+\end{enumerate}
+
+\subsection{Prediction}
+\begin{itemize}
+    \item \textbf{Probability of Positive Class:} 
+    \[
+        P(Y=+1 \mid x, w) = \sigma\bigl(w^\top x\bigr).
+    \]
+    \item \textbf{Binary Decision:} 
+    \[
+        \hat{y} \;=\; \mathrm{sign}\bigl(w^\top x\bigr).
+    \]
+    \item For multi-class problems, the model generalizes to \emph{softmax regression} (each class has its own parameter vector).
+\end{itemize}
+
+\section{Generative Modeling}
+
+\subsection{Discriminative vs. Generative Approaches}
+\begin{itemize}
+    \item \textbf{Discriminative Models:} Estimate $P(y \mid x)$ directly (e.g., logistic regression). Focus on decision boundary or conditional probability of labels given inputs.
+    \item \textbf{Generative Models:} Estimate the joint distribution $P(x, y)$, often factorized as $P(y) \, P(x \mid y)$. Once we have $P(x,y)$, we can use Bayes’ rule to get $P(y \mid x)$.
+    \item \textbf{Key Differences:}
+    \begin{itemize}
+        \item Generative models can generate new data and detect outliers (since $P(x)$ is modeled).
+        \item Discriminative models often yield better classification accuracy when $P(x)$ is complex or high-dimensional.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Na\"ive Bayes Classifier}
+\subsubsection{Model Setup}
+\begin{itemize}
+    \item \textbf{Goal:} Classify data into one of $c$ classes $y \in \{1, \dots, c\}$.
+    \item \textbf{Assumption:} Features $x = (x_1, \ldots, x_d)$ are conditionally independent given $y$. Thus,
+    \[
+        P(x \mid y) 
+        \;=\; \prod_{i=1}^d P\bigl(x_i \mid y\bigr).
+    \]
+    \item Combined with $P(y)$, we obtain the joint:
+    \[
+        P(x, y) \;=\; P(y)\,\prod_{i=1}^d P\bigl(x_i \mid y\bigr).
+    \]
+\end{itemize}
+
+\subsubsection{Parameter Estimation (MLE)}
+\begin{itemize}
+    \item \textbf{Label Prior:} 
+    \[
+        P(y) \;\approx\; \frac{\text{\#(points in class }y\text{)}}{n}.
+    \]
+    \item \textbf{Conditional Feature Distribution:} Each $x_i \mid y$ can be modeled according to a parametric family. Examples:
+    \begin{itemize}
+        \item Bernoulli or Multinomial if $x_i$ is categorical.
+        \item Gaussian if $x_i$ is continuous (leading to \emph{Gaussian Na\"ive Bayes}).
+    \end{itemize}
+    \item Use the training data $D = \{(x_1, y_1), \dots, (x_n, y_n)\}$ to fit these distributions by maximum likelihood.
+\end{itemize}
+
+\subsubsection{Prediction}
+\begin{itemize}
+    \item For a new input $x$, predict the class $\hat{y}$ by:
+    \[
+        \hat{y}
+        \;=\;
+        \arg\max_{y}\;
+        P(y \mid x)
+        \;=\;
+        \arg\max_{y}\;
+        P(y)\,\prod_{i=1}^d P\bigl(x_i \mid y\bigr).
+    \]
+    \item In practice, for numerical stability, use log probabilities:
+    \[
+        \hat{y}
+        \;=\;
+        \arg\max_{y}\;
+        \Bigl(
+            \ln P(y)
+            \;+\;
+            \sum_{i=1}^d \ln P\bigl(x_i \mid y\bigr)
+        \Bigr).
+    \]
+\end{itemize}
+
+\subsection{Gaussian Na\"ive Bayes (GNB)}
+\subsubsection{Model Setup}
+\begin{itemize}
+    \item Suppose features $x$ are real-valued and for each class $y$, the conditional distribution $x_i \mid (y)$ is Gaussian with mean $\mu_{y,i}$ and variance $\sigma_{y,i}^2$:
+    \[
+        P\bigl(x_i \mid y\bigr)
+        \;=\;
+        \mathcal{N}\!\bigl(x_i \;\big|\; \mu_{y,i}, \;\sigma_{y,i}^2\bigr).
+    \]
+    \item The parameters $\{\mu_{y,i}, \sigma_{y,i}^2\}$ are estimated from the training data by MLE (i.e., sample mean and variance per class).
+\end{itemize}
+
+\subsubsection{Prediction and Decision Boundaries}
+\begin{itemize}
+    \item Once we have $\mu_{y,i}$, $\sigma_{y,i}^2$, and $P(y)$, the posterior $P(y \mid x)$ is computed via Bayes’ rule:
+    \[
+        P(y \mid x)
+        \;=\;
+        \frac{
+            P(y)\,\prod_{i=1}^d
+            \mathcal{N}\!\bigl(x_i \;\big|\;\mu_{y,i},\;\sigma_{y,i}^2\bigr)
+        }{
+            \sum_{y'}\,
+            P(y')\,\prod_{i=1}^d
+            \mathcal{N}\!\bigl(x_i \mid \mu_{y',i},\;\sigma_{y',i}^2\bigr)
+        }.
+    \]
+    \item For binary classification ($y \in \{-1, +1\}$) and a simplified assumption of class-invariant variances, GNB yields a linear decision boundary resembling logistic regression.
+\end{itemize}
+
+\subsection{Comparison: Discriminative vs. Generative}
+\begin{itemize}
+    \item \textbf{Discriminative (e.g. logistic regression):} 
+    \begin{itemize}
+        \item Directly model $P(y \mid x)$ (or a decision boundary).
+        \item Often more accurate classification if $x$ is high-dimensional and complex.
+        \item Cannot generate new samples $x$ or detect outliers as easily.
+    \end{itemize}
+    \item \textbf{Generative (e.g. Na\"ive Bayes):} 
+    \begin{itemize}
+        \item Model $P(x,y)$ or $P(x \mid y)$ and $P(y)$.
+        \item Can generate samples from the learned model and identify outliers by evaluating $P(x)$.
+        \item May be more sensitive to model mismatch if $P(x)$ is not well-approximated.
+    \end{itemize}
+\end{itemize}
+
+\section{Generative Classification}
+
+\subsection{Recap: Gaussian Na\"ive Bayes (GNB)}
+\begin{itemize}
+    \item \textbf{Basic Assumption:} Condition on the class label $y \in \{1,\dots,c\}$, features $x = (x_1,\ldots,x_d)$ are independent Gaussians.
+    \item \textbf{Parameters:} For each class $y$, we estimate a mean $\mu_{y,i}$ and variance $\sigma_{y,i}^2$ for each feature $i$.
+    \item \textbf{Decision Rule:} Predict 
+    \[
+        \hat{y} 
+        = \arg\max_{y}\; P(y)\prod_{i=1}^d \mathcal{N}\bigl(x_i \mid \mu_{y,i}, \sigma_{y,i}^2\bigr).
+    \]
+    \item \textbf{Limitation:} The conditional independence assumption can lead to \emph{overconfidence}, as correlations among features are ignored.
+\end{itemize}
+
+\subsection{Gaussian Bayes Classifiers (GBC)}
+\subsubsection{Generalizing GNB}
+\begin{itemize}
+    \item Instead of assuming each feature is independent given $y$, we allow $x \mid y$ to follow a \emph{multivariate} Gaussian with mean $\mu_y \in \mathbb{R}^d$ and covariance $\Sigma_y \in \mathbb{R}^{d \times d}$.
+    \item Hence, for class $y$,
+    \[
+        P(x \mid y) 
+        \;=\;
+        \frac{1}{(2\pi)^{\frac{d}{2}} \sqrt{\det(\Sigma_y)}}
+        \exp\!\Bigl(-\tfrac12 (x - \mu_y)^\top \Sigma_y^{-1} (x - \mu_y)\Bigr).
+    \]
+    \item This approach captures correlations among features, unlike naive Bayes.
+\end{itemize}
+
+\subsubsection{Parameter Estimation (MLE)}
+\begin{itemize}
+    \item \textbf{Label Prior:} $P(y) \approx \tfrac{\text{\#(training points in class }y)}{n}$.
+    \item \textbf{Mean \& Covariance:} For each class $y$,
+    \[
+        \mu_y \;=\; \frac{1}{n_y} \sum_{(x_i,y_i)=D_y} x_i, 
+    \]
+    \[
+        \Sigma_y \;=\; \frac{1}{n_y} \sum_{(x_i,y_i)=D_y} (x_i - \mu_y)(x_i - \mu_y)^\top,
+    \]
+    where $n_y$ is the number of samples in class $y$, and $D_y$ is the subset of training data in class $y$.
+\end{itemize}
+
+\subsubsection{Decision Rule}
+\begin{itemize}
+    \item By Bayes' rule,
+    \[
+        P(y \mid x) 
+        \;=\; 
+        \frac{
+            P(y)\,\mathcal{N}(x \mid \mu_y,\Sigma_y)
+        }{
+            \sum_{y'} P(y')\,\mathcal{N}(x \mid \mu_{y'},\Sigma_{y'})
+        }.
+    \]
+    \item Hence, classification uses a \textbf{discriminant function}, e.g. for binary classification:
+    \[
+        f(x) = \ln P(y=+1 \mid x) - \ln P(y=-1 \mid x),
+    \]
+    which simplifies under Gaussian assumptions.
+\end{itemize}
+
+\subsection{Special Cases}
+\subsubsection{Fisher’s Linear Discriminant Analysis (LDA)}
+\begin{itemize}
+    \item \textbf{Assumption:} Two classes ($c=2$), each with mean $\mu_+$, $\mu_-$ but \emph{common} covariance matrix $\Sigma$.
+    \item \textbf{Linear Discriminant:} The difference in log-likelihoods becomes a linear function in $x$:
+    \[
+        f(x) 
+        \;=\;
+        (\mu_+ - \mu_-)^\top \Sigma^{-1} x 
+        \;+\;
+        \text{constant}.
+    \]
+    \item \textbf{Equivalence with Logistic Regression:} Under these assumptions, LDA yields a decision boundary identical to logistic regression, though LDA is generative (models $P(x,y)$) and logistic regression is discriminative (models $P(y\mid x)$).
+\end{itemize}
+
+\subsubsection{Na\"ive Bayes as GBC with Diagonal Covariance}
+\begin{itemize}
+    \item \textbf{Na\"ive Bayes} can be viewed as a GBC where $\Sigma_y$ is restricted to be diagonal (ignoring off-diagonal covariances).
+    \item Reduces parameters from $O(d^2)$ to $O(d)$ for each class.
+    \item Potentially less accurate if features are strongly correlated.
+\end{itemize}
+
+\subsection{Regularization and Priors}
+\begin{itemize}
+    \item \textbf{Overfitting Risk:} Estimating a full covariance $\Sigma_y$ can require many parameters ($d(d+1)/2$ per class), leading to overfitting.
+    \item \textbf{Remedies:}
+    \begin{itemize}
+        \item Restrict to simpler structures: shared covariance (LDA) or diagonal covariance (Na\"ive Bayes).
+        \item Incorporate \emph{priors} on $\mu_y$ or $\Sigma_y$ (e.g., conjugate priors), effectively shrinking estimates.
+        \item Perform dimensionality reduction or add regularization terms.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Comparisons}
+\begin{itemize}
+    \item \textbf{Generative} (e.g., GBC) vs. \textbf{Discriminative} (e.g., logistic regression):
+    \begin{itemize}
+        \item Generative: Can handle outlier detection via $P(x)$ and data generation, but may be less robust to mis-specified $P(x)$.
+        \item Discriminative: Often better classification accuracy in high-dimensional settings and fewer assumptions on $x$.
+    \end{itemize}
+    \item \textbf{GNB vs. GBC}:
+    \begin{itemize}
+        \item GNB: Diagonal covariance \(\implies\) fewer parameters, more risk of “overconfidence” if features are correlated.
+        \item GBC: Full covariance \(\implies\) more flexible but can overfit without regularization or sufficient data.
+    \end{itemize}
+\end{itemize}
+
+\section{Gaussian Mixture Models (GMMs)}
+
+\subsection{Motivation}
+\begin{itemize}
+    \item In generative models like Gaussian Bayes Classifiers, we assume labeled data and fit one Gaussian per class. 
+    \item \textbf{Key Question:} What if labels are \emph{missing}? Could we still fit a model to data that (we suspect) come from a mixture of Gaussians?
+    \item \textbf{Example:} Data are drawn from multiple “clusters,” each described by its own Gaussian. The cluster assignments (latent labels) are unknown.
+\end{itemize}
+
+\subsection{Definition and Parametrization}
+\begin{itemize}
+    \item A \textbf{Gaussian Mixture Model (GMM)} is a convex combination of Gaussian densities:
+    \[
+        p(x) \;=\; \sum_{z=1}^k \;\pi_z \;\mathcal{N}\bigl(x \mid \mu_z,\Sigma_z\bigr),
+    \]
+    where:
+    \begin{itemize}
+        \item $k$ is the number of mixture components (clusters).
+        \item $\pi_z \geq 0$, $\sum_{z=1}^k \pi_z = 1$ are the mixture weights.
+        \item Each component has mean $\mu_z$ and covariance $\Sigma_z$.
+    \end{itemize}
+    \item We can think of a latent (unobserved) variable $z$ indicating which component generated a given data point $x$.
+\end{itemize}
+
+\subsection{MLE for Gaussian Mixture Models}
+\begin{itemize}
+    \item Given data $D = \{x_1, \dots, x_n\}$ (unlabeled), we want to fit the parameters $\{\pi_z, \mu_z, \Sigma_z\}_{z=1}^k$ by maximizing the likelihood:
+    \[
+        \mathcal{L}(\{\pi_z,\mu_z,\Sigma_z\}) 
+        \;=\;
+        \prod_{i=1}^n \sum_{z=1}^k \pi_z \,\mathcal{N}\bigl(x_i \mid \mu_z,\Sigma_z\bigr).
+    \]
+    \item The log-likelihood is non-convex and direct gradient methods can be unstable due to constraints ($\sum_z \pi_z=1$, $\Sigma_z \succ 0$).
+\end{itemize}
+
+\subsection{Expectation-Maximization (EM) Algorithm}
+\begin{itemize}
+    \item \textbf{Idea:} If the latent “cluster labels” $z_i$ were known, we could estimate each Gaussian in closed form (as in a Gaussian Bayes classifier). But $z_i$ are unknown.
+    \item \textbf{EM Approach:} Iteratively refine a guess of $\{z_i\}$ (soft assignments) and update parameters:
+    \begin{enumerate}
+        \item \textbf{E-step:} For each data point $x_i$, compute the posterior distribution over clusters:
+        \[
+            \gamma_{i,z} \;=\; P(z \mid x_i) 
+            \;=\; \frac{\pi_z\,\mathcal{N}(x_i \mid \mu_z,\Sigma_z)}{\sum_{z'} \pi_{z'}\,\mathcal{N}(x_i \mid \mu_{z'},\Sigma_{z'})}.
+        \]
+        \item \textbf{M-step:} Update mixture weights, means, and covariances using the soft assignments $\gamma_{i,z}$:
+        \[
+            \pi_z 
+            \;=\; 
+            \frac{1}{n}\sum_{i=1}^n \gamma_{i,z},
+            \quad
+            \mu_z 
+            \;=\;
+            \frac{\sum_{i=1}^n \gamma_{i,z} \, x_i}{\sum_{i=1}^n \gamma_{i,z}},
+        \]
+        \[
+            \Sigma_z
+            \;=\;
+            \frac{\sum_{i=1}^n \gamma_{i,z} \, (x_i - \mu_z)(x_i - \mu_z)^\top}{\sum_{i=1}^n \gamma_{i,z}}.
+        \]
+    \end{enumerate}
+    \item \textbf{Guaranteed Monotonic Increase in Log-likelihood:} EM iterates ensure each step does not decrease the data log-likelihood.
+    \item \textbf{Initialization Sensitivity:} Different initial parameters can lead to different local maxima; multiple restarts are common.
+\end{itemize}
+
+\subsection{Model Degeneracies and Regularization}
+\begin{itemize}
+    \item \textbf{Covariance Collapse:} A Gaussian might “collapse” onto a single data point with near-zero variance, leading to infinite log-likelihood.
+    \item \textbf{Remedy:} Use a small regularization term added to each covariance matrix (or a Bayesian prior like the Inverse Wishart) to prevent singularities.
+\end{itemize}
+
+\subsection{Interpretation}
+\begin{itemize}
+    \item \textbf{Clustering:} GMM gives soft cluster assignments $\gamma_{i,z}$ instead of the hard assignments from e.g.\ k-means.
+    \item \textbf{Density Estimation:} Once fitted, $p(x)$ can be computed for any point $x$, enabling outlier/anomaly detection by thresholding $p(x)$.
+    \item \textbf{Relation to Gaussian Bayes Classifiers (GBC):} 
+    \begin{itemize}
+        \item GBC: The “cluster label” is observed (\emph{the class label}). MLE is straightforward and closed-form.
+        \item GMM: The cluster label $z$ is \emph{latent}; we solve it with EM. 
+    \end{itemize}
+    \item \textbf{Classification via Mixtures:} If labeled data are available for each class, each class can be modeled by a mixture of Gaussians, and classification proceeds via Bayes’ rule.
+\end{itemize}
+
+\section{Deep Generative Models}
+
+\subsection{Motivation}
+\begin{itemize}
+    \item Traditional generative models (e.g., Gaussian mixture models) make strong assumptions on data distribution; can struggle with complex, high-dimensional domains (images, audio, text).
+    \item \textbf{Goal:} Use flexible neural networks to learn a generative model for complex distributions, often without explicit likelihood formulas.
+    \item Examples of \textbf{deep generative modeling} techniques:
+    \begin{itemize}
+        \item Generative Adversarial Networks (GANs)
+        \item Denoising Diffusion Models (DDMs)
+        \item Variational Autoencoders (VAEs) (not fully covered here, but widely used)
+    \end{itemize}
+\end{itemize}
+
+\subsection{Generative Adversarial Networks (GANs)}
+\subsubsection{Key Idea}
+\begin{itemize}
+    \item \textbf{Generator (G):} Takes a noise vector $z$ (e.g., from a Gaussian) and outputs a “synthetic” sample $x_{\text{fake}}$.
+    \item \textbf{Discriminator (D):} Attempts to distinguish “real” data from “fake” data produced by $G$.
+    \item \textbf{Adversarial Objective:} 
+    \[
+        \min_G \max_D \; \mathbb{E}_{x \sim p_{\text{data}}}\bigl[\log D(x)\bigr]
+        \;+\;
+        \mathbb{E}_{z \sim p_z}\bigl[\log \bigl(1 - D(G(z))\bigr)\bigr].
+    \]
+    \item This is a \textbf{two-player game} in parameter space; $G$ tries to fool $D$, and $D$ tries to detect fakes.
+\end{itemize}
+
+\subsubsection{Training}
+\begin{itemize}
+    \item \textbf{Simultaneous Gradient Descent:} Update $D$ to better classify real vs.\ fake, then update $G$ to produce samples more likely to be classified as real.
+    \item \textbf{Challenges:}
+    \begin{itemize}
+        \item \emph{Convergence Issues:} The objective is a saddle point, not a simple minimum; training can oscillate.
+        \item \emph{Mode Collapse:} $G$ can learn to produce limited varieties of samples that fool $D$ but fail to cover the whole data distribution.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Denoising Diffusion Models (DDMs)}
+\subsubsection{Forward and Reverse Processes}
+\begin{itemize}
+    \item \textbf{Forward Diffusion:} Gradually add noise to real data $x_0 \to x_1 \to \dots \to x_T$, eventually reaching a noisy $x_T$ close to pure noise.
+    \item \textbf{Reverse (Denoising) Process:} Learn to iteratively remove noise step-by-step to reconstruct a sample from $x_T$ back to $x_0$.
+    \item \textbf{Trainable Neural Network:} Models each reverse transition $p_\theta(x_{t-1} \mid x_t)$, typically approximated by a conditional Gaussian for small steps.
+\end{itemize}
+
+\subsubsection{Training and Generation}
+\begin{itemize}
+    \item \textbf{Objective:} Minimize denoising error, e.g. predicting noise or $x_{t-1}$ from $x_t$.
+    \item \textbf{Sampling:} Start with random noise $x_T$, iteratively apply the learned reverse diffusion to produce $x_0$ (a synthetic sample).
+    \item \textbf{Benefits:}
+    \begin{itemize}
+        \item \emph{Stable Training:} Each small diffusion step is simpler to learn.
+        \item \emph{High-Quality Samples:} DDMs can match or surpass GAN performance on images.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Comparison and Challenges}
+\begin{itemize}
+    \item \textbf{GANs:}
+    \begin{itemize}
+        \item Can produce sharp, high-resolution samples.
+        \item Prone to mode collapse and training instability.
+        \item No explicit probability density function for $p(x)$; hard to evaluate likelihood or coverage.
+    \end{itemize}
+    \item \textbf{Diffusion Models:}
+    \begin{itemize}
+        \item More stable training, less prone to mode collapse.
+        \item Slower sampling times due to iterative denoising steps.
+        \item Achieve state-of-the-art results in image synthesis and text-to-image tasks.
+    \end{itemize}
+    \item \textbf{General Pitfalls:}
+    \begin{itemize}
+        \item Evaluating generative models remains non-trivial (lack of straightforward log-likelihood for implicit models).
+        \item Hyperparameter tuning (architectures, noise schedules, adversarial loss weighting) is often domain-specific.
+    \end{itemize}
+\end{itemize}
+
+\section{1. [13 points + 4 bonus pts] Linear neural networks}
+
+For input \(x \in \mathbb{R}^{d_0}\), a linear neural network \(F : \mathbb{R}^{d_0} \to \mathbb{R}\) of depth \(L\) will output
+\[
+F(x) = W_L W_{L-1} \cdots W_1 x,
+\]
+where each \(W_l \in \mathbb{R}^{d_l \times d_{l-1}}\); \(d_l\) denotes the number of input units at layer \(l \in \{1, \ldots, L-1\}\) and \(d_L = 1.\)
+We aim to train \(F\) to minimize the mean squared error loss on predicting real-valued scalar labels \(y.\)
+The loss is specified by
+\[
+\ell(F) = \frac{1}{2n} \sum_{i=1}^{n} \bigl(F(x_i) - y_i \bigr)^2,
+\]
+where \(i\) ranges over the dataset of size \(n\).
+
+\subsection*{(a)}
+Determine whether each of the following statements is True or False, and briefly justify your answers.
+
+\subsubsection*{(1) [2 points, TF]}
+\(F(x)\) is a linear function in \(x.\) That is, for all \(a, b \in \mathbb{R}\) and all input vectors \(x, x' \in \mathbb{R}^{d_0}\),
+\[
+F(ax + bx') = a F(x) + b F(x').
+\]
+(A) True \quad (B) False
+
+Solution:
+
+True. \(F\) is a linear function with \(W_L W_{L-1} \cdots W_1\) being effectively a single matrix (or row vector when \(d_L=1\)) multiplying \(x\).
+
+\subsubsection*{(2) [2 points, TF]}
+Networks with increasing depth \(L\) allow one to model more complex relationships between \(x\) and \(y\).
+
+(A) True \quad (B) False
+
+Solution:
+
+False. Even with increasing depth, \(F\) remains a linear function of \(x\). Extra linear layers do not increase representational power in this purely linear setting.
+
+\subsubsection*{(3) [2 points, TF]}
+\(\ell(F)\) is convex with respect to \(W_l\) for all \(l \in \{1,\ldots,L\}\).
+
+(A) True \quad (B) False
+
+Solution:
+
+True. \(F\) is linear in each \(W_l\). The squared-error loss is convex when viewed as a function of any one \(W_l\) (holding the others fixed).
+
+\subsection*{(b)}
+Now consider the case where \(L=2\); that is, \(F(x) = W_2 W_1 x.\) When running gradient descent to minimize \(\ell(F)\), we need to compute the gradients of each layer. The next two questions ask you to compute them.
+
+Hint: Make sure that the gradients have the correct shape, such that the gradient descent updates can be written as
+\[
+W_i^{(t+1)} \leftarrow W_i^{(t)} - \eta \,\nabla_{W_i}\,\ell\bigl(F^{(t)}\bigr).
+\]
+
+\subsubsection*{(1) [3 points, MC]}
+What is the correct expression for \(\frac{\partial \ell(F)}{\partial W_2}\)?
+
+(A) \(\frac{1}{n} \sum_{i=1}^{n} (F(x_i) - y_i) \, W_1 x_i\)
+
+(B) \(\frac{1}{n} \sum_{i=1}^{n} F(x_i)\, W_1 x_i\)
+
+(C) \(\frac{1}{n} \sum_{i=1}^{n} (F(x_i) - y_i)\, x_i^\top \,W_1^\top\)
+
+(D) \(\frac{1}{n} \sum_{i=1}^{n} F(x_i)\, x_i^\top \,W_1^\top\)
+
+Solution:
+
+(C). The shape and chain rule considerations yield \(\frac{\partial \ell}{\partial W_2} \propto (F(x_i) - y_i)\, x_i^\top W_1^\top\). Accounting for the correct dimensions and factor \(1/n\) leads to option (C).
+
+\subsubsection*{(2) [4 points, MC]}
+We now use backpropagation to compute \(\frac{\partial \ell(F)}{\partial W_1} \in \mathbb{R}^{d_1 \times d_0}\). What is the correct expression for \(\frac{\partial \ell(F)}{\partial W_1}\)?
+
+(A) \(\frac{1}{n}\sum_{i=1}^n (F(x_i) - y_i)\, x_i^\top \,W_2^\top\)
+
+(B) \(\frac{1}{n}\sum_{i=1}^n F(x_i)\, x_i^\top \,W_2^\top\)
+
+(C) \(\frac{1}{n}\sum_{i=1}^n (F(x_i) - y_i)\,W_2^\top\, x_i^\top\)
+
+(D) \(\frac{1}{n}\sum_{i=1}^n F(x_i)\,W_2^\top\, x_i^\top\)
+
+Solution:
+
+(C). By the chain rule and matching dimensions, the correct form is \(\frac{1}{n}\sum (F(x_i) - y_i)\,W_2^\top x_i^\top\).
+
+\subsection*{(c) [Bonus: 4 points, MC]}
+We have a single-layer fully connected neural network with input nodes \(v_i, i=1,\ldots,d\), and a single output node \(v_{\text{out}}\). The activation function of the output node \(v_{\text{out}}\) is the identity function. We initialize every weight independently with a standard Gaussian distribution
+\[
+w_i \sim \mathcal{N}(0, \sigma^2), \quad i \in \{1,\ldots,d\}.
+\]
+To avoid overfitting, we use dropout and thus independently set each node \(v_j\) to zero with probability \(1-p\).
+
+Assume we give as input to the network \(d\) independent random variables \(X_i, i=1,\ldots,d,\) with
+\[
+\mathbb{E}[X_i] = 0, \quad \mathbb{E}[X_i^2] = 1.
+\]
+How should we choose \(\sigma^2\) so that we have \(\mathbb{E}[v_{\text{out}}] = 0\) and \(\mathbb{E}[v_{\text{out}}^2] = 1\)? Here the randomness is over the random variables \(X_i\), weights \(w_i\), and node dropout events.
+
+(A) \(\sigma^2 = \frac{2}{d\,p\,(1-p)}\)
+
+(B) \(\sigma^2 = \frac{2}{d\,p}\)
+
+(C) \(\sigma^2 = \frac{1}{d\,p\,(1-p)}\)
+
+(D) \(\sigma^2 = \frac{1}{d\,p}\)
+
+Solution:
+
+(D). We have
+\[
+v_{\text{out}} = \sum_{i=1}^d w_i\,X_i\,D_i,
+\]
+where \(D_i\) is a Bernoulli variable with probability \(p\). Then
+\[
+\mathbb{E}[v_{\text{out}}^2] 
+= \sum_{i=1}^d \mathbb{E}[w_i^2]\,\mathbb{E}[X_i^2]\,\mathbb{E}[D_i^2] 
+= d\,\sigma^2 \,p.
+\]
+Setting that equal to 1 yields \(\sigma^2 = \frac{1}{d\,p}\).
+
+\bigskip
+
+\section{2. [6 points + 3 bonus pts] Neural networks}
+
+\subsection*{(a) [2 points, MC]}
+Which of the following statements about training neural networks is True?
+
+(A) Nonlinear activation functions are often only applied to the output units.
+
+(B) The cross entropy loss is designed for regression tasks, where the goal is to predict arbitrary real-valued labels.
+
+(C) Increasing the minibatch size in stochastic gradient descent (SGD) lowers the variance of gradient estimates (assuming data points in the mini-batch are selected independently).
+
+(D) For a minibatch size of 1, SGD is guaranteed to decrease the loss in every iteration.
+
+(E) None of the above.
+
+Solution:
+
+(C). Nonlinear activations are crucial in hidden layers (not just output). The cross entropy loss is primarily for classification, not general real-valued regression. SGD with minibatch size 1 is not guaranteed to reduce the loss at every step. Increasing batch size does lower variance in the gradient estimate.
+
+\subsection*{(b) [2 points, MC]}
+Which of the following statements about convolutional neural networks (CNNs) for image analysis is True?
+
+(A) They do not require non-linear activations to learn non-linear decision boundaries.
+
+(B) They can only be used in shallow neural networks.
+
+(C) Pooling layers reduce the spatial resolution of the image.
+
+(D) They cannot be used for unsupervised learning.
+
+(E) None of the above.
+
+Solution:
+
+(C). Pooling layers reduce the spatial resolution. CNNs do require nonlinear activations to learn complex patterns, can be used in deep architectures, and can be applied to unsupervised learning tasks.
+
+\subsection*{(c) [2 points, MC]}
+Which of the following statements about Generative Adversarial Networks (GANs) is False?
+
+(A) GANs represent a neural network architecture that is comprised of a generator and a discriminator.
+
+(B) Training a GAN requires finding a saddle point of the objective function rather than a local optimum.
+
+(C) In practice, training a GAN is difficult due to mode collapse and training instability.
+
+(D) GANs can be evaluated by computing their log-likelihood for held-out samples.
+
+(E) None of the above.
+
+Solution:
+
+(D) is false. Although you can approximate such evaluations in special cases, GANs do not directly provide a tractable log-likelihood measure, making it difficult to evaluate by standard likelihood-based approaches.
+
+\subsection*{(d) [Bonus: 3 points, MC]}
+You train a generative adversarial network with neural network discriminator \(D\) and neural network generator \(G\). Let \(p_{\text{data}}(x)\) be the probability density function of training examples \(x\), and \(p_G(x)\) be the probability density of \(x\) under the generator \(G\). The optimal discriminator for \(G\) is defined as
+\[
+D^* = \arg\max_{D} \Bigl(\mathbb{E}_{x\sim p_{\text{data}}}[\log D(x)] + \mathbb{E}_{z\sim\mathcal{N}(0,I)}[\log(1-D(G(z)))]\Bigr).
+\]
+For a training sample \(x\) with \(p_{\text{data}}(x) = \frac{1}{100}\) and \(p_G(x) = \frac{1}{50}\), what is the probability of \(D^*\) classifying \(x\) as being from the generator?
+
+(A) \(\tfrac{1}{4}\)
+
+(B) \(\tfrac{1}{3}\)
+
+(C) \(\tfrac{1}{2}\)
+
+(D) \(\tfrac{2}{3}\)
+
+(E) \(\tfrac{3}{4}\)
+
+Solution:
+
+(D). The optimal discriminator is \(D^*(x) = \frac{p_{\text{data}}(x)}{p_{\text{data}}(x) + p_G(x)}\). Thus the probability of classifying \(x\) as from the generator is
+\[
+1 - D^*(x) 
+= 1 - \frac{1/100}{(1/100) + (1/50)} 
+= 1 - \frac{1}{1 + 2} 
+= \frac{2}{3}.
+\]
+
+\bigskip
+
+\section{3. [6 points] Clustering}
+
+\subsection*{(a) [2 points, MC]}
+Which of the following statements is False about \(k\)-means clustering?
+
+(A) It seeks cluster centers and assignments to minimize the within-cluster sum of squares.
+
+(B) For fixed assignments of sample points to cluster centers, computing the optimal cluster centers is a non-convex optimization problem.
+
+(C) It is an appropriate algorithm if the underlying clusters are separable, spherical and approximately of the same size.
+
+(D) None of the above.
+
+Solution:
+
+(B) is false. For fixed assignments, finding optimal cluster centers is a convex problem in the centers. Minimizing the sum of squared distances to a set of points has a unique global minimum (their mean) for each cluster.
+
+\subsection*{(b) [2 points, MC]}
+Which of the following statements is False about Lloyd's algorithm for \(k\)-means clustering?
+
+(A) It is guaranteed to monotonically decrease the \(k\)-means cost function (the average squared distance).
+
+(B) It is not guaranteed to terminate with the globally optimal solution.
+
+(C) Using specialized initialization schemes (e.g. \(k\)-means++) can improve the quality of solutions found by the algorithm.
+
+(D) The number of iterations until convergence is guaranteed to be polynomial in the number of cluster centers and data points.
+
+Solution:
+
+(D) is false. Lloyd's algorithm can, in worst-case scenarios, take super-polynomial time to converge. Statements (A), (B), and (C) are true.
+
+\subsection*{(c) [2 points, MC]}
+In \(k\)-means clustering, which of the following approaches is not suitable for selecting the cluster number \(k\)?
+
+(A) By using a heuristic like the elbow method that identifies the diminishing returns in the loss function.
+
+(B) By using a regularizor to favor simpler models with lower \(k\).
+
+(C) By using a validation set to select the best \(k\) on the held-out data.
+
+(D) None of the above.
+
+Solution:
+
+(C) is not suitable, because with more clusters one often can keep decreasing the in-sample or out-of-sample distortion. A simple validation set approach does not typically fix an optimal \(k\) by standard risk. Heuristics like the elbow method or adding a complexity penalty are common.
+
+\bigskip
+
+\section{4. [13 points] Principal component analysis}
+
+\subsection*{(a)}
+Determine whether each of the following statements is True or False, and briefly justify your answers.
+
+\subsubsection*{(1) [2 points, TF]}
+PCA helps us find a linear mapping to a lower dimensional space.
+
+(A) True \quad (B) False
+
+Solution:
+
+True. By definition, PCA finds a linear projection to the principal components.
+
+\subsubsection*{(2) [2 points, TF]}
+Imagine two features are identical in the whole dataset, that is, they are identical among all data samples \(x_1,\ldots,x_n\). Then, utilizing PCA, we can strictly reduce the dimension of the dataset by at least one with zero reconstruction error.
+
+(A) True \quad (B) False
+
+Solution:
+
+True. If two features are identical, one direction of variation is completely redundant, giving a zero eigenvalue in the covariance matrix. PCA can compress by at least one dimension without losing information.
+
+\subsection*{(b)}
+We apply PCA to the points plotted in the figure below. Vectors \((v_1,\ldots,v_5)\) in the figure indicate possible directions of the principal components. Note that these vectors are scaled in the figure for easier readability, and only their direction is relevant. Answer the following two questions:
+
+\[
+\text{(Imagine a figure named pca\_example.pdf illustrating points and possible PC directions.)}
+\]
+
+\subsubsection*{(1) [2 points, MC]}
+Which vector corresponds to the first principal component?
+
+(A) \(v_1\) \quad (B) \(v_2\) \quad (C) \(v_3\) \quad (D) \(v_4\) \quad (E) \(v_5\)
+
+Solution:
+
+(A). The first principal component is in the direction of maximal variance, marked by \(v_1\).
+
+\subsubsection*{(2) [2 points, MC]}
+Which vector corresponds to the second principal component?
+
+(A) \(v_1\) \quad (B) \(v_2\) \quad (C) \(v_3\) \quad (D) \(v_4\) \quad (E) \(v_5\)
+
+Solution:
+
+(C). The second principal component is orthogonal to the first and corresponds to \(v_3\) here.
+
+\subsection*{(c)}
+In PCA, we map data points \(x_i \in \mathbb{R}^d,\, i=1,\ldots,n,\) to \(z \in \mathbb{R}^k\) with \(k \ll d\) by solving the following optimization problem:
+\[
+C^* 
+= \frac{1}{n} 
+\min_{W \in \mathbb{R}^{d\times k},\,W^\top W = I,\;z_1,\ldots,z_n \in \mathbb{R}^k}
+\sum_{i=1}^{n} \|\,W\,z_i - x_i\|_2^2.
+\]
+We denote by \(W^*,\,z_1^*,\ldots,z_n^*\) the optimal solution of the above, and assume the data are centered so that \(\sum_{i=1}^n x_i = 0\).
+
+\subsubsection*{(1) [2 points, MC]}
+What holds for \(z_i^*\)?
+
+(A) \(z_i^* = W^{*\top}\,(W^* W^{*\top})^{-1}\,x_i\)
+
+(B) \(z_i^* = (W^{*\top} W^*_{} )^{-1} W^{*\top} x_i\)
+
+(C) \(z_i^* = (W^* W^{*\top})^{-1} W^{*\top} x_i\)
+
+(D) \(z_i^* = W^{*\top} (W^* W^{*\top})^{-1} W^*_{}\,x_i\)
+
+Solution:
+
+(B). Because \(W^{\top} W=I\) in PCA, the projection of \(x_i\) is simply \(W^{*\top} x_i\). That is the same as \((W^{*\top} W^*_{} )^{-1} W^{*\top} x_i\). In fact, \(W^{*\top} W^*_{} = I_k\).
+
+\subsubsection*{(2) [3 points, MC]}
+What is the value of \(\mathrm{Tr}(W^* W^{*\top})\)?
+
+(A) \(n\)
+
+(B) \(k\)
+
+(C) \(d\)
+
+(D) \(\max(n,d)\)
+
+Solution:
+
+(B). Since the columns of \(W^*\) are orthonormal in \(\mathbb{R}^d\), the trace of \(W^* W^{*\top}\) counts the number of orthonormal vectors, i.e.\(k\).
+
+\bigskip
+
+\section{5. [16 points] Probabilistic classification}
+
+\subsection*{(a) [2 points, MC]}
+Consider a dataset \(D=\{x_i\}_{i=1}^n\) and assume that the likelihood function \(P(D\mid \theta)\) depends on some parameters \(\theta\) to be estimated. Furthermore, we assume we have access to the true prior \(P(\theta)\) over the parameters. Choose the correct statement:
+
+(A) The maximum a posteriori (MAP) estimate and the maximum likelihood estimate (MLE) coincide, since they both involve a maximization of the likelihood \(P(D|\theta)\).
+
+(B) The posterior distribution over \(\theta\) is given by \(P(\theta|D) = P(D|\theta)\,P(\theta)\).
+
+(C) The MLE estimate maximizes \(P(D|\theta)\) and the MAP estimate maximizes \(P(\theta|D)\).
+
+(D) The MLE estimate is a point estimate, whereas the MAP estimate outputs a distribution.
+
+Solution:
+
+(C). The posterior is proportional to the product of likelihood and prior, but that is \(\propto\). So (B) as an equality is missing the normalizing constant. The MLE maximizes \(P(D|\theta)\). The MAP maximizes \(P(\theta|D)\).
+
+\subsection*{(b) [2 points, MC]}
+Match the following statistical learning models (left) with their corresponding likelihood functions (right) for MLE estimate. Fill in the blank.
+
+(1) Logistic regression
+
+(2) Least squares for linear regression
+
+(A) Multinomial likelihood
+
+(B) Gaussian likelihood
+
+(C) Bernoulli likelihood
+
+(D) Laplace likelihood
+
+Solution:
+
+(1) Logistic regression \(\rightarrow\) (C) Bernoulli likelihood
+
+(2) Least squares linear regression \(\rightarrow\) (B) Gaussian likelihood
+
+\subsection*{(c) [3 points, MC]}
+You have trained a generative model on binary labels and you want to predict the label for a new data point \(x\). According to your model:
+\[
+P(Y=0)=0.5,\quad P(Y=1)=0.5,
+\]
+\[
+P(x\mid Y=0)=0.1,\quad P(x\mid Y=1)=0.3.
+\]
+What is the probability of \(x\) belonging to class 0?
+
+(A) 0.05
+
+(B) 0.1
+
+(C) 0.25
+
+(D) cannot be calculated without knowing \(p(x)\)
+
+Solution:
+
+(C) 0.25. By Bayes' rule:
+\[
+P(Y=0\mid x)
+\]
+\[= \frac{P(x\mid Y=0)\,P(Y=0)}{P(x\mid Y=0)\,P(Y=0) + P(x\mid Y=1)\,P(Y=1)} 
+\]
+\[
+= \frac{0.1\times 0.5}{0.1\times 0.5 + 0.3\times 0.5} = 0.25.
+\]
+
+\subsection*{(d)}
+Consider a classification task using linear discriminant analysis (LDA). Given a data set \(D=\{(x_1,y_1),\ldots,(x_n,y_n)\}\), let \(n_j\) represent the number of samples such that \(y=j\). We assume the following simplified model,
+\[
+P(X\mid Y=j) = \mathcal{N}(\mu_j, I),
+\]
+where \(I\in \mathbb{R}^{d\times d}\) is the identity matrix and \(j\in\{1,2\}\). Furthermore, let \(P(Y=1)=p\), and \(P(Y=2)=1-p\).
+
+\subsubsection*{(1) [2 points, MC]}
+Which of the following expresses the MLE \(\hat{\mu}_1\) of \(\mu_1\)?
+
+(A) \(\hat{\mu}_1 = \frac{1}{n_1}\sum_{i:y_i=1} x_i\)
+
+(B) \(\hat{\mu}_1 = \frac{n_1}{n_1+n_2}\sum_{i:y_i=1} x_i\)
+
+(C) \(\hat{\mu}_1 = \frac{n_1}{n_2}\sum_{i:y_i=1} x_i\)
+
+(D) cannot be derived from the information given
+
+Solution:
+
+(A). The MLE for the mean of a Gaussian given the samples in that class is the average of those samples.
+
+\subsubsection*{(2) [4 points, MC]}
+Suppose that we have the estimates \(\hat{p}_j\) and \(\hat{\mu}_j\) for all \(j\in\{1,2\}\). Given a data point \(x\), which of the following is a valid procedure to predict the class label of \(x\) using LDA? (Note: \(\hat{p}_1=\hat{p}\), \(\hat{p}_2=1-\hat{p}\).)
+
+(A) \(\hat{y} = \arg\max_{j\in\{1,2\}}\,(x-\hat{\mu}_j)^\top \,\hat{\mu}_j + \log(\hat{p}_j)\)
+
+(B) \(\hat{y} = \arg\max_{j\in\{1,2\}}\,(2x-\hat{\mu}_j)^\top \,\hat{\mu}_j + 2\,\log(\hat{p}_j)\)
+
+(C) \(\hat{y} = \arg\max_{j\in\{1,2\}}\,(x-\hat{\mu}_j)^\top \,\hat{\mu}_j + \hat{p}_j\)
+
+(D) \(\hat{y} = \arg\max_{j\in\{1,2\}}\exp\Bigl(-\frac{\|x-\hat{\mu}_j\|^2}{2\,\hat{p}_j}\Bigr)\)
+
+Solution:
+
+(B). The discriminant function in LDA under identical covariance \(I\) has the form proportional to \((\hat{\mu}_j)^\top x - \tfrac12 \|\hat{\mu}_j\|^2 + \log(\hat{p}_j)\). After rearranging, that can be written in an equivalent form. The constant 2 factor emerges from expanding the negative norm term. (B) is the correct functional form for the argmax classification.
+
+\subsubsection*{(3) [3 points, MC]}
+If
+\[
+x^\top(\hat{\mu}_1 - \hat{\mu}_2) > \frac12 \Bigl(\hat{\mu}_1^\top \hat{\mu}_1 - \hat{\mu}_2^\top \hat{\mu}_2\Bigr),
+\]
+\(x\) is classified as
+
+(A) 1 for any \(\hat{p}\)
+
+(B) 2 for any \(\hat{p}\)
+
+(C) 1 if \(\hat{p}=0.5\)
+
+(D) 2 if \(\hat{p}=0.5\)
+
+Solution:
+
+(C). The discriminant includes a term \(\log\frac{\hat{p}}{1-\hat{p}}\). If \(\hat{p}=0.5\), then \(\log(\frac{0.5}{0.5})=0,\) so the condition reduces to \(x^\top(\hat{\mu}_1 - \hat{\mu}_2) > \frac12(\ldots)\). That corresponds to class 1 when this inequality is satisfied.
+
+\bigskip
+
+\section{6. [15 points] EM algorithm}
+
+We consider a mixture of two exponential distributions, where a random variable \(X\in\mathbb{R}\) is constructed as follows: First the class \(Z\in\{0,1\}\) is chosen according to
+\[
+P(Z=0)=\pi_0,\quad P(Z=1)=\pi_1=1-\pi_0.
+\]
+Then the random variable \(X\) is sampled from an exponential distribution with parameter \(\lambda_0\) or \(\lambda_1\), depending on the class \(Z\). Formally:
+\[
+P(x\mid Z=0)=
+\begin{cases}
+\lambda_0 e^{-\lambda_0 x}, & \text{if }x\ge 0,\\
+0, & \text{otherwise},
+\end{cases}
+\]
+\[
+P(x\mid Z=1)=
+\begin{cases}
+\lambda_1 e^{-\lambda_1 x}, & \text{if }x\ge 0,\\
+0, & \text{otherwise}.
+\end{cases}
+\]
+We are given \(n\) i.i.d.\ observations \(x_{1:n} = (x_1,\ldots,x_n)\) from the model above. Let \(z_{1:n} = (z_1,\ldots,z_n)\) be the latent variables, where \(z_i=0\) if the \(i\)th observation belongs to class 0, and \(z_i=1\) if it belongs to class 1. Denote \(\theta=(\lambda_0,\lambda_1,\pi_0,\pi_1)\).
+
+\subsection*{(a) [3 points, MC]}
+What is the correct expression for the complete-data likelihood \(P(x_{1:n}, z_{1:n}\mid \theta)\)?
+
+(A) \(\prod_{i=1}^n \bigl(\pi_0 \lambda_0 e^{-\lambda_0 x_i}\bigr)^{1-z_i}\,\bigl(\pi_1 \lambda_1 e^{-\lambda_1 x_i}\bigr)^{z_i}\)
+
+(B) \(\prod_{i=1}^n \Bigl(\,\bigl(\pi_0 \lambda_0 e^{-\lambda_0 x_i}\bigr)^{1-z_i} + \bigl(\pi_1 \lambda_1 e^{-\lambda_1 x_i}\bigr)^{z_i}\Bigr)\)
+
+(C) \(\prod_{i=1}^n \bigl(\lambda_0 e^{-\lambda_0 x_i}\bigr)^{1-z_i}\,\bigl(\lambda_1 e^{-\lambda_1 x_i}\bigr)^{z_i}\)
+
+(D) \(\prod_{i=1}^n \Bigl(\,\bigl(\lambda_0 e^{-\lambda_0 x_i}\bigr)^{1-z_i} + \bigl(\lambda_1 e^{-\lambda_1 x_i}\bigr)^{z_i}\Bigr)\)
+
+Solution:
+
+(A). The joint distribution for each datapoint includes both \(\pi_0\) or \(\pi_1\) (depending on \(z_i\)) and the exponential density. Then, across all \(n\) datapoints we multiply.
+
+We run EM on this data. The vector \(\theta^{(t)}\) denotes the parameters at iteration \(t\). At iteration \(t+1\), the E-step computes:
+\[
+Q(\theta;\theta^{(t)}) 
+:= \mathbb{E}_{z_{1:n}}\bigl[\log P(x_{1:n},z_{1:n}\mid \theta)\mid x_{1:n},\theta^{(t)}\bigr].
+\]
+Recall that 
+\[
+\gamma_1(x_i) = P(z_i=1\mid x_i,\theta^{(t)}), 
+\quad \gamma_0(x_i) = 1 - \gamma_1(x_i).
+\]
+
+\subsection*{(b) [3 points, MC]}
+What is the value of \(Q(\theta;\theta^{(t)})\)?
+
+(A) \(\sum_{i=1}^n \gamma_0(x_i)\,\bigl(\log(\lambda_0) - \lambda_0 x_i\bigr)\;+\;\gamma_1(x_i)\,\bigl(\log(\lambda_1) - \lambda_1 x_i\bigr)\)
+
+(B) \(\sum_{i=1}^n \gamma_0(x_i)\,\bigl(\log(\pi_0\lambda_0) - \lambda_0 x_i\bigr)\;+\;\gamma_1(x_i)\,\bigl(\log(\pi_1\lambda_1) - \lambda_1 x_i\bigr)\)
+
+(C) \(\sum_{i=1}^n \Bigl(\pi_0\lambda_0 e^{-\lambda_0 x_i}\Bigr)^{\gamma_0(x_i)} + \Bigl(\pi_1\lambda_1 e^{-\lambda_1 x_i}\Bigr)^{\gamma_1(x_i)}\)
+
+(D) \(\sum_{i=1}^n \Bigl(\lambda_0 e^{-\lambda_0 x_i}\Bigr)^{\gamma_0(x_i)} + \Bigl(\lambda_1 e^{-\lambda_1 x_i}\Bigr)^{\gamma_1(x_i)}\)
+
+Solution:
+
+(B). The complete-data \(\log\)-likelihood is
+\[
+\sum_{i=1}^n \bigl[(1-z_i)\log(\pi_0\lambda_0) - \lambda_0 x_i\bigr] + \bigl[z_i\log(\pi_1\lambda_1) - \lambda_1 x_i\bigr].
+\]
+Taking the expectation over \(z_i\) with weights \(\gamma_0(x_i),\gamma_1(x_i)\) yields option (B).
+
+\subsection*{(c) [3 points, MC]}
+What is the value of \(\gamma_1(x_i)\)?
+
+(A) \(\frac{\pi_1^{(t)} \lambda_1^{(t)} e^{-\lambda_1^{(t)} x_i}}
+{\pi_0^{(t)} \lambda_0^{(t)} e^{-\lambda_0^{(t)} x_i} + \pi_1^{(t)} \lambda_1^{(t)} e^{-\lambda_1^{(t)} x_i}}\)
+
+(B) \(\pi_0^{(t)} \lambda_0^{(t)} e^{-\lambda_0^{(t)} x_i} + \pi_1^{(t)} \lambda_1^{(t)} e^{-\lambda_1^{(t)} x_i}\)
+
+(C) \(\pi_1^{(t)} \lambda_1^{(t)} e^{-\lambda_1^{(t)} x_i}\)
+
+(D) \(\frac{\lambda_1^{(t)} e^{-\lambda_1^{(t)} x_i}}
+{\lambda_0^{(t)} e^{-\lambda_0^{(t)} x_i} + \lambda_1^{(t)} e^{-\lambda_1^{(t)} x_i}}\)
+
+Solution:
+
+(A). By Bayes' rule with mixture components. The denominator is the sum of numerator terms for each class.
+
+\subsection*{(d) [3 points, MC]}
+What is the value of \(\lambda_0^{(t+1)}\)?
+
+(A) \(\frac{\sum_{i=1}^n \gamma_0(x_i)}{\sum_{i=1}^n x_i\,\gamma_0(x_i)}\)
+
+(B) \(\frac{\sum_{i=1}^n x_i\,\gamma_0(x_i)}{\sum_{i=1}^n \gamma_0(x_i)}\)
+
+(C) \(\frac{\sum_{i=1}^n x_i}{\sum_{i=1}^n \gamma_0(x_i)}\)
+
+(D) \(\frac{\sum_{i=1}^n \gamma_0(x_i)}{\sum_{i=1}^n x_i}\)
+
+Solution:
+
+(A). From setting the derivative of \(Q(\theta;\theta^{(t)})\) to zero, solving for \(\lambda_0\).
+
+\subsection*{(e) [3 points, MC]}
+What is the value of \(\pi_0^{(t+1)}\)?
+
+(A) \(\sum_{i=1}^n \gamma_1(x_i) / n\)
+
+(B) \(\sum_{i=1}^n \gamma_1(x_i)\)
+
+(C) \(\sum_{i=1}^n \gamma_0(x_i) / n\)
+
+(D) \(\sum_{i=1}^n \gamma_0(x_i)\)
+
+Solution:
+
+(C). The M-step for \(\pi_0\) is \(\pi_0^{(t+1)} = \frac{1}{n}\sum_{i=1}^n \gamma_0(x_i)\). Because \(\gamma_1(x_i)=1-\gamma_0(x_i)\), we get \(\pi_1^{(t+1)}=1-\pi_0^{(t+1)}\).
+
+\section{1. (Neural network)}
+Consider the neural network given in the figure below. The numbers above the lines correspond
+to the weights of the connections. In the hidden layer, the activation function $\sigma$ is applied.
+
+\bigskip
+\noindent
+\textbf{Problem 2 (2018 Exam Question: ANN):}
+
+Consider the neural network given in the figure below. The numbers above the lines correspond
+to the weights of the connections. In the hidden layer, the activation function $\sigma$ is applied
+and the network does not have any biases.
+
+\[
+\begin{array}{c}
+x_1 \\[6pt]
+x_2
+\end{array}
+\quad
+\begin{array}{c}
+\sigma\\[-3pt]
+\sigma
+\end{array}
+\quad
+f
+\]
+
+The diagram also shows weights labeled $1,\,1,\,0,\,1,\,\tfrac{1}{4},\,\tfrac{3}{4}$ on each edge.
+
+\begin{enumerate}
+\item Read off the initial weights $W_1$ and $w_2$ from the network given above, so that the weights
+correspond to the following matrix notation of the neural network (with input $x = (x_1, x_2)$):
+\[
+f(x;W_1,w_2) = w_2^\top\,\sigma(W_1 x).
+\]
+
+\item You are given a data set $D = \{(x_1,y_1),\dots,(x_n,y_n)\}$ with $n$ data points, where $x_i\in\mathbb{R}^2$
+and $y_i\in\mathbb{R}$ for $i=1,\dots,n.$ Write down the empirical risk $\hat{R}(D,W_1,w_2)$ for training
+the neural network using the squared loss with added $L_2$ regularization \emph{only} on the output layer.
+
+\item For training the neural network, the empirical risk function is often minimized using stochastic
+gradient descent (SGD). What is the difference between SGD and standard gradient descent in terms
+of computational complexity per gradient step?
+
+\item Given $W_1$ and $w_2$ as in the diagram, find different weights $\widetilde{W}_1$ and $\widetilde{w}_2$
+such that the resulting network has the same performance as the original network (for any activation
+function~$\sigma$). In other words, find $\widetilde{W}_1$ and $\widetilde{w}_2$ so that 
+\[
+f(x;W_1,w_2) = f(x;\widetilde{W}_1, \widetilde{w}_2),
+\]
+but $W_1 \neq \widetilde{W}_1$ and $w_2 \neq \widetilde{w}_2$.
+
+\item Show that if $\sigma$ is the ReLU activation function $\sigma(z)=\max(0,z)$, then the resulting network
+$f(x;W_1,w_2)$ is a piecewise linear function in $x$. Specifically, define 4 intervals on the real plane
+(where $x_1$ and $x_2$ are the axes) where the resulting function is linear, for the weights given in the
+diagram above.
+\end{enumerate}
+
+\bigskip
+\noindent
+\textbf{Problem 3 (Expressiveness of Neural Networks):}
+
+In this question we will consider neural networks with sigmoid activation functions of the form
+\[
+\phi(z) = \frac{1}{1 + \exp(-z)}.
+\]
+If we denote by $v_j^l$ the value of neuron $j$ at layer $l$, its value is computed as
+\[
+v_j^l = \phi\!\Bigl(w_0 + \sum_{i\in\text{Layer }l-1} w_{j,i}\,v_i^{l-1}\Bigr).
+\]
+We will treat the final output $Y\in(0,1)$ as $1$ if it is greater than $0.5$ and $0$ otherwise.
+
+\begin{enumerate}
+\item Give three weights $w_0,\,w_1,\,w_2$ for a single unit with two inputs $X_1$ and $X_2$ that implements
+the logical OR function $Y = X_1 \lor X_2$.
+\end{enumerate}
+
+\bigskip
+\noindent
+\textbf{Figure 1:} (A reference figure for the above neural networks.)
+
+\subsection*{Solution for the Neural Network Problems}
+
+\noindent
+\emph{a) We read off the weights:}
+\[
+W_1 = 
+\begin{pmatrix}
+1 & 0 \\
+1 & 1
+\end{pmatrix},
+\quad
+w_2 =
+\begin{pmatrix}
+\tfrac{1}{4} \\[4pt]
+\tfrac{3}{4}
+\end{pmatrix}.
+\]
+
+\noindent
+\emph{b) The empirical risk with squared loss and $L_2$ regularization on $w_2$ is:}
+\[
+\hat{R}(D,W_1,w_2) = \frac{1}{n} \sum_{i=1}^n \bigl(w_2^\top\,\sigma(W_1 x_i) - y_i\bigr)^2 
+\;+\;\|\,w_2\,\|^2.
+\]
+
+\noindent
+\emph{c) Stochastic gradient descent (SGD) uses a single data point (or a small batch) at each iteration, 
+making the per-iteration cost $O(1)$ (or proportional to batch size). Standard (batch) gradient descent
+uses the entire dataset each step, costing $O(n)$ per iteration.}
+
+\noindent
+\emph{d) If $\sigma$ is ReLU, then $a_1 = \max(x_1,0)$ and $a_2 = \max(x_1 + x_2,0)$. 
+Hence $f = w_2^\top (a_1,a_2)^\top = \tfrac{1}{4}a_1 + \tfrac{3}{4}a_2.$ This is piecewise linear in different
+regions of $(x_1,x_2)$ space, specifically determined by $x_1 \le 0$ or $>0$ and $x_1 + x_2 \le 0$ or $> 0$.}
+
+\noindent
+\emph{(Expressiveness) The single-unit OR function: choose $w_0,\,w_1,\,w_2$ so that 
+$\phi(w_0 + w_1 X_1 + w_2 X_2)>0.5$ exactly when $X_1$ or $X_2$ is 1.}
+
+
+\section{2. (Dropout and Backpropagation)}
+
+Consider the following neural network with one input layer of 3 units, two hidden layers of 2 units, 
+and one output layer. All units in the hidden layers use the sigmoid activation function
+$\sigma(z)=1/(1+e^{-z})$, and no activation function is used in the output layer. For a training example
+$(x,y)$ where $x \in \mathbb{R}^3$ and $y \in \mathbb{R}$, we use the loss $L=(y - f)^2$ at the output layer.
+
+\[
+\begin{array}{ccc}
+x_1 & x_2 & x_3
+\end{array}
+\quad
+\begin{array}{cc}
+a_1^{(1)} & a_2^{(1)}
+\end{array}
+\quad
+\begin{array}{cc}
+a_1^{(2)} & a_2^{(2)}
+\end{array}
+\quad
+f
+\]
+
+Weights between layers are denoted by $w_{ij}^{(k)}$, with the superscript $(k)$ indicating the layer.
+
+\begin{enumerate}
+\item Given the training example $(x_1,x_2,x_3)$ and label $y$, write down the sequence of calculations
+for computing the loss $L$. In particular, write down how to compute the intermediate values 
+$a_i^{(1)}, a_i^{(2)}$, $f$, and $L$.
+
+\item Consider using dropout to reduce overfitting. In particular, given training example $(x_1,x_2,x_3)$
+and label $y$, apply dropout for the 2nd hidden layer $(a_1^{(2)}, a_2^{(2)})$ with probability 0.4. 
+Write down the expected value of the loss as a function of $a_1^{(2)}, a_2^{(2)}, w_1^{(3)}, w_2^{(3)}, y$.
+
+\item At a certain iteration of SGD training with input $(x_1,x_2,x_3)$ and label $y$, assume that 
+$a_1^{(2)}$ gets dropped out and $a_2^{(2)}$ is kept after the forward pass. Write down the update rule
+for the weight $w_{21}^{(1)}$ during backpropagation. You may also use intermediate values 
+$z_i^{(k)}$ where $\sigma\bigl(z_i^{(k)}\bigr) = a_i^{(k)}$.
+\end{enumerate}
+
+\bigskip
+\noindent
+\textbf{Figure 2:} (Dropout on the second hidden layer.)
+
+\subsection*{Solution for Dropout and Backpropagation}
+
+\noindent
+\emph{(a) Forward pass for $(x_1,x_2,x_3)$:}
+\[
+a_i^{(1)} = \frac{1}{1+\exp\bigl(-\sum_{j=1}^3 w_{ji}^{(1)} x_j\bigr)}, 
+\]
+\[
+a_i^{(2)} = \frac{1}{1+\exp\bigl(-\sum_{j=1}^2 w_{ji}^{(2)}\,a_j^{(1)}\bigr)},
+\]
+\[
+f = w_{1}^{(3)} a_1^{(2)} + w_{2}^{(3)} a_2^{(2)},
+\quad
+L = (f - y)^2.
+\]
+
+\noindent
+\emph{(b) With dropout on the 2nd hidden layer at probability 0.4, each unit $a_i^{(2)}$ is kept (multiplied by 1)
+with probability 0.4 or dropped (multiplied by 0) with probability 0.6. Let $r_i$ be the random variable 
+that is 1 if $a_i^{(2)}$ is kept and 0 if dropped. Then}
+\[
+f = w_{1}^{(3)}\,\bigl(a_1^{(2)} r_1\bigr) + w_{2}^{(3)}\,\bigl(a_2^{(2)} r_2\bigr).
+\]
+The expected value of the loss is
+\[
+\mathbb{E}[L] = \mathbb{E}\bigl[(f - y)^2\bigr] = \mathbb{E}\bigl[f^2\bigr] - 2\,y\,\mathbb{E}[f] + y^2.
+\]
+Each $r_i$ is Bernoulli(0.4). One can compute $\mathbb{E}[f]$ and $\operatorname{var}(f)$ accordingly and
+thus find $\mathbb{E}[L]$.
+
+\noindent
+\emph{(c) If $a_1^{(2)}$ is dropped out and $a_2^{(2)}$ is kept, then $f = w_{2}^{(3)}\,a_2^{(2)}$. 
+The update for $w_{21}^{(1)}$ uses backprop:
+\[
+\frac{\partial L}{\partial w_{21}^{(1)}} 
+= \frac{\partial L}{\partial f}\,\frac{\partial f}{\partial a_2^{(2)}} \,
+\frac{\partial a_2^{(2)}}{\partial a_1^{(1)}} \,\frac{\partial a_1^{(1)}}{\partial w_{21}^{(1)}}.
+\]
+We then perform the usual gradient step 
+\[
+w_{21}^{(1)} \leftarrow w_{21}^{(1)} - \eta \,\frac{\partial L}{\partial w_{21}^{(1)}}.
+\]}
+
+\section{3. (k-medians clustering)}
+
+Recall that for a given set of $n$ points $x_i\in \mathbb{R}^d$, $i\in\{1,\dots,n\}$, the $k$-means clustering
+algorithm aims to find the centers of $k$ clusters $\mu = (\mu_1,\dots,\mu_k)$ by minimizing
+\[
+\hat{R}(\mu) 
+= 
+\sum_{i=1}^n \min_{j\in\{1,\dots,k\}} \|\,x_i - \mu_j\|_2^2.
+\]
+The algorithm iterates between assigning points to their closest cluster center, and then updating each center.
+
+Now consider a different loss function
+\[
+\hat{R}(\mu) 
+= 
+\sum_{i=1}^n \min_{j\in\{1,\dots,k\}} \|\,x_i - \mu_j\|_1.
+\]
+We have a similar iterative process:
+
+\begin{enumerate}
+\item Assignment step: assign each $x_i$ to the cluster $\mu_j$ that minimizes $\|\,x_i - \mu_j\|_1$.
+\item Update step: given the assigned points, choose the new center by minimizing the sum of $\|\cdot\|_1$
+distances. This turns out to be the median in each coordinate. Hence this is called $k$-\emph{medians}.
+\item Show that this algorithm decreases the objective at each iteration and converges (similar argument
+to $k$-means).
+\item In which situations would $k$-medians be preferred to $k$-means?
+\end{enumerate}
+
+\subsection*{Solution for k-medians Clustering}
+
+\noindent
+\emph{(a) Assignment:}
+\[
+z_i \leftarrow \arg\min_{j\in\{1,\dots,k\}} \|\,x_i - \mu_j\|_1.
+\]
+
+\noindent
+\emph{(b) Update:} For cluster $j$, let $C_j=\{\,i : z_i=j\,\}$. Minimizing 
+$\sum_{i\in C_j} \|\,x_i - \mu_j\|_1$ is achieved by choosing each coordinate of $\mu_j$ to be 
+the median of those coordinates among all points in $C_j$. Hence $k$-\emph{medians}.
+
+\noindent
+\emph{(c) Monotonic decrease in each step follows the same argument as in $k$-means: reassigning
+points cannot increase the total distance, and then updating centers optimally again reduces or
+keeps the same cost.}
+
+\noindent
+\emph{(d) $k$-medians is more robust to outliers than $k$-means, since the median is less sensitive
+than the mean to extreme values.}
+
+\section{4. (Autoencoder)}
+
+Consider the neural autoencoder below where we compress a 3-dimensional input into a 2-dimensional
+latent space, with some activation function $\sigma$ on the latent nodes and no activation function
+on the output layer. The input is $(x_1,x_2,x_3)$, the latent representation is $(a_1,a_2)$, and the
+reconstruction is $(y_1,y_2,y_3)$.
+
+\[
+x_1,\;x_2,\;x_3 \quad\rightarrow\quad
+(a_1,a_2) = \sigma(E\,x)
+\quad\rightarrow\quad
+(y_1,y_2,y_3) = D\,(a_1,a_2).
+\]
+
+We define the reconstruction loss by summing the squared errors over each input dimension.
+
+\begin{enumerate}
+\item For a single data point $x=(x_1,x_2,x_3)$, write down the reconstruction loss $L(x)$ involving only
+$x$, $z$, $D$, and $\sigma$.
+\item Given a dataset $X \in \mathbb{R}^{n\times 3}$ of $n\gg 3$ data points in $\mathbb{R}^3$, if $\sigma(z)=c\,z$
+for some constant $c>0$, find one solution of the optimization problem
+\[
+E^*, D^* = \arg\min_{E,D} \frac{1}{n}\sum_{i=1}^n L\bigl(x_i\bigr).
+\]
+You are given the SVD $X = U\,\Sigma\,V^\top$, with $U\in\mathbb{R}^{n\times n}$, $\Sigma\in\mathbb{R}^{n\times 3}$,
+$V^\top\in\mathbb{R}^{3\times 3}$.
+\item Let $\sigma(z)=\tfrac{1}{1+e^{-z}}$ (the sigmoid). Let $a = \sigma(z)$. Write down $\sigma'(z)$ in terms
+of $a$, not $z$.
+\item Write down the update rule for weight $e_{11}$ that does not involve $z$, during backpropagation of the
+reconstruction loss on a single sample $x=(x_1,x_2,x_3)$.
+\end{enumerate}
+
+\subsection*{Solution for the Autoencoder}
+
+\noindent
+\emph{(a) Reconstruction loss for $x=(x_1,x_2,x_3)$:}
+\[
+L(x) = (y_1 - x_1)^2 + (y_2 - x_2)^2 + (y_3 - x_3)^2
+\]
+\[
+=
+\sum_{i=1}^3 \bigl(d_{1i}\,\sigma(z_1) + d_{2i}\,\sigma(z_2)\;-\;x_i\bigr)^{2}.
+\]
+
+\noindent
+\emph{(b) If $\sigma$ is linear (up to a constant $c$), the autoencoder essentially performs PCA when trying
+to minimize reconstruction error. One solution corresponds to picking $E$ and $D$ so that the 2-dimensional
+latent space is spanned by the principal components of $X$ (the first 2 columns of $V$ in the SVD).}
+
+\noindent
+\emph{(c) For the sigmoid $\sigma(z)=\frac{1}{1+e^{-z}}$, we have $\sigma'(z)=\sigma(z)\bigl(1-\sigma(z)\bigr)=a(1-a)$.}
+
+\noindent
+\emph{(d) The update rule for $e_{11}$ (the weight from $x_1$ to the first latent dimension) can be computed
+by chain rule. If $z_1 = e_{11} x_1 + e_{21} x_2 + e_{31} x_3$ (plus any relevant bias), then
+\[
+\frac{\partial L}{\partial e_{11}}
+= \frac{\partial L}{\partial a_1}\,\frac{\partial a_1}{\partial z_1}\,\frac{\partial z_1}{\partial e_{11}}
+= \frac{\partial L}{\partial a_1}\,\bigl(a_1(1-a_1)\bigr)\,x_1,
+\]
+and we then perform $e_{11}\leftarrow e_{11} - \eta \,\frac{\partial L}{\partial e_{11}}$ for the gradient step.}
+
+
+\section{1. (Multiclass logistic regression)}
+The posterior probabilities for multiclass logistic regression can be given as a softmax transformation of hyperplanes, such that:
+\[
+P(Y = k \mid X = x)
+= \frac{\exp(a_k^\top x)}{\sum_{j} \exp(a_j^\top x)}.
+\]
+If we consider the use of maximum likelihood to determine the parameters $a_k$, we can take the negative logarithm of the likelihood function to obtain the cross-entropy error function for multiclass logistic regression:
+\[
+E(a_1, \dots, a_K)
+= -\ln \Bigl(\prod_{n=1}^N\prod_{k=1}^K P(Y = k \mid X = x_n)^{t_{nk}}\Bigr)
+\]
+\[
+= -\sum_{n=1}^N \sum_{k=1}^K t_{nk} \ln y_{nk},
+\]
+where $t_{nk} = 1\{\text{labelOf}(x_n) = k\}$, and $y_{nk} = P(Y = k \mid X = x_n)$.
+
+\subsubsection{(a)}
+For $j \in \{1, \dots, K\}$, prove that
+\[
+\frac{\partial \bigl(t_{nk} \ln y_{nk}\bigr)}{\partial a_j}
+= t_{nk} \bigl(\mathbf{1}\{k = j\} - y_{nj}\bigr)x_n.
+\]
+
+\subsubsection{(b)}
+Based on the result in (a), show that the gradient of the error function can be stated as
+\[
+\nabla_{a_k} E(a_1, \dots, a_K) = \sum_{n=1}^N \bigl[y_{nk} - t_{nk}\bigr]\,x_n.
+\]
+
+\paragraph{Solution (sketch).}
+Define $d_k = a_k^\top x$. Then
+\[
+P(y = k \mid X = x) = \frac{\exp(a_k^\top x)}{\sum_j \exp(a_j^\top x)} = y_k(x).
+\]
+You can first compute the derivatives
+\[
+\frac{\partial y_k}{\partial d_j} = y_k \bigl(\mathbf{1}\{k = j\} - y_j\bigr).
+\]
+Next, rewrite
+\[
+\frac{\partial \bigl(t_{nk} \ln y_k(x_n)\bigr)}{\partial a_j}
+= t_{nk} \bigl(\mathbf{1}\{k = j\} - y_{nj}\bigr) x_n.
+\]
+Summing across $k$ and rearranging leads to
+\[
+\nabla_{a_j} E(a_1, \dots, a_K)
+= \sum_{n=1}^N \bigl[P(y = j \mid x_n) - t_{nj}\bigr] x_n,
+\]
+yielding the stated result for $\nabla_{a_k} E$.
+
+\bigskip
+
+\section{2. (Poisson Naive Bayes)}
+In this task we will use the Naive Bayes model for binary classification. Let $Y = \{0,1\}$ be the set of labels and $X = \mathbb{N}^d$ a $d$-dimensional features space ($\mathbb{N} = \{0,1,2,\dots\}$). You are given a training set
+\[
+D = \{(x_1,y_1), \dots, (x_n,y_n)\} \subset X \times Y.
+\]
+
+\subsubsection{(a)}
+Is the Naive Bayes model a generative or a discriminative model? Justify your answer.
+
+\paragraph{Solution (sketch).}
+Naive Bayes is a \emph{generative} model because it models the joint data-generating distribution $P(X,Y)$ directly.
+
+\subsubsection{(b)}
+Let $\lambda$ be a positive scalar, and assume that $z_1,\dots,z_m \in \mathbb{N}$ are $m$ i.i.d.\ observations of a $\lambda$-Poisson distributed random variable. Find the maximum likelihood estimator for $\lambda$ in this model. (Hint: A $\lambda$-Poisson distributed random variable $Z$ takes values $k \in \mathbb{N}$ with probability
+\[
+P(Z = k) = \frac{e^{-\lambda} \lambda^k}{k!}.
+\])
+
+\paragraph{Solution (sketch).}
+The MLE for $\lambda$ in a Poisson$(\lambda)$ distribution is its empirical mean:
+\[
+\hat{\lambda} = \frac{1}{m}\sum_{j=1}^m z_j.
+\]
+
+\subsubsection{(c)}
+Let $p_0, p_1 \in [0,1]$ be parameters with $p_0 + p_1 = 1$, and let $\lambda_0, \lambda_1 \in \mathbb{R}^d$ be vectors with non-negative components. Write down the joint distribution $P(X,Y)$ of the resulting model when training a Poisson Naive Bayes classifier by maximum likelihood estimation.
+
+\paragraph{Solution (sketch).}
+We estimate $p(y)$ as the empirical frequency of each class and each $\lambda_{y,j}$ as the empirical mean of the feature $x_j$ within class $y$. The model is:
+\[
+p(x, y) \;=\; p(y) \,\prod_{j=1}^d \frac{e^{-\lambda_{y,j}} (\lambda_{y,j})^{\,x_j}}{x_j!}.
+\]
+
+\subsubsection{(d)}
+Show that the predicted label for a new observation $x \in X$ is determined by a hyperplane. In other words,
+\[
+y_{\mathrm{pred}} \;=\; \bigl[a^\top x \;\ge\; b\bigr]
+\]
+for some $a \in \mathbb{R}^d$, $b \in \mathbb{R}$.
+
+\paragraph{Solution (sketch).}
+We compare $P(y=0 \mid x)$ and $P(y=1 \mid x)$. Equivalently, we set $p(x, 0) = p(x, 1)$, substitute the Poisson forms, and take the log. The condition simplifies to a linear function in $x$,
+\[
+\log\!\Bigl(\frac{p_0}{p_1}\Bigr)
++ \sum_{j=1}^d \Bigl(\lambda_{1,j} - \lambda_{0,j} + x_j \log(\lambda_{0,j}/\lambda_{1,j})\Bigr) \;=\; 0,
+\]
+which corresponds to a hyperplane in $x$.
+
+\subsubsection{(e)}
+Define a cost function $c : Y \times Y \to \mathbb{R}$ so that $c(y_{\mathrm{pred}}, y_{\mathrm{true}})$ is the cost of predicting $y_{\mathrm{pred}}$ given the true label $y_{\mathrm{true}}$. The Bayes optimal predictor for a cost function $c(\cdot, \cdot)$ is
+\[
+y_{\mathrm{Bayes}} = \arg\min_{y \in Y} \mathbb{E}_{Y}[c(Y,y)\,\mid\,X=x].
+\]
+Write down a cost function such that this Bayes optimal predictor coincides with the predictor that minimizes misclassification probability.
+
+\paragraph{Solution (sketch).}
+Use the $0/1$ loss:
+\[
+c(y_{\mathrm{pred}}, y_{\mathrm{true}}) = \mathbf{1}\{y_{\mathrm{pred}} \neq y_{\mathrm{true}}\}.
+\]
+
+\bigskip
+
+\section{3. (Poisson Latent Dirichlet Allocation)}
+We extend the Poisson Naive Bayes model to a Poisson LDA framework. Each data observation is represented by a $d$-dimensional count vector $x \in \mathbb{N}^d$. Assume there are $K$ latent topics. The generative process for an observation is:
+\[
+\theta \sim \mathrm{Dirichlet}(\alpha)
+\quad\text{and}\quad
+x_j \sim \mathrm{Poisson}\Bigl(\sum_{k=1}^K \theta_k \,\lambda_{k,j}\Bigr),
+\]
+where $\alpha \in \mathbb{R}_+^K$, $\theta = (\theta_1,\dots,\theta_K)$, and $\lambda_{k,j} \ge 0$ for all $k,j$.
+
+\subsubsection{(a) Joint Likelihood}
+Write down
+\[
+p(x,\theta \,\mid\, \alpha, \{\lambda_{k,j}\}).
+\]
+
+\paragraph{Solution (sketch).}
+\[
+p(x,\theta \mid \alpha,\{\lambda_{k,j}\})
+= p(\theta \mid \alpha)\,\prod_{j=1}^d p\bigl(x_j \mid \theta,\{\lambda_{k,j}\}\bigr).
+\]
+Using the Dirichlet density and the Poisson distribution:
+\[
+p(\theta \mid \alpha)
+= \frac{1}{B(\alpha)} \prod_{k=1}^K \theta_k^{\alpha_k - 1},
+\]
+\[
+\quad
+p\bigl(x_j \mid \theta,\{\lambda_{k,j}\}\bigr)
+= \frac{\exp\!\bigl(-\sum_{k=1}^K \theta_k\lambda_{k,j}\bigr)\bigl(\sum_{k=1}^K \theta_k\lambda_{k,j}\bigr)^{x_j}}{x_j!}.
+\]
+
+\subsubsection{(b) Marginal Likelihood}
+Derive
+\[
+p(x \mid \alpha,\{\lambda_{k,j}\}) \;
+\]
+\[
+=\; \int_{\Delta_K} p(x,\theta \mid \alpha,\{\lambda_{k,j}\})\,d\theta,
+\]
+and briefly explain why this integral is generally intractable.
+
+\paragraph{Solution (sketch).}
+\[
+p(x \mid \alpha,\{\lambda_{k,j}\})
+= \int_{\Delta_K}
+\frac{1}{B(\alpha)} \prod_{k=1}^K \theta_k^{\alpha_k - 1}
+\prod_{j=1}^d
+\]
+\[
+\frac{\exp\!\bigl(-\sum_{k=1}^K \theta_k \lambda_{k,j}\bigr)\bigl(\sum_{k=1}^K \theta_k \lambda_{k,j}\bigr)^{x_j}}{x_j!}
+\, d\theta.
+\]
+The terms $\sum_{k=1}^K \theta_k \lambda_{k,j}$ appear inside exponentials and powers, coupling $\theta_1,\dots,\theta_K$ in a way that prevents a closed-form solution.
+
+\subsubsection{(c) Parameter Estimation (EM Update)}
+Suppose we have $N$ data observations $\{x^{(i)}\}_{i=1}^N$. In an EM algorithm for estimating $\{\lambda_{k,j}\}$, assume that in the E-step for observation $i$, you compute an approximate posterior over $\theta^{(i)}$ and define
+\[
+\gamma_{k}^{(i)} = \mathbb{E}_q[\theta_k].
+\]
+Derive an update equation for $\lambda_{k,j}$ based on maximizing the expected complete-data log-likelihood.
+
+\paragraph{Solution (sketch).}
+The expected complete-data log-likelihood is
+\[
+Q(\{\lambda_{k,j}\})
+= \sum_{i=1}^N \sum_{j=1}^d \Bigl[
+- \sum_{k=1}^K \gamma_k^{(i)} \lambda_{k,j}
++ x_j^{(i)} \ln\Bigl(\sum_{k=1}^K \gamma_k^{(i)} \lambda_{k,j}\Bigr)\Bigr] + \text{const.}
+\]
+Taking derivatives and setting to zero yields a multiplicative update such as
+\[
+\lambda_{k,j}^{\text{new}}
+= \lambda_{k,j}^{\text{old}}
+\,\frac{\sum_{i=1}^N x_j^{(i)} \,\gamma_k^{(i)} \,\Big/\!\!\bigl(\sum_{k'} \gamma_{k'}^{(i)} \lambda_{k',j}^{\text{old}}\bigr)}{\sum_{i=1}^N \gamma_k^{(i)}}.
+\]
+
+\bigskip
+
+\section{4. (Mixture models and EM algorithm)}
+Consider a 1-dimensional Gaussian Mixture Model (GMM) with 2 clusters and parameters $(\mu_1, \sigma_1^2, \mu_2, \sigma_2^2, w_1, w_2)$. We have mixing weights $w_1, w_2$ and cluster centers (means) $\mu_1, \mu_2$, variances $\sigma_1^2, \sigma_2^2$. Given a dataset $D = \{x_1, x_2, x_3\} \subset \mathbb{R}$, each iteration of EM introduces a latent variable $z_i \in \{1,2\}$ with indicators $z_{ic} = 1$ if $z_i=c$ and 0 otherwise.
+
+\subsubsection{(a) Complete-data log-likelihood}
+\[
+\ln f(D,Z \mid (\mu_1, \sigma_1^2, \mu_2, \sigma_2^2, w_1, w_2))
+\]
+\[
+= \sum_{i=1}^3 \sum_{c=1}^2 z_{ic} \Bigl[\ln w_c + \ln \mathcal{N}(x_i; \mu_c, \sigma_c^2)\Bigr].
+\]
+
+Assume our dataset is $x_1=1$, $x_2=10$, $x_3=20$, and at some step, the E-step yields
+\[
+R = \begin{pmatrix}
+1 & 0 \\
+0.4 & 0.6 \\
+0 & 1
+\end{pmatrix},
+\]
+where $r_{ic}$ is the probability of $x_i$ belonging to cluster $c$.
+
+\subsubsection{(b) Updating $w_1, w_2$}
+\[
+w'_1 = \frac{1}{3}\bigl(1 + 0.4 + 0\bigr) = \frac{1.4}{3},\quad
+w'_2 = \frac{1}{3}\bigl(0 + 0.6 + 1\bigr) = \frac{1.6}{3}.
+\]
+
+\subsubsection{(c) Updating $\mu_1, \mu_2$}
+\[
+\mu'_1 = \frac{1\cdot 1 + 0.4\cdot 10 + 0\cdot 20}{1.4} = \frac{5}{1.4}, \]
+\[
+\mu'_2 = \frac{0\cdot 1 + 0.6\cdot 10 + 1\cdot 20}{1.6} = \frac{26}{1.6}.
+\]
+
+\subsubsection{(d) Updating $\sigma_1^2, \sigma_2^2$}
+\[
+(\sigma_1^2)' = \frac{1}{1.4}\Bigl[
+1\bigl(1 - \tfrac{5}{1.4}\bigr)^2
++ 0.4\bigl(10 - \tfrac{5}{1.4}\bigr)^2
++ 0\bigl(20 - \tfrac{5}{1.4}\bigr)^2
+\Bigr] = \frac{810}{49},
+\]
+\[
+(\sigma_2^2)' = \frac{1}{1.6}\Bigl[
+0\bigl(1 - \tfrac{26}{1.6}\bigr)^2
++ 0.6\bigl(10 - \tfrac{26}{1.6}\bigr)^2
++ 1\bigl(20 - \tfrac{26}{1.6}\bigr)^2
+\Bigr] = \frac{375}{16}.
+\]
+
+\subsubsection{(e) Responsibilities sum to 1}
+For each $x_i$, $r_{i1} + r_{i2} = 1$. This follows from
+\[
+r_{ic}
+= \frac{w_c \,\mathcal{N}(x_i;\,\mu_c, \sigma_c^2)}{w_1 \,\mathcal{N}(x_i;\,\mu_1, \sigma_1^2)
++ w_2 \,\mathcal{N}(x_i;\,\mu_2, \sigma_2^2)},
+\]
+and is essential for interpreting $r_{ic}$ as a valid probability.
+
+\subsubsection{(f) Pitfall and mitigation}
+A common pitfall is that poor initialization (e.g., means, variances) can make EM converge to a suboptimal local maximum. A straightforward mitigation is to run EM multiple times from different (random) starting points or to use a better initialization method (e.g., $k$-means).
+
+\bigskip
+
+\section{5. (A different perspective on EM algorithm)}
+Let $P(X,Z)$ be any model with observed variables $X$ and latent variables $Z$. Assume $Z$ is discrete, taking values in $\{1,2,\dots,m\}$. For observed $X$, we want to maximize
+\[
+\ell(\theta) = \log P(x;\theta) = \log \sum_{z=1}^m P(x,z;\theta).
+\]
+Define $Q(Z)$ to be any distribution over the latent variables $Z$.
+
+\subsubsection{(a)}
+Show that if $Q(z) > 0$ whenever $P(x,z) > 0$, then
+\[
+\ell(\theta)
+\;\ge\;
+\mathbb{E}_Q[\log P(X,Z)] - \sum_{z=1}^m Q(z)\log Q(z).
+\]
+(Hint: use Jensen's inequality.)
+
+\paragraph{Solution (sketch).}
+\[
+\ell(\theta)
+= \log \sum_{z=1}^m P(x,z;\theta)
+= \log \sum_{z=1}^m \frac{P(x,z;\theta)}{Q(z)} Q(z)
+\]
+\[
+= \log \,\mathbb{E}_{Z\sim Q}\!\Bigl[\frac{P(x,Z;\theta)}{Q(Z)}\Bigr]
+\;\ge\;
+\mathbb{E}_Q\!\Bigl[\log \frac{P(x,Z;\theta)}{Q(Z)}\Bigr]
+\]
+\[
+=
+\mathbb{E}_Q[\log P(x,Z;\theta)]
+- \sum_{z=1}^m Q(z)\log Q(z).
+\]
+
+\subsubsection{(b)}
+Show that for fixed $\theta$, the above lower bound is maximized by $Q^*(Z) = P(Z \mid X;\theta)$, and that the bound then holds with equality.
+
+\paragraph{Solution (sketch).}
+Maximize
+\[
+F(Q)
+= \sum_{z=1}^m Q(z)\log P(x,z;\theta)
+\;-\;
+\sum_{z=1}^m Q(z)\log Q(z),
+\]
+subject to $\sum_z Q(z)=1$. Using Lagrange multipliers, one finds
+\[
+Q^*(z) = \frac{P(x,z;\theta)}{P(x;\theta)}
+= P(z \mid x;\theta).
+\]
+Substituting back shows the bound is tight.
+
+\subsubsection{(c)}
+Derive
+\[
+\mathrm{KL}\bigl(Q\,\|\,P(\cdot\mid x;\theta)\bigr)
+= \sum_{z=1}^m Q(z)\,\log\!\Bigl(\frac{Q(z)}{P(z\mid x;\theta)}\Bigr).
+\]
+Explain how this relates to the lower bound on $\ell(\theta)$.
+
+\paragraph{Solution (sketch).}
+We have
+\[
+\ell(\theta) = L(Q,\theta) + \mathrm{KL}\bigl(Q\,\|\,P(\cdot\mid x;\theta)\bigr),
+\]
+where
+\[
+L(Q,\theta)
+= \mathbb{E}_Q[\log P(x,Z;\theta)] + H(Q).
+\]
+Since $\mathrm{KL}(\cdot\|\cdot)\ge0$, $L(Q,\theta)\le \ell(\theta)$, and equality holds if $Q=P(\cdot\mid x;\theta)$.
+
+\subsubsection{(d)}
+Discuss the impact if we choose $Q(Z)$ differently from $P(Z \mid x;\theta)$ on tightness of the bound and convergence.
+
+\paragraph{Solution (sketch).}
+Any other choice of $Q(Z)$ yields a positive KL divergence, so the bound becomes looser. While one can still view each EM step as maximizing a lower bound, a suboptimal $Q(Z)$ can slow or degrade convergence.
+
+\subsubsection{(e)}
+Show that alternating optimization over $Q$ and $\theta$ corresponds to the EM procedure. What does this imply for monotonicity and convergence?
+
+\paragraph{Solution (sketch).}
+Optimizing w.r.t.\ $Q$ (for fixed $\theta$) recovers $Q^*(Z)=P(Z\mid x;\theta)$ (the E-step), while optimizing w.r.t.\ $\theta$ (for fixed $Q$) is the M-step. Each step increases or preserves the lower bound, guaranteeing that the log-likelihood is non-decreasing until convergence to a local optimum.
+
+\end{spacing}
+
+\end{document}
