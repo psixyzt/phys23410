@@ -1,0 +1,2127 @@
+\documentclass[twocolumn]{article}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage{setspace}
+\usepackage{physics} % for bra-ket notation if desired
+\usepackage{lipsum}
+\usepackage{braket}
+\usepackage{hyperref}
+\usepackage{bm}
+\singlespacing
+\setlength{\parskip}{0pt}  % Increases space between paragraphs
+
+
+
+\begin{document}
+\raggedbottom
+\begin{spacing}{1}
+
+  \section{Stern–Gerlach Experiments}
+
+  \subsection{The Original Stern–Gerlach Experiment}
+  $\vec{L} = \vec{r}\times\vec{p},\quad T = \frac{2\pi r}{v},\quad I = \frac{q}{T},\quad A = \pi r^2,$  
+  $\mu = IA,\quad \vec{\mu} = \frac{q}{2mc}\,\vec{L},\quad \text{and for spin,}\quad \vec{\mu} = g\,\frac{e}{2m_e c}\,\vec{S},\; g\approx2.$  
+  Force: $F_z = \mu_z\,\dfrac{dB_z}{dz}.$  
+  Experiment: A collimated beam of Ag atoms is passed between a flat and a sharp pole, yielding  
+  $$\mu_z\; \to\; S_z = \pm\frac{\hbar}{2},$$  
+  resulting in two discrete spots.
+  
+  \subsection{Four Experiments}
+  \textbf{Exp. 1:}  
+  $|\!+\!z\rangle \xrightarrow{\text{SG}_z} |\!+\!z\rangle \quad (\text{all particles with } S_z=+\tfrac{\hbar}{2}).$  
+  \textbf{Exp. 2:}  
+  $|\!+\!z\rangle \xrightarrow{\text{SG}_x} 
+  \begin{cases} 
+  |\!+\!x\rangle &\text{with probability } \tfrac{1}{2},\\ 
+  |\!-\!x\rangle &\text{with probability } \tfrac{1}{2},
+  \end{cases}$  
+  \textbf{Exp. 3:}  
+  $|\!+\!x\rangle \xrightarrow{\text{SG}_z} 
+  \begin{cases} 
+  |\!+\!z\rangle &\text{with } \tfrac{1}{2},\\ 
+  |\!-\!z\rangle &\text{with } \tfrac{1}{2},
+  \end{cases}$  
+  \textbf{Exp. 4 (modified SG):}  
+  Using a three‐magnet device, the two paths are recombined so that  
+  $|\!+\!z\rangle \to |\!+\!z\rangle,$  
+  eliminating the interference from separate paths.  
+  Key point: Measurements of incompatible observables (e.g. $S_x$ and $S_z$) require adding amplitudes.
+  
+  \subsection{The Quantum State Vector}
+  A general spin state is expressed as  
+  $$|\psi\rangle = c_{+}\,|+z\rangle + c_{-}\,|-z\rangle,\quad |c_{+}|^2+|c_{-}|^2=1.$$  
+  Inner products:  
+  $$\langle+z|+z\rangle=1,\quad \langle+z|-z\rangle=0,$$  
+  with coefficients determined by  
+  $$c_{\pm} = \langle\pm z|\psi\rangle.$$  
+  Projection yields:  
+  $$|\psi\rangle = |+z\rangle\langle+z|\psi\rangle + |-z\rangle\langle-z|\psi\rangle.$$  
+  Expectation value:  
+  $$\langle S_z\rangle = \frac{\hbar}{2}\Big(|c_{+}|^2 - |c_{-}|^2\Big),$$  
+  and uncertainty:  
+  $$\Delta S_z = \frac{\hbar}{2}\sqrt{1-\Big(|c_{+}|^2 - |c_{-}|^2\Big)^2}.$$
+  
+  \subsection{Analysis of Experiment 3}
+  For the state  
+  $$|\!+\!x\rangle = c_{+}\,|+z\rangle + c_{-}\,|-z\rangle,$$  
+  experiments yield  
+  $$|c_{+}|^2 = |c_{-}|^2 = \tfrac{1}{2}.$$  
+  One may choose  
+  $$c_{+} = \frac{1}{\sqrt{2}}e^{i\delta_+},\quad c_{-} = \frac{1}{\sqrt{2}}e^{i\delta_-},$$  
+  so that  
+  $$|\!+\!x\rangle = \frac{1}{\sqrt{2}}\Big(e^{i\delta_+}|+z\rangle + e^{i\delta_-}|-z\rangle\Big).$$  
+  Normalization ensures  
+  $$\langle+\!x|+\!x\rangle=1,$$  
+  and hence  
+  $$\langle S_z\rangle = \frac{\hbar}{2}\Big(|c_{+}|^2 - |c_{-}|^2\Big)=0,\quad \Delta S_z = \frac{\hbar}{2}.$$
+  
+  \subsection{Experiment 5}
+  Replacing the final $\text{SG}_z$ with an $\text{SG}_y$ device, one measures $S_y$.  
+  The state $|\!+\!x\rangle$ is reexpressed as  
+  $$|\!+\!x\rangle = c'_{+}\,|+y\rangle + c'_{-}\,|-y\rangle,\quad |c'_{+}|^2=|c'_{-}|^2=\frac{1}{2}.$$  
+  Alternatively, one may write  
+  $$|+y\rangle = \frac{1}{\sqrt{2}}\Big(|+z\rangle + e^{i\phi}|-z\rangle\Big),$$  
+  with $\phi$ chosen so that  
+  $$\left|\langle+ y|+\!x\rangle\right|^2=\frac{1}{2}.$$  
+  A typical evaluation gives  
+  $$\langle+ y|+\!x\rangle = \frac{1}{\sqrt{2}}\Big(\langle+z|+\!x\rangle+e^{-i\phi}\langle-z|+\!x\rangle\Big)=\frac{1}{\sqrt{2}},$$  
+  ensuring equal probabilities for $S_y=\pm\frac{\hbar}{2}$.  
+  This result underscores the necessity of complex amplitudes in producing interference effects.
+
+  \section{Rotation of Basis States and Matrix Mechanics}
+
+  \subsection{The Beginnings of Matrix Mechanics}
+  Let 
+  \[
+  |\psi\rangle = c_{+}|+z\rangle + c_{-}|-z\rangle,\quad c_{\pm} = \langle\pm z|\psi\rangle,\quad |c_{+}|^2+|c_{-}|^2=1.
+  \]
+  In the Sz basis we represent
+  \[
+  |+z\rangle \longrightarrow \begin{pmatrix}1\\0\end{pmatrix},\quad
+  |-z\rangle \longrightarrow \begin{pmatrix}0\\1\end{pmatrix}.
+  \]
+  Thus,
+  \[
+  |\psi\rangle \longrightarrow \begin{pmatrix} c_{+} \\ c_{-} \end{pmatrix}.
+  \]
+  Bra vectors are given by the Hermitian conjugate:
+  \[
+  \langle +z| \longrightarrow (1\quad 0),\quad \langle -z| \longrightarrow (0\quad 1).
+  \]
+  For any two states,
+  \[
+  \langle \phi|\psi\rangle = \begin{pmatrix} \phi_{+}^* & \phi_{-}^* \end{pmatrix} \begin{pmatrix} c_{+} \\ c_{-} \end{pmatrix} = \phi_{+}^* c_{+} + \phi_{-}^* c_{-}.
+  \]
+  A typical state such as \(|+x\rangle\) is written in the Sz basis as
+  \[
+  |+x\rangle = \frac{1}{\sqrt{2}} \Big( |+z\rangle + |-z\rangle \Big)
+  \quad\Longrightarrow\quad
+  |+x\rangle \longrightarrow \frac{1}{\sqrt{2}} \begin{pmatrix}1\\1\end{pmatrix}.
+  \]
+  
+  \subsection{Rotation Operators}
+  A rotation transforming kets is defined by the operator
+  \[
+  R(\theta\,\hat{n})|\psi\rangle,
+  \]
+  with the infinitesimal rotation about the \(z\) axis given by
+  \[
+  R(d\theta\,\hat{k}) = I - \frac{i}{\hbar}J_z\,d\theta,
+  \]
+  so that for finite rotations,
+  \[
+  R(\theta\,\hat{k}) = \exp\Big(-\frac{i}{\hbar}J_z\,\theta\Big).
+  \]
+  The adjoint (inverse) is
+  \[
+  R^\dagger(\theta\,\hat{k}) = R(-\theta\,\hat{k}),\quad R^\dagger R = I.
+  \]
+  The eigenstate property for the generator is
+  \[
+  J_z|+z\rangle = \frac{\hbar}{2}|+z\rangle,\quad J_z|-z\rangle = -\frac{\hbar}{2}|-z\rangle.
+  \]
+  For example, if
+  \[
+  R\Big(\frac{\pi}{2}\,\hat{y}\Big)|+z\rangle = |+x\rangle,
+  \]
+  then in the Sz basis one may write
+  \[
+  |+x\rangle = \frac{1}{\sqrt{2}} \Big(e^{i\delta_{+}}|+z\rangle + e^{i\delta_{-}}|-z\rangle\Big).
+  \]
+  The operator \(J_z\) is Hermitian:
+  \[
+  J_z=J_z^\dagger.
+  \]
+  
+  \subsection{The Identity and Projection Operators}
+  The identity operator is defined by
+  \[
+  I = |+z\rangle\langle+z| + |-z\rangle\langle -z|.
+  \]
+  Thus, for any state,
+  \[
+  |\psi\rangle = \Big(|+z\rangle\langle+z|+|-z\rangle\langle -z|\Big)|\psi\rangle.
+  \]
+  Define the projection operators as
+  \[
+  P_{+} = |+z\rangle\langle+z|,\quad P_{-} = |-z\rangle\langle-z|,
+  \]
+  so that
+  \[
+  P_{+}+P_{-}=I.
+  \]
+  They satisfy
+  \[
+  P_{+}|+z\rangle = |+z\rangle,\quad P_{+}|-z\rangle = 0,\quad P_{-}|-z\rangle = |-z\rangle,\quad P_{-}|+z\rangle = 0.
+  \]
+  In matrix form in the Sz basis,
+  \[
+  P_{+} \longrightarrow \begin{pmatrix}1 & 0\\0 & 0\end{pmatrix},\quad
+  P_{-} \longrightarrow \begin{pmatrix}0 & 0\\0 & 1\end{pmatrix}.
+  \]
+  For a state written in another basis (e.g. the Sx basis),
+  \[
+  I = |+x\rangle\langle+x| + |-x\rangle\langle-x|,
+  \]
+  which expresses the completeness relation in any two-dimensional basis.
+  Furthermore, using the identity operator,
+  \[
+  \langle -z|+z\rangle = \langle -z| \Big(|+x\rangle\langle+x|+|-x\rangle\langle-x|\Big)|+z\rangle,
+  \]
+  one can decompose amplitudes via intermediate states and obtain interference terms when no measurement distinguishes the paths.
+  
+  \subsection{Matrix Representations of Operators}
+  Let 
+  \[
+  |\psi\rangle = c_{+}|+z\rangle + c_{-}|-z\rangle,\quad c_{\pm} = \langle\pm z|\psi\rangle,\quad |c_{+}|^2+|c_{-}|^2=1.
+  \]
+  The identity operator in the Sz basis is
+  \[
+  I = |+z\rangle\langle+z| + |-z\rangle\langle-z|.
+  \]
+  An operator \(A\) acts as
+  \[
+  A|\psi\rangle = A\Bigl(|+z\rangle\langle+z|+|-z\rangle\langle-z|\Bigr)|\psi\rangle,
+  \]
+  so that its matrix elements are defined by
+  \[
+  A_{ij} = \langle i|A|j\rangle,\quad i,j\in\{+z,-z\}.
+  \]
+  In this basis, the state representations are
+  \[
+  |+z\rangle \rightarrow \begin{pmatrix}1\\0\end{pmatrix},\quad |-z\rangle \rightarrow \begin{pmatrix}0\\1\end{pmatrix},\quad |\psi\rangle \rightarrow \begin{pmatrix}c_{+}\\ c_{-}\end{pmatrix}.
+  \]
+  For any two operators \(A\) and \(B\) the matrix element of their product is
+  \[
+  \langle i|AB|j\rangle = \sum_{k}\langle i|A|k\rangle\langle k|B|j\rangle.
+  \]
+  The adjoint operator \(A^{\dagger}\) is defined by
+  \[
+  \langle i|A^{\dagger}|j\rangle = \langle j|A|i\rangle^*,
+  \]
+  so that the matrix representation of \(A^{\dagger}\) is the conjugate transpose of that of \(A\).  
+  For example, the generator of rotations about \(z\), \(J_z\), in its eigenbasis satisfies
+  \[
+  J_z|+z\rangle=\frac{\hbar}{2}|+z\rangle,\quad J_z|-z\rangle=-\frac{\hbar}{2}|-z\rangle,
+  \]
+  and thus
+  \[
+  J_z \rightarrow \begin{pmatrix}\frac{\hbar}{2}&0\\0&-\frac{\hbar}{2}\end{pmatrix}.
+  \]
+  The projection operators are
+  \[
+  P_{+} = |+z\rangle\langle+z|,\quad P_{-} = |-z\rangle\langle-z|,\quad P_{+}+P_{-}=I,
+  \]
+  with representations
+  \[
+  P_{+}\rightarrow\begin{pmatrix}1&0\\0&0\end{pmatrix},\quad P_{-}\rightarrow\begin{pmatrix}0&0\\0&1\end{pmatrix}.
+  \]
+  
+  \subsection{Changing Representations}
+  An active rotation of a ket is given by
+  \[
+  |\psi'\rangle = R(\theta\,\hat{n})|\psi\rangle,\quad R(\theta\,\hat{n})=\exp\Bigl(-\frac{i}{\hbar}J_n\,\theta\Bigr).
+  \]
+  For an infinitesimal rotation about the \(z\) axis,
+  \[
+  R(d\theta\,\hat{k}) = I -\frac{i}{\hbar}J_z\,d\theta.
+  \]
+  The adjoint (or inverse) satisfies
+  \[
+  R^{\dagger}(\theta\,\hat{n})=R(-\theta\,\hat{n}),\quad R^{\dagger}R=I.
+  \]
+  A passive transformation corresponds to a change of basis. Denote the new basis kets by
+  \[
+  |i'\rangle = R^{\dagger}(\theta\,\hat{n})|i\rangle,
+  \]
+  so that the representation of a state changes according to
+  \[
+  |\psi\rangle_{new} = S|\psi\rangle_{old},\quad S_{ij}=\langle i_{new}|j_{old}\rangle.
+  \]
+  Consequently, the matrix representation of an operator \(A\) in the new basis is
+  \[
+  A_{new} = S\,A_{old}\,S^{\dagger},\quad S^{\dagger}S=I.
+  \]
+  For example, the basis change from the Sz basis to the Sx basis is achieved by the S-matrix
+  \[
+  S=\begin{pmatrix}\langle +x|+z\rangle & \langle +x|-z\rangle\\[1mm] \langle -x|+z\rangle & \langle -x|-z\rangle\end{pmatrix},
+  \]
+  with typical results such as
+  \[
+  |+x\rangle = \frac{1}{\sqrt{2}}\Bigl(|+z\rangle+|-z\rangle\Bigr),\quad
+  |-x\rangle = \frac{1}{\sqrt{2}}\Bigl(|+z\rangle-|-z\rangle\Bigr).
+  \]
+  Thus, the transformation of the operator \(J_z\) into the Sx basis is
+  \[
+  (J_z)_{S_x}= S\,(J_z)_{S_z}\,S^{\dagger}.
+  \]
+  
+  \subsection{Expectation Values}
+  For a state
+  \[
+  |\psi\rangle = c_{+}|+z\rangle + c_{-}|-z\rangle,
+  \]
+  the expectation value of an operator \(A\) is given by
+  \[
+  \langle A \rangle = \langle\psi|A|\psi\rangle = c_{+}^*\,A_{++}\,c_{+}+ c_{+}^*\,A_{+-}\,c_{-}+ c_{-}^*\,A_{-+}\,c_{+}+ c_{-}^*\,A_{--}\,c_{-}.
+  \]
+  In particular, for \(J_z\) one obtains
+  \[
+  \langle J_z\rangle = |c_{+}|^2\frac{\hbar}{2}+|c_{-}|^2\Bigl(-\frac{\hbar}{2}\Bigr).
+  \]
+  This result can be written in vector form as
+  \[
+  \langle A \rangle = \mathbf{c}^{\dagger} A\,\mathbf{c},
+  \]
+  where \(\mathbf{c}=\begin{pmatrix}c_{+}\\c_{-}\end{pmatrix}\).  
+  In any basis, by inserting the identity operator
+  \[
+  I = \sum_{i}|i\rangle\langle i|,
+  \]
+  we have
+  \[
+  \langle A \rangle = \sum_{i}\lambda_i\,|\langle i|\psi\rangle|^2,
+  \]
+  where \(\lambda_i\) are the eigenvalues of \(A\).  
+  Changing representations does not affect the expectation value:
+  \[
+  \langle A \rangle = \langle\psi|A|\psi\rangle = \langle\psi|S^{\dagger}S\,A\,S^{\dagger}S|\psi\rangle = \langle\psi|_{new}\,A_{new}|\psi\rangle_{new}.
+  \]
+  For example, for the state
+  \[
+  |+x\rangle = \frac{1}{\sqrt{2}}\Bigl(|+z\rangle+|-z\rangle\Bigr),
+  \]
+  we find
+  \[
+  \langle J_z\rangle_{+x} = \frac{1}{2}\Bigl(\frac{\hbar}{2} - \frac{\hbar}{2}\Bigr)=0.
+  \]
+  Thus, the expectation value of \(J_z\) is basis independent and reflects the weighted eigenvalues.
+  
+  \section{Chapter 3: Angular Momentum}
+
+  \subsection{Rotations Do Not Commute and Neither Do the Generators}
+  Rotations about different axes are noncommutative. For a three-dimensional vector \(\vec{A}=(A_x,A_y,A_z)\), a rotation about the \(z\) axis by an angle \(\phi\) is represented by
+  \[
+  R_z(\phi)=\begin{pmatrix}\cos\phi & -\sin\phi & 0\\[1mm]\sin\phi & \cos\phi & 0\\[1mm]0&0&1\end{pmatrix}.
+  \]
+  For an infinitesimal rotation \(\delta\phi\),
+  \[
+  R_z(\delta\phi)=I-\frac{i}{\hbar}J_z\,\delta\phi,\quad\text{with}\quad J_z=\frac{\hbar}{i}\frac{\partial}{\partial\phi}.
+  \]
+  Similarly, rotations about \(x\) and \(y\) are given by
+  \[
+  R_x(\delta\phi)=I-\frac{i}{\hbar}J_x\,\delta\phi,\quad R_y(\delta\phi)=I-\frac{i}{\hbar}J_y\,\delta\phi.
+  \]
+  Considering successive rotations, one finds
+  \[
+  R_x(\delta\phi)R_y(\delta\phi)-R_y(\delta\phi)R_x(\delta\phi)
+  \]
+  \[
+  =I-\frac{i}{\hbar}(J_x+J_y)\delta\phi+\frac{1}{\hbar^2}J_xJ_y\,\delta\phi^2-\Bigl[I-\frac{i}{\hbar}(J_y+J_x)\delta\phi+\frac{1}{\hbar^2}J_yJ_x\,\delta\phi^2\Bigr],
+  \]
+  so that, to order \(\delta\phi^2\),
+  \[
+  R_xR_y-R_yR_x\approx\frac{1}{\hbar^2}\Bigl(J_xJ_y-J_yJ_x\Bigr)\delta\phi^2.
+  \]
+  Identifying the leading term, we obtain the commutator
+  \[
+  [J_x,J_y]=i\hbar\,J_z,
+  \]
+  with cyclic permutations
+  \[
+  [J_y,J_z]=i\hbar\,J_x,\quad [J_z,J_x]=i\hbar\,J_y.
+  \]
+  
+  \subsection{Commuting Operators}
+  If two Hermitian operators \(A\) and \(B\) commute,
+  \[
+  [A,B]=AB-BA=0,
+  \]
+  then they share a common set of eigenstates. Suppose
+  \[
+  A|a\rangle=a|a\rangle.
+  \]
+  Acting with \(B\) yields
+  \[
+  A(B|a\rangle)=B(A|a\rangle)=a\,(B|a\rangle).
+  \]
+  In the nondegenerate case, one has
+  \[
+  B|a\rangle=b|a\rangle,
+  \]
+  so that the state is labeled \(|a,b\rangle\). In cases with degeneracy, one can form linear combinations of the degenerate eigenstates so that
+  \[
+  A|a,\alpha\rangle=a|a,\alpha\rangle,\quad B|a,\alpha\rangle=b_\alpha|a,\alpha\rangle.
+  \]
+  An example is a free particle in one dimension with energy \(E=\frac{p^2}{2m}\) and momentum \(p\); for a given \(E\) there are two states, \(|E,p\rangle\) and \(|E,-p\rangle\).
+  
+  \subsection{The Eigenvalues and Eigenstates of Angular Momentum}
+  The total angular momentum operator is defined by
+  \[
+  J^2=J_x^2+J_y^2+J_z^2,
+  \]
+  and commutes with each component, e.g., \([J^2,J_z]=0\). Therefore, one may choose simultaneous eigenstates \(|j,m\rangle\) such that
+  \[
+  J^2|j,m\rangle=j(j+1)\hbar^2\,|j,m\rangle,\quad J_z|j,m\rangle=m\hbar\,|j,m\rangle,
+  \]
+  with \(j\ge0\) and \(m=-j,-j+1,\ldots,j-1,j\). Define the raising and lowering operators as
+  \[
+  J_{\pm}=J_x\pm i\,J_y.
+  \]
+  Their commutation relations with \(J_z\) are
+  \[
+  [J_z,J_{\pm}]=\pm\hbar\,J_{\pm}.
+  \]
+  Thus, if
+  \[
+  J_z|j,m\rangle=m\hbar|j,m\rangle,
+  \]
+  then
+  \[
+  J_z\bigl(J_{\pm}|j,m\rangle\bigr)=(m\pm1)\hbar\,(J_{\pm}|j,m\rangle),
+  \]
+  so that \(J_+\) raises and \(J_-\) lowers the \(m\) eigenvalue by 1. Furthermore, one shows
+  \[
+  J_+J_-=J^2-J_z^2+\hbar\,J_z,\quad J_-J_+=J^2-J_z^2-\hbar\,J_z.
+  \]
+  The highest weight state \(|j,j\rangle\) satisfies
+  \[
+  J_+|j,j\rangle=0,
+  \]
+  and similarly the lowest weight state \(|j,-j\rangle\) satisfies
+  \[
+  J_-|j,-j\rangle=0.
+  \]
+  Because repeated application of \(J_-\) on \(|j,j\rangle\) must eventually yield \(|j,-j\rangle\), the allowed values of \(m\) are
+  \[
+  m=j,j-1,\ldots,-j+1,-j,
+  \]
+  so that the number of states is \(2j+1\). In particular, the condition
+  \[
+  m^2\le j(j+1)
+  \]
+  ensures that \(j\) is either an integer or a half-integer:
+  \[
+  j=0,\frac{1}{2},1,\frac{3}{2},\ldots.
+  \]
+  Thus, the angular momentum eigenvalue spectrum is completely determined by the commutation relations.  
+
+  \subsection{Matrix Elements of the Raising and Lowering Operators}
+  For angular momentum eigenstates \(|j,m\rangle\), the raising and lowering operators are defined by 
+  \[
+  J_{+}|j,m\rangle = c_{+}(j,m)\,|j,m+1\rangle,\quad J_{-}|j,m\rangle = c_{-}(j,m)\,|j,m-1\rangle.
+  \]
+  Taking the inner product of the first equation with \(\langle j,m|\) and using
+  \[
+  \langle j,m|J_{-}J_{+}|j,m\rangle = c_{+}^2(j,m)\,\langle j,m+1|j,m+1\rangle,
+  \]
+  and the operator identity
+  \[
+  J_{+}J_{-} = J^2 - J_{z}^2 + \hbar\,J_{z},
+  \]
+  one obtains
+  \[
+  c_{+}^2(j,m)= j(j+1)-m(m+1).
+  \]
+  Similarly, one finds
+  \[
+  c_{-}^2(j,m)= j(j+1)-m(m-1).
+  \]
+  Thus, the action of \(J_{+}\) and \(J_{-}\) is given by
+  \[
+  J_{+}|j,m\rangle = \hbar\sqrt{j(j+1)-m(m+1)}\,|j,m+1\rangle,\]
+  \[
+   J_{-}|j,m\rangle = \hbar\sqrt{j(j+1)-m(m-1)}\,|j,m-1\rangle.
+  \]
+  
+  \subsection{Uncertainty Relations and Angular Momentum}
+  For any two Hermitian operators \(A\) and \(B\) the Schwarz inequality gives
+  \[
+  \langle (\Delta A)^2\rangle\,\langle (\Delta B)^2\rangle \ge \frac{1}{4}\Bigl|\langle[A,B]\rangle\Bigr|^2,
+  \]
+  where \(\Delta A = A - \langle A\rangle\). For \(A=J_x\) and \(B=J_y\) and using 
+  \([J_x,J_y]=i\hbar\,J_z\), it follows that
+  \[
+  \Delta J_x\,\Delta J_y \ge \frac{\hbar}{2}\Bigl|\langle J_z\rangle\Bigr|.
+  \]
+  This inequality implies that if \(J_z\) is measured with certainty, then both \(J_x\) and \(J_y\) have nonzero uncertainties.
+  
+  \subsection{The Spin-1 Eigenvalue Problem}
+  For a spin-1 particle, the eigenstates \(|1,m\rangle\) satisfy
+  \[
+  S^2|1,m\rangle = 2\hbar^2\,|1,m\rangle,\quad S_z|1,m\rangle = m\hbar\,|1,m\rangle,\quad m=1,0,-1.
+  \]
+  In the \(|+z\rangle,\,|0\rangle,\,|-z\rangle\) basis the matrix representations are:
+  \[
+  S_z \rightarrow \hbar\begin{pmatrix} 1 & 0 & 0 \\[1mm] 0 & 0 & 0 \\[1mm] 0 & 0 & -1 \end{pmatrix}.
+  \]
+  The raising and lowering operators have matrix elements
+  \[
+  S_{+}|1,m\rangle = \hbar\sqrt{2 - m(m+1)}\,|1,m+1\rangle,\quad S_{-}|1,m\rangle 
+  \]
+  \[
+  = \hbar\sqrt{2 - m(m-1)}\,|1,m-1\rangle.
+  \]
+  Thus, in the Sz basis,
+  \[
+  S_{+}\rightarrow \hbar\sqrt{2}\begin{pmatrix}0 & 1 & 0 \\[1mm] 0 & 0 & 1 \\[1mm] 0 & 0 & 0\end{pmatrix},\quad S_{-}\rightarrow \hbar\sqrt{2}\begin{pmatrix}0 & 0 & 0 \\[1mm] 1 & 0 & 0 \\[1mm] 0 & 1 & 0\end{pmatrix}.
+  \]
+  Then the Cartesian operators are
+  \[
+  S_x=\tfrac{1}{2}(S_{+}+S_{-}),\quad S_y=\tfrac{1}{2i}(S_{+}-S_{-}).
+  \]
+  To determine eigenstates of an operator \(S_{\vec{n}}=S_x\cos\phi+S_y\sin\phi\) (with \(\vec{n}\) in the \(xy\) plane), one solves
+  \[
+  S_{\vec{n}}\,|\psi\rangle = \lambda\,|\psi\rangle,
+  \]
+  which, upon expressing \(|\psi\rangle\) in the Sz basis and requiring the determinant of coefficients to vanish, yields eigenvalues \(\lambda=\pm\frac{\hbar}{2}\) (for spin-\(\frac{1}{2}\)) or, in the spin-1 case, \(\lambda=\hbar,\,0,\,-\hbar\). The normalized eigenstates are expressed (up to an overall phase) as
+  \[
+  |+n\rangle = \frac{1}{\sqrt{2}}\Bigl(|+z\rangle + e^{i\phi}|-z\rangle\Bigr),\quad
+  |-n\rangle = \frac{1}{\sqrt{2}}\Bigl(|+z\rangle - e^{i\phi}|-z\rangle\Bigr),
+  \]
+  for an appropriate choice of \(\phi\), in agreement with earlier results for spin-\(\frac{1}{2}\). For spin-1 particles, similar procedures yield three eigenstates in the 3-dimensional space.
+  
+  \subsection{A Stern–Gerlach Experiment with Spin-1 Particles}
+  In a Stern–Gerlach (SG) experiment with spin-1 particles, the observable \(S_z\) takes on the three eigenvalues \(\hbar,\;0,\;-\hbar\). An unpolarized beam is split into three parts corresponding to the probabilities:
+  \[
+  P(m=1)=|\langle1,1|\psi\rangle|^2,
+  \]
+  \[
+   P(m=0)=|\langle1,0|\psi\rangle|^2,\quad P(m=-1)=|\langle1,-1|\psi\rangle|^2.
+  \]
+  For a beam prepared in the state \(|1,1\rangle\) (spin up along \(z\)), if it is transformed (e.g., via an SG device oriented along the \(y\) axis) and then measured in the \(z\) basis, the transformation is determined by the overlaps between the eigenstates of \(S_y\) and \(S_z\). Detailed calculations (by expressing the \(S_y\) operator in the Sz basis and solving its eigenvalue problem) yield probability amplitudes such that
+  \[
+  P(S_z=\hbar)=\frac{1}{4},\quad P(S_z=0)=\frac{1}{2},\quad P(S_z=-\hbar)=\frac{1}{4}.
+  \]
+  These fractions arise from the squared moduli of the corresponding matrix elements, and they explain the beam splitting pattern observed in experiments (see Fig.~3.10). This result contrasts with the two-beam splitting for spin-\(\frac{1}{2}\) particles and illustrates the richer structure of higher-spin systems.
+  
+  \section{Chapter 4: Time Evolution}
+
+\subsection{The Hamiltonian and the Schrödinger Equation}
+\[
+|\psi(t)\rangle = U(t)|\psi(0)\rangle,\quad U^\dagger(t)U(t)=I.
+\]
+Infinitesimal time translation:
+\[
+U(dt)=I-\frac{i}{\hbar}H\,dt,\quad \text{with } H^\dagger=H.
+\]
+Differentiating:
+\[
+\frac{d}{dt}U(t)= -\frac{i}{\hbar}H\,U(t) \quad\Longrightarrow\quad i\hbar\,\frac{d}{dt}U(t)= H\,U(t).
+\]
+Acting on the state:
+\[
+i\hbar\,\frac{d}{dt}|\psi(t)\rangle=H\,|\psi(t)\rangle.
+\]
+For time-independent \(H\),
+\[
+|\psi(t)\rangle=\exp\Bigl(-\frac{i}{\hbar}Ht\Bigr)|\psi(0)\rangle.
+\]
+For an energy eigenstate, \(H|E\rangle=E|E\rangle\), so that
+\[
+|\psi(t)\rangle=e^{-iEt/\hbar}|E\rangle.
+\]
+
+\subsection{Time Dependence of Expectation Values}
+Define the expectation value of an observable \(A\):
+\[
+\langle A\rangle (t)=\langle\psi(t)|A|\psi(t)\rangle.
+\]
+Taking the time derivative,
+\[
+\frac{d}{dt}\langle A\rangle = \frac{1}{i\hbar}\langle\psi(t)|[A,H]|\psi(t)\rangle + \left\langle\frac{\partial A}{\partial t}\right\rangle.
+\]
+If \(A\) has no explicit time dependence (\(\partial A/\partial t=0\)),
+\[
+\frac{d}{dt}\langle A\rangle = \frac{1}{i\hbar}\langle[A,H]\rangle.
+\]
+Thus, if \([A,H]=0\), then \(\langle A\rangle\) is constant in time.
+
+\subsection{Precession of a Spin-\(\frac{1}{2}\) Particle in a Magnetic Field}
+For a spin-\(\frac{1}{2}\) particle in a constant magnetic field \(\vec{B}=B_0\,\hat{z}\), define the magnetic moment
+\[
+\vec{\mu} = g\,\frac{e}{2m_e}\,\vec{S}.
+\]
+The Hamiltonian is
+\[
+H=-\vec{\mu}\cdot\vec{B}=-\gamma\,S_z\,B_0,\quad \gamma=\frac{g\,e}{2m_e}.
+\]
+Energy eigenstates:
+\[
+H|+z\rangle=-\gamma\frac{\hbar}{2}B_0\,|+z\rangle,\quad H|-z\rangle=+\gamma\frac{\hbar}{2}B_0\,|-z\rangle.
+\]
+Time evolution operator:
+\[
+U(t)=\exp\Bigl(\frac{i\gamma B_0t}{\hbar}S_z\Bigr).
+\]
+For an initial state
+\[
+|+x\rangle=\frac{1}{\sqrt{2}}\Bigl(|+z\rangle+|-z\rangle\Bigr),
+\]
+the evolved state is
+\[
+|\psi(t)\rangle=\frac{1}{\sqrt{2}}\Bigl(e^{-iE_+t/\hbar}|+z\rangle+e^{-iE_-t/\hbar}|-z\rangle\Bigr),
+\]
+with
+\[
+E_+=-\gamma\frac{\hbar}{2}B_0,\quad E_-=\gamma\frac{\hbar}{2}B_0.
+\]
+Writing the phase difference,
+\[
+|\psi(t)\rangle=\frac{1}{\sqrt{2}}\Bigl(e^{i\gamma B_0t/2}|+z\rangle+e^{-i\gamma B_0t/2}|-z\rangle\Bigr).
+\]
+The expectation values in the state \( |\psi(t)\rangle \) are
+\[
+\langle S_x\rangle=\frac{\hbar}{2}\cos(\gamma B_0t),\quad \langle S_y\rangle=\frac{\hbar}{2}\sin(\gamma B_0t),\quad \langle S_z\rangle=0.
+\]
+This describes precession about the \(z\)-axis with angular frequency \(\omega=\gamma B_0\).
+
+\subsection{Magnetic Resonance}
+Hamiltonian for a spin-$\frac{1}{2}$ particle in a static field $B_0\hat{z}$ with a transverse oscillatory field $B_1\cos\omega t\,\hat{x}$:
+\[
+H=-\vec{\mu}\cdot\vec{B}=-\gamma\,S_zB_0-\gamma\,S_xB_1\cos\omega t,
+\]
+with $\gamma=\frac{ge}{2m_e}$. In the $S_z$ basis, write the state as
+\[
+|\psi(t)\rangle=a(t)|+z\rangle+b(t)|-z\rangle,
+\]
+with initial condition $a(0)=1,\;b(0)=0$. The Schrödinger equation
+\[
+i\hbar\,\frac{d}{dt}|\psi(t)\rangle=H|\psi(t)\rangle
+\]
+yields the coupled equations
+\[
+i\hbar\,\dot{a}(t)=-\gamma\frac{\hbar}{2}B_0\,a(t)-\gamma\frac{\hbar}{2}B_1\cos\omega t\,b(t),
+\]
+\[
+i\hbar\,\dot{b}(t)=+\gamma\frac{\hbar}{2}B_0\,b(t)-\gamma\frac{\hbar}{2}B_1\cos\omega t\,a(t).
+\]
+Define $\omega_0=\gamma B_0$ and $\Omega=\gamma B_1$, then under the resonance condition ($\omega\approx\omega_0$) and applying the rotating-wave approximation, one obtains approximate solutions:
+\[
+a(t)=\cos\Bigl(\frac{\Omega t}{2}\Bigr)e^{i\omega_0t/2},\quad
+b(t)=-i\sin\Bigl(\frac{\Omega t}{2}\Bigr)e^{-i\omega_0t/2}.
+\]
+Thus, the transition probability is
+\[
+P_{-}(t)=|b(t)|^2=\sin^2\Bigl(\frac{\Omega t}{2}\Bigr).
+\]
+
+\subsection{The Ammonia Molecule and the Ammonia Maser}
+Define two localized states for the ammonia molecule:
+\[
+|1\rangle\equiv \text{N above the plane},\quad |2\rangle\equiv \text{N below the plane}.
+\]
+Assuming symmetry, the diagonal elements of the Hamiltonian are equal:
+\[
+\langle1|H|1\rangle=\langle2|H|2\rangle=E_0,
+\]
+and tunneling produces off-diagonal elements:
+\[
+\langle1|H|2\rangle=\langle2|H|1\rangle=-A,\quad A>0.
+\]
+Thus, in the $\{|1\rangle,|2\rangle\}$ basis,
+\[
+H=\begin{pmatrix}E_0 & -A\\ -A & E_0\end{pmatrix}.
+\]
+The eigenvalue equation $\det(H-EI)=0$ gives
+\[
+(E_0-E)^2-A^2=0\quad\Longrightarrow\quad E=E_0\pm A.
+\]
+The corresponding eigenstates are
+\[
+|+\rangle=\frac{1}{\sqrt{2}}\Bigl(|1\rangle+|2\rangle\Bigr),\quad |-\rangle=\frac{1}{\sqrt{2}}\Bigl(|1\rangle-|2\rangle\Bigr).
+\]
+In the presence of an external static electric field $\vec{E}$ (assumed weak) that couples to the dipole moment $f_{ie}$, the Hamiltonian becomes
+\[
+H=\begin{pmatrix}E_0-df_{ie}E & -A\\ -A & E_0+df_{ie}E\end{pmatrix}.
+\]
+Diagonalization yields eigenvalues
+\[
+E=E_0\pm\sqrt{A^2+(df_{ie}E)^2}.
+\]
+If an additional time-dependent electric field is applied (e.g. $E(t)=E_0\cos\omega t$), transitions between the two states are induced. At resonance ($\hbar\omega=2A$) the transition probability is analogous to Rabi's formula:
+\[
+P_{2}(t)=\sin^2\Bigl(\frac{\Omega t}{2}\Bigr),\quad \Omega\propto df_{ie}E_0.
+\]
+This forms the basis for the ammonia maser, where a beam of ammonia molecules is selected, driven into a population inversion, and the stimulated emission in a microwave cavity produces coherent radiation.
+
+\subsection{The Energy–Time Uncertainty Relation}
+Time evolution of a nonstationary state,
+\[
+|\psi(t)\rangle=c_1e^{-iE_1t/\hbar}|E_1\rangle+c_2e^{-iE_2t/\hbar}|E_2\rangle,
+\]
+yields a relative phase change
+\[
+\Delta\phi=\frac{(E_2-E_1)t}{\hbar}.
+\]
+A significant change occurs when
+\[
+\Delta\phi\sim 1\quad\Longrightarrow\quad \Delta t\sim\frac{\hbar}{\Delta E}.
+\]
+Thus, the energy–time uncertainty relation is written as
+\[
+\Delta E\,\Delta t\gtrsim\frac{\hbar}{2},
+\]
+with
+\[
+\Delta E=\sqrt{\langle E^2\rangle-\langle E\rangle^2}.
+\]
+In an excited state with lifetime $\tau$, one expects
+\[
+\Delta E\approx\frac{\hbar}{\tau}.
+\]
+Unlike position or momentum, time is a parameter, so $\Delta t$ is not an uncertainty in the conventional operator sense but characterizes the time scale over which the state appreciably changes.
+
+\section{Chapter 5: A System of Two Spin-\(\frac{1}{2}\) Particles}
+
+\subsection{Basis States for Two Spin-\(\frac{1}{2}\) Particles}
+Let the individual spin states be denoted by
+\[
+|+z\rangle,\;|-z\rangle.
+\]
+A natural basis for the two-particle system is given by the direct product states:
+\[
+|1\rangle=|+z\rangle_1\otimes|+z\rangle_2,\quad
+|2\rangle=|+z\rangle_1\otimes|-z\rangle_2,
+\]
+\[
+|3\rangle=|-z\rangle_1\otimes|+z\rangle_2,\quad
+|4\rangle=|-z\rangle_1\otimes|-z\rangle_2.
+\]
+In shorthand, we write
+\[
+|\,\pm z,\,\pm z\,\rangle.
+\]
+An alternative basis, e.g. with one particle in the \(S_x\) basis, can be obtained via a rotation about the \(y\) axis:
+\[
+|+x\rangle=\frac{1}{\sqrt{2}}\Bigl(|+z\rangle+|-z\rangle\Bigr),
+\]
+so that, for example,
+\[
+|+x,+z\rangle = \bigl(|+z\rangle_1\to|+x\rangle_1\bigr)\otimes|+z\rangle_2.
+\]
+Since the spin operators of different particles commute,
+\[
+\bigl[S_{1i},S_{2j}\bigr]=0,
+\]
+the full Hilbert space is the tensor product of the individual spaces.
+
+\subsection{Hyperfine Splitting of the Ground State of Hydrogen}
+For the electron–proton system in hydrogen, the dominant Coulomb interaction is spin independent. A smaller spin–spin interaction exists and, in the ground state (with zero orbital angular momentum), it can be expressed as
+\[
+H=A\,\mathbf{S}_1\cdot\mathbf{S}_2,\quad A>0.
+\]
+In the basis \(\{|1\rangle,|2\rangle,|3\rangle,|4\rangle\}\) the operator \( \mathbf{S}_1\cdot\mathbf{S}_2 \) connects only those product states which yield definite total spin. One defines the total spin
+\[
+\mathbf{S}=\mathbf{S}_1+\mathbf{S}_2,\quad S^2=\mathbf{S}_1^2+\mathbf{S}_2^2+2\mathbf{S}_1\cdot\mathbf{S}_2.
+\]
+Since for a spin-\(\frac{1}{2}\) particle, \(S_1^2=S_2^2=\frac{3}{4}\hbar^2\), one finds
+\[
+S^2|j,m\rangle=j(j+1)\hbar^2,\quad j=0,1.
+\]
+Thus, the eigenvalues of \( \mathbf{S}_1\cdot\mathbf{S}_2 \) are determined by
+\[
+2\mathbf{S}_1\cdot\mathbf{S}_2=S^2-S_1^2-S_2^2,\quad \Rightarrow\quad \mathbf{S}_1\cdot\mathbf{S}_2 = \frac{1}{2}\Bigl[j(j+1)-\frac{3}{2}\Bigr]\hbar^2.
+\]
+For \(j=1\) (triplet),
+\[
+\mathbf{S}_1\cdot\mathbf{S}_2=\frac{1}{2}\Bigl[2-\frac{3}{2}\Bigr]\hbar^2=\frac{\hbar^2}{4},
+\]
+and for \(j=0\) (singlet),
+\[
+\mathbf{S}_1\cdot\mathbf{S}_2=\frac{1}{2}\Bigl[0-\frac{3}{2}\Bigr]\hbar^2=-\frac{3\hbar^2}{4}.
+\]
+Thus, the energy eigenvalues of the hyperfine Hamiltonian are
+\[
+E_{\text{triplet}}=A\frac{\hbar^2}{4},\quad E_{\text{singlet}}=-A\frac{3\hbar^2}{4}.
+\]
+Using an overall energy offset \(E_0\), one may write the matrix in the \(\{|1\rangle,|2\rangle,|3\rangle,|4\rangle\}\) basis as
+\[
+H=\begin{pmatrix}
+E_0 & 0 & 0 & 0\\[1mm]
+0 & E_0-\frac{A'}{2} & A' & 0\\[1mm]
+0 & A' & E_0-\frac{A'}{2} & 0\\[1mm]
+0 & 0 & 0 & E_0
+\end{pmatrix},
+\]
+with \(A'\propto A\). Diagonalizing the \(2\times2\) block yields the singlet state,
+\[
+|0,0\rangle=\frac{1}{\sqrt{2}}\Bigl(|+z,-z\rangle-| -z,+z\rangle\Bigr),
+\]
+with energy \(E=E_0- \frac{3A'}{2}\), and the triplet \(m=0\) state,
+\[
+|1,0\rangle=\frac{1}{\sqrt{2}}\Bigl(|+z,-z\rangle+| -z,+z\rangle\Bigr),
+\]
+with energy \(E=E_0+\frac{A'}{2}\). The triplet states \(|1,1\rangle=|+z,+z\rangle\) and \(|1,-1\rangle=|-z,-z\rangle\) remain unchanged. The energy difference \(\Delta E=2A'\) corresponds to the famous 21-cm line.
+
+\subsection{Addition of Angular Momenta for Two Spin-\(\frac{1}{2}\) Particles}
+Total spin operator:
+\[
+\mathbf{S}=\mathbf{S}_1+\mathbf{S}_2,\quad S^2=S_1^2+S_2^2+2\mathbf{S}_1\cdot\mathbf{S}_2.
+\]
+Eigenvalue equations:
+\[
+S^2|j,m\rangle=j(j+1)\hbar^2,\quad S_z|j,m\rangle=m\hbar,
+\]
+with \(j=0\) or \(1\) and \(m=+1,0,-1\) for \(j=1\); for \(j=0\), \(m=0\). The Clebsch–Gordan decomposition gives:
+\[
+|1,1\rangle=|+z,+z\rangle,
+\]
+\[
+|1,0\rangle=\frac{1}{\sqrt{2}}\Bigl(|+z,-z\rangle+|-z,+z\rangle\Bigr),
+\]
+\[
+|1,-1\rangle=|-z,-z\rangle,
+\]
+\[
+|0,0\rangle=\frac{1}{\sqrt{2}}\Bigl(|+z,-z\rangle-|-z,+z\rangle\Bigr).
+\]
+These states are obtained by applying the angular momentum raising and lowering operators:
+\[
+J_{\pm}=S_{1\pm}+S_{2\pm},
+\]
+with actions
+\[
+J_{+}|j,m\rangle=\hbar\sqrt{j(j+1)-m(m+1)}\,|j,m+1\rangle,\]
+\[
+J_{-}|j,m\rangle=\hbar\sqrt{j(j+1)-m(m-1)}\,|j,m-1\rangle.
+\]
+This procedure “adds” the two spin-\(\frac{1}{2}\) angular momenta to yield a triplet (spin-1) and a singlet (spin-0) state. The direct product basis \(\{|+z\rangle_1|+z\rangle_2,\;|+z\rangle_1|-z\rangle_2,\;|-z\rangle_1|+z\rangle_2,\;|-z\rangle_1|-z\rangle_2\}\) is transformed into the total spin basis via linear combinations that depend on Clebsch–Gordan coefficients.
+
+\subsection{The Einstein–Podolsky–Rosen Paradox}
+Consider a two–spin system in the singlet state,
+\[
+|0,0\rangle=\frac{1}{\sqrt{2}}\Bigl(|+z,-z\rangle - |-z,+z\rangle\Bigr).
+\]
+This state satisfies
+\[
+S_{1z}+S_{2z}\,|0,0\rangle=0,\quad S^2\,|0,0\rangle=0.
+\]
+Using the direct product notation,
+\[
+|+z,-z\rangle\equiv |+z\rangle_1\otimes|-z\rangle_2,\quad
+|-z,+z\rangle\equiv |-z\rangle_1\otimes|+z\rangle_2,
+\]
+if observer A measures the spin of particle 1 along any axis (say, the \(z\)–axis) and obtains \(S_{1z}=+\hbar/2\), then the state collapses into the component
+\[
+|+z,-z\rangle,
+\]
+so that measurement of particle 2 immediately yields
+\[
+S_{2z}=-\frac{\hbar}{2}.
+\]
+Similarly, if A measures \(S_{1z}=-\hbar/2\), then particle 2 is in state \(|+z\rangle\). For measurements along an arbitrary direction, denote the single–particle states by
+\[
+|+n\rangle=\cos\frac{\theta}{2}\,|+z\rangle+e^{i\phi}\sin\frac{\theta}{2}\,|-z\rangle,
+\]
+\[
+|-n\rangle=\sin\frac{\theta}{2}\,|+z\rangle-e^{i\phi}\cos\frac{\theta}{2}\,|-z\rangle.
+\]
+Expressing the singlet state in these bases (via appropriate Clebsch–Gordan coefficients) guarantees that if A obtains \(+n\) for particle 1 then B obtains \(-n\) for particle 2, regardless of the spatial separation. This nonlocal correlation is the essence of the EPR paradox.
+
+\subsection{A Nonquantum Model and the Bell Inequalities}
+A hidden–variable model assumes that each particle carries predetermined spin values along various axes. For example, assign to each particle a type specified by definite outcomes along directions \(a\), \(b\), and \(c\); e.g.,
+\[
+\{+a,\,+b,\,+c\},\quad \{+a,\,-b,\,+c\},\quad \{+a,\,+b,\,-c\},\quad \ldots
+\]
+Conservation of angular momentum in the singlet state requires that if particle 1 is of type \(\{s_a,\,s_b,\,s_c\}\) then particle 2 is of type \(\{-s_a,\,-s_b,\,-s_c\}\).
+
+Define the probability that a measurement by A along \(a\) and by B along \(b\) gives \(+a\) and \(+b\) as
+\[
+P(+a;+b)=\frac{1}{2}\,N_{(+a,+b)},
+\]
+where \(N_{(+a,+b)}\) is determined by the populations of hidden–variable types. In a local realist model the following inequality must hold:
+\[
+P(+a;+b) < P(+a;+c) + P(+c;+b).
+\]
+In contrast, quantum mechanics predicts, for the singlet state,
+\[
+P(+a;+b)=\bigl|\langle +a,+b|0,0\rangle\bigr|^2=\cos^2\Bigl(\frac{\theta_{ab}}{2}\Bigr),
+\]
+where \(\theta_{ab}\) is the angle between \(a\) and \(b\). Similarly,
+\[
+P(+a;+c)=\cos^2\Bigl(\frac{\theta_{ac}}{2}\Bigr),\quad P(+c;+b)=\cos^2\Bigl(\frac{\theta_{cb}}{2}\Bigr).
+\]
+Thus, Bell's inequality becomes
+\[
+\cos^2\Bigl(\frac{\theta_{ab}}{2}\Bigr) < \cos^2\Bigl(\frac{\theta_{ac}}{2}\Bigr) + \cos^2\Bigl(\frac{\theta_{cb}}{2}\Bigr).
+\]
+For certain choices of the angles (e.g. with \(\theta_{ab}=120^\circ\) and \(\theta_{ac}=\theta_{cb}=60^\circ\)), the quantum prediction
+\[
+\cos^2(60^\circ)=\frac{1}{4}
+\]
+yields
+\[
+P(+a;+b)=\frac{1}{4}\quad\text{and}\quad P(+a;+c)+P(+c;+b)=\frac{1}{4}+\frac{1}{4}=\frac{1}{2},
+\]
+which violates the inequality derived from local realism. More generally, when the three measurement axes are chosen such that the relative angles satisfy
+\[
+\theta_{ac}=\theta_{cb}=\frac{\theta_{ab}}{2},
+\]
+the quantum predictions violate Bell's inequality for a range of angles. This discrepancy demonstrates that any hidden–variable model with local realism cannot reproduce all predictions of quantum mechanics.
+
+
+\subsection{Entanglement and Quantum Teleportation}
+Let the state to be teleported (particle 1) be
+\[
+|\psi\rangle_1 = a\,|+z\rangle_1 + b\,|-z\rangle_1,\quad |a|^2+|b|^2=1.
+\]
+Prepare an entangled EPR pair for particles 2 and 3 in the singlet state:
+\[
+|\Psi\rangle_{23} = \frac{1}{\sqrt{2}}\Bigl(|+z\rangle_2\otimes|-z\rangle_3 - |-z\rangle_2\otimes|+z\rangle_3\Bigr).
+\]
+The combined three-particle state is then
+\[
+|\Phi\rangle_{123} = |\psi\rangle_1\otimes|\Psi\rangle_{23}.
+\]
+A Bell-state measurement on particles 1 and 2 projects them onto one of the four Bell states. For instance, if the measurement yields
+\[
+|\Phi^-\rangle_{12} = \frac{1}{\sqrt{2}}\Bigl(|+z\rangle_1\otimes|-z\rangle_2 - |-z\rangle_1\otimes|+z\rangle_2\Bigr),
+\]
+the total state can be rewritten as
+\[
+|\Phi\rangle_{123} = \frac{1}{2}\sum_{k} |\text{Bell}_k\rangle_{12}\otimes U_k\,|\psi\rangle_3,
+\]
+with appropriate unitary operators \(U_k\) acting on particle 3. In particular, if Alice's measurement yields \(|\Phi^-\rangle_{12}\), then
+\[
+|\psi\rangle_3 = a\,|+z\rangle_3 + b\,|-z\rangle_3,
+\]
+up to an overall phase. Thus, upon receiving Alice’s classical message indicating which \(U_k\) to apply, Bob can recover the original state.
+
+\textbf{No-Cloning Theorem.} Suppose a unitary operator \(U\) exists such that for any state \(|\psi\rangle\) and a fixed blank state \(|e\rangle\)
+\[
+U\Bigl(|\psi\rangle\otimes|e\rangle\Bigr)=|\psi\rangle\otimes|\psi\rangle.
+\]
+For two arbitrary states \(|\psi\rangle\) and \(|\phi\rangle\),
+\[
+\langle\psi|\phi\rangle = \langle\psi|\phi\rangle^2,
+\]
+implying either \(\langle\psi|\phi\rangle=0\) or \(1\). Hence, nonorthogonal states cannot be cloned.
+
+\subsection{The Density Operator}
+For a pure state \(|\psi\rangle\), define the density operator
+\[
+\rho=|\psi\rangle\langle\psi|.
+\]
+Its matrix elements in a basis \(\{|i\rangle\}\) are
+\[
+\rho_{ij}=\langle i|\psi\rangle\langle\psi|j\rangle,
+\]
+with the properties
+\[
+\rho^\dagger=\rho,\quad \mathrm{tr}\,\rho=\sum_i \rho_{ii}=1,\quad \rho^2=\rho.
+\]
+For a mixed state, if the system is in \(|\psi_k\rangle\) with probability \(p_k\) (\(\sum_k p_k=1\)), then
+\[
+\rho=\sum_k p_k\,|\psi_k\rangle\langle\psi_k|,
+\]
+and
+\[
+\mathrm{tr}\,\rho^2=\sum_k p_k^2<1\quad (\text{if more than one } p_k\neq0).
+\]
+The expectation value of an observable \(A\) is given by
+\[
+\langle A\rangle = \mathrm{tr}\,(A\rho).
+\]
+Time evolution of the density operator follows from the Schrödinger equation:
+\[
+i\hbar\,\frac{d}{dt}\rho=[H,\rho].
+\]
+For a composite system, the reduced density operator for particle 1 is defined by tracing over particle 2:
+\[
+\rho^{(1)}=\mathrm{tr}_2\,\rho,
+\]
+so that for any observable \(A^{(1)}\) of particle 1,
+\[
+\langle A^{(1)}\rangle = \mathrm{tr}_1\Bigl(A^{(1)}\,\rho^{(1)}\Bigr).
+\]
+For example, for a two-particle pure state
+\[
+|\Phi\rangle_{12} = \frac{1}{\sqrt{2}}\Bigl(|+z,-z\rangle - |-z,+z\rangle\Bigr),
+\]
+the full density operator is
+\[
+\rho_{12}=|\Phi\rangle_{12}\langle\Phi|_{12},
+\]
+and the reduced density operator is
+\[
+\rho^{(1)}=\mathrm{tr}_2\,\rho_{12}=\frac{1}{2}\Bigl(|+z\rangle\langle+z|+|-z\rangle\langle-z|\Bigr),
+\]
+which represents a completely unpolarized (mixed) state. This shows that measurements on one particle alone yield no information about the entangled partner.
+
+\subsection{Entanglement and Quantum Teleportation}
+Let the state of particle 1 be 
+\[
+|\psi\rangle_1 = a\,|+z\rangle_1 + b\,|-z\rangle_1,\quad |a|^2+|b|^2=1.
+\]
+Prepare an EPR pair for particles 2 and 3 in the singlet state
+\[
+|\Psi\rangle_{23} = \frac{1}{\sqrt{2}}\Bigl(|+z\rangle_2\otimes|-z\rangle_3 - |-z\rangle_2\otimes|+z\rangle_3\Bigr).
+\]
+The total three-particle state is
+\[
+|\Phi\rangle_{123} = |\psi\rangle_1\otimes|\Psi\rangle_{23}.
+\]
+Express \( |\Phi\rangle_{123} \) in the Bell basis for particles 1 and 2:
+\[
+|\Phi\rangle_{123} = \frac{1}{2}\sum_{k=1}^4 |\beta_k\rangle_{12}\otimes U_k\,|\psi\rangle_3,
+\]
+where the Bell states for particles 1 and 2 are defined by
+\[
+|\Phi^\pm\rangle_{12} = \frac{1}{\sqrt{2}}\Bigl(|+z\rangle_1\otimes|-z\rangle_2 \pm |-z\rangle_1\otimes|+z\rangle_2\Bigr),
+\]
+\[
+|\Psi^\pm\rangle_{12} = \frac{1}{\sqrt{2}}\Bigl(|+z\rangle_1\otimes|+z\rangle_2 \pm |-z\rangle_1\otimes|-z\rangle_2\Bigr).
+\]
+A Bell-state measurement performed by Alice on particles 1 and 2 projects them into one of these states. For example, if the outcome is
+\[
+|\Phi^-\rangle_{12}=\frac{1}{\sqrt{2}}\Bigl(|+z\rangle_1\otimes|-z\rangle_2 - |-z\rangle_1\otimes|+z\rangle_2\Bigr),
+\]
+then particle 3 is left in the state (up to a known unitary transformation)
+\[
+|\psi\rangle_3 = U_{-}^{-1}|\psi\rangle_1,
+\]
+where \(U_{-}\) is determined by the particular Bell state measured.  
+\medskip
+
+\textbf{No-Cloning Theorem:} Assume a unitary operator \(U\) exists such that for any state \( |\psi\rangle \) and a fixed blank state \(|e\rangle\)
+\[
+U\Bigl(|\psi\rangle\otimes|e\rangle\Bigr)=|\psi\rangle\otimes|\psi\rangle.
+\]
+Taking the inner product for two arbitrary states \(|\psi\rangle\) and \(|\phi\rangle\) leads to
+\[
+\langle\psi|\phi\rangle = \langle\psi|\phi\rangle^2,
+\]
+implying \(\langle\psi|\phi\rangle=0\) or \(1\); thus cloning of nonorthogonal states is impossible.
+\medskip
+
+\subsection{The Density Operator}
+For a pure state \( |\psi\rangle \), the density operator is defined as
+\[
+\rho=|\psi\rangle\langle\psi|.
+\]
+Its matrix elements in a basis \(\{|i\rangle\}\) are
+\[
+\rho_{ij}=\langle i|\psi\rangle\langle\psi|j\rangle,
+\]
+with properties
+\[
+\rho^\dagger=\rho,\quad \rho^2=\rho,\quad \mathrm{tr}\,\rho=1.
+\]
+For a mixed state where the system is in state \(|\psi_k\rangle\) with probability \(p_k\) (\(\sum_k p_k=1\)),
+\[
+\rho=\sum_{k}p_k\,|\psi_k\rangle\langle\psi_k|,\quad \mathrm{tr}\,\rho^2=\sum_k p_k^2<1.
+\]
+The expectation value of an observable \(A\) is given by
+\[
+\langle A\rangle = \mathrm{tr}\,(A\rho).
+\]
+\medskip
+
+For a composite system, e.g. two particles in a pure entangled state \( |\Phi\rangle_{12} \), the full density operator is
+\[
+\rho_{12}=|\Phi\rangle_{12}\langle\Phi|_{12}.
+\]
+The reduced density operator for particle 1 is obtained by tracing over particle 2:
+\[
+\rho^{(1)}=\mathrm{tr}_2\,\rho_{12}.
+\]
+For the singlet state
+\[
+|\Phi\rangle_{12}=\frac{1}{\sqrt{2}}\Bigl(|+z,-z\rangle - |-z,+z\rangle\Bigr),
+\]
+one finds
+\[
+\rho^{(1)}=\frac{1}{2}\Bigl(|+z\rangle\langle+z|+|-z\rangle\langle-z|\Bigr),
+\]
+which is a completely unpolarized mixed state.
+\medskip
+
+Time evolution of the density operator follows from the Schrödinger equation:
+\[
+i\hbar\,\frac{d}{dt}\rho=[H,\rho].
+\]
+This holds for both pure and mixed states. The density operator formalism unifies the description of quantum ensembles and is especially useful when considering subsystems of entangled states.
+
+\section{Wave Mechanics in One Dimension}
+
+\subsection{Position Eigenstates and the Wave Function}
+Define position eigenstates \(|x\rangle\) by 
+\[
+\hat{x}|x\rangle = x\,|x\rangle,\quad x\in(-\infty,+\infty).
+\]
+Completeness:
+\[
+\int_{-\infty}^{+\infty}dx\,|x\rangle\langle x| = I.
+\]
+Normalization:
+\[
+\langle x|x'\rangle = \delta(x-x').
+\]
+An arbitrary state expands as
+\[
+|\psi\rangle = \int_{-\infty}^{+\infty}dx\,\psi(x)\,|x\rangle,\quad \psi(x)=\langle x|\psi\rangle,
+\]
+with probability density
+\[
+P(x)=|\psi(x)|^2,\quad \int_{-\infty}^{+\infty}dx\,|\psi(x)|^2=1.
+\]
+
+\subsection{The Translation Operator}
+The translation operator \(T(a)\) is defined by
+\[
+T(a)|x\rangle = |x+a\rangle.
+\]
+Thus, for an arbitrary state,
+\[
+T(a)|\psi\rangle = \int dx\,\psi(x)\,|x+a\rangle.
+\]
+Changing the integration variable gives
+\[
+\langle x|T(a)|\psi\rangle = \psi(x+a).
+\]
+Unitarity requires
+\[
+T^\dagger(a)T(a)=I.
+\]
+
+\subsection{The Generator of Translations}
+For an infinitesimal displacement \(dx\),
+\[
+T(dx)=I-\frac{i}{\hbar}\hat{p}_x\,dx,\quad T(dx)|x\rangle=|x+dx\rangle.
+\]
+A finite translation is generated by
+\[
+T(a)=\exp\Bigl(-\frac{i}{\hbar}\hat{p}_x\,a\Bigr).
+\]
+Unitarity implies that \(\hat{p}_x\) is Hermitian. Using
+\[
+T(a)|x\rangle=|x+a\rangle,\quad \langle x|T(a)|\psi\rangle=\psi(x+a),
+\]
+a Taylor expansion yields
+\[
+\psi(x+a)=\psi(x)+a\,\psi'(x)+\cdots,
+\]
+so that comparing with
+\[
+\langle x|T(a)|\psi\rangle=\langle x|\Bigl(I-\frac{i}{\hbar}\hat{p}_x\,a\Bigr)|\psi\rangle,
+\]
+we identify
+\[
+\hat{p}_x = -i\hbar\,\frac{d}{dx}.
+\]
+The fundamental commutator follows:
+\[
+[\hat{x},\hat{p}_x]=i\hbar.
+\]
+
+\subsection{The Momentum Operator in the Position Basis and Momentum Space}
+In the position basis, for any state \(|\psi\rangle\)
+\[
+\langle x|\hat{p}_x|\psi\rangle = -i\hbar\,\frac{d}{dx}\psi(x).
+\]
+Momentum eigenstates \(|p\rangle\) satisfy
+\[
+\hat{p}_x|p\rangle = p\,|p\rangle,
+\]
+and may be expanded as
+\[
+|\psi\rangle = \int_{-\infty}^{+\infty}dp\,\phi(p)\,|p\rangle,\quad \phi(p)=\langle p|\psi\rangle.
+\]
+Normalization:
+\[
+\langle p'|p\rangle=\delta(p-p').
+\]
+In position space,
+\[
+\langle x|p\rangle = \frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}.
+\]
+Thus the Fourier transform pair is given by
+\[
+\psi(x)=\frac{1}{\sqrt{2\pi\hbar}}\int dp\,e^{ipx/\hbar}\,\phi(p),
+\]
+\[
+\phi(p)=\frac{1}{\sqrt{2\pi\hbar}}\int dx\,e^{-ipx/\hbar}\,\psi(x).
+\]
+
+\subsection{A Gaussian Wave Packet}
+A physically acceptable state is a superposition of momentum eigenstates. A common choice is the Gaussian wave packet:
+\[
+\psi(x)=N\exp\Bigl(-\frac{x^2}{4\sigma^2}\Bigr),
+\]
+with normalization constant \(N\) determined by
+\[
+\int_{-\infty}^{+\infty}dx\,|\psi(x)|^2=1.
+\]
+Its Fourier transform is also Gaussian,
+\[
+\phi(p)=\frac{1}{\sqrt{2\pi\hbar}}\int dx\,e^{-ipx/\hbar}\,\psi(x),
+\]
+yielding a momentum-space width \(\Delta p=\hbar/(2\sigma)\). Hence, the uncertainty product is
+\[
+\Delta x\,\Delta p = \sigma\cdot\frac{\hbar}{2\sigma}=\frac{\hbar}{2}.
+\]
+This is the minimum uncertainty state, satisfying the Heisenberg uncertainty principle.
+
+\subsection{A Gaussian Wave Packet}
+A Gaussian wave packet in position space is defined by
+\[
+\psi(x)=N\exp\Bigl(-\frac{x^2}{4\sigma^2}\Bigr).
+\]
+Normalization condition:
+\[
+\int_{-\infty}^{+\infty}|\psi(x)|^2\,dx = |N|^2\int_{-\infty}^{+\infty}\exp\Bigl(-\frac{x^2}{2\sigma^2}\Bigr)dx = 1.
+\]
+Using the Gaussian integral
+\[
+\int_{-\infty}^{+\infty}\exp\Bigl(-\frac{x^2}{2\sigma^2}\Bigr)dx = \sqrt{2\pi\sigma^2},
+\]
+we find
+\[
+|N|^2 = \frac{1}{\sqrt{2\pi\sigma^2}},\quad N=\frac{1}{(2\pi\sigma^2)^{1/4}}.
+\]
+Probability density:
+\[
+P(x)=|\psi(x)|^2 = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\Bigl(-\frac{x^2}{2\sigma^2}\Bigr).
+\]
+Uncertainty in position:
+\[
+\Delta x = \sigma.
+\]
+Momentum-space wave function, via Fourier transform,
+\[
+\phi(p)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{+\infty}\psi(x)e^{-ipx/\hbar}dx = \tilde{N}\exp\Bigl(-\frac{p^2\sigma^2}{\hbar^2}\Bigr),
+\]
+with
+\[
+\tilde{N}=\frac{(2\sigma^2)^{1/4}}{\pi^{1/4}\hbar^{1/2}}.
+\]
+Uncertainty in momentum:
+\[
+\Delta p = \frac{\hbar}{2\sigma}.
+\]
+Thus,
+\[
+\Delta x\,\Delta p = \frac{\hbar}{2}.
+\]
+
+\subsection{The Double-Slit Experiment}
+For a double-slit with slit separation \(d\) and distance \(L\) to the detection screen, the path difference is approximated by
+\[
+d\sin\theta\approx d\frac{x}{L}.
+\]
+Interference condition for maxima:
+\[
+d\frac{x}{L} = n\lambda,\quad n=0,\pm1,\pm2,\dots,
+\]
+so that the fringe spacing is
+\[
+\Delta x = \frac{\lambda L}{d}.
+\]
+The de Broglie relation relates wavelength and momentum:
+\[
+\lambda=\frac{h}{p}.
+\]
+The uncertainty principle
+\[
+\Delta x\,\Delta p\ge\frac{\hbar}{2}
+\]
+implies that any attempt to determine which slit the particle passes through (reducing \(\Delta x\)) increases \(\Delta p\) and thereby blurs the interference pattern.
+
+\subsection{The Time-Dependent Schrödinger Equation in Position Space}
+The time-dependent Schrödinger equation in one dimension is
+\[
+i\hbar\,\frac{\partial\psi(x,t)}{\partial t}=\Bigl[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+V(x)\Bigr]\psi(x,t).
+\]
+For energy eigenstates, use separation of variables:
+\[
+\psi(x,t)=\phi(x)e^{-iEt/\hbar}.
+\]
+Then the time-independent Schrödinger equation becomes
+\[
+-\frac{\hbar^2}{2m}\frac{d^2\phi(x)}{dx^2}+V(x)\phi(x)=E\phi(x).
+\]
+For a piecewise-constant potential (e.g. a finite square well),
+\[
+V(x)=
+\begin{cases}
+0,& |x|<\frac{a}{2},\\[1mm]
+V_0,& |x|>\frac{a}{2},
+\end{cases}
+\]
+inside the well (\(|x|<a/2\)) the equation is
+\[
+\frac{d^2\phi}{dx^2}+\frac{2mE}{\hbar^2}\phi=0,\quad \phi(x)=A\sin(kx)+B\cos(kx),\quad k^2=\frac{2mE}{\hbar^2},
+\]
+while outside (\(|x|>a/2\)) it becomes
+\[
+\frac{d^2\phi}{dx^2}-\frac{2m(V_0-E)}{\hbar^2}\phi=0,\quad \phi(x)=Ce^{-\kappa|x|},\quad \kappa^2=\frac{2m(V_0-E)}{\hbar^2}.
+\]
+Continuity of \(\phi(x)\) and its derivative at \(x=\pm a/2\) provides the quantization conditions for \(E\).
+
+\subsection{General Properties of Solutions and the Particle in a Box}
+General features:
+\[
+\text{For }E>V(x):\quad \frac{d^2\phi}{dx^2}=-k^2(x)\phi(x),
+\]
+\[
+ \phi(x)\text{ oscillatory, with } k^2(x)=\frac{2m[E-V(x)]}{\hbar^2}.
+\]
+\[
+\text{For }E<V(x):\quad \frac{d^2\phi}{dx^2}=+\kappa^2(x)\phi(x),
+\]
+\[
+ \phi(x)\text{ decays exponentially, with } \kappa^2(x)=\frac{2m[V(x)-E]}{\hbar^2}.
+\]
+In the limit \(V_0\to\infty\) (infinite square well) with
+\[
+V(x)=
+\begin{cases}
+0,& 0<x<L,\\[1mm]
+\infty,& \text{elsewhere},
+\end{cases}
+\]
+the boundary conditions \(\phi(0)=\phi(L)=0\) yield
+\[
+\phi_n(x)=\sqrt{\frac{2}{L}}\sin\Bigl(\frac{n\pi x}{L}\Bigr),
+\]
+\[
+ E_n=\frac{n^2\pi^2\hbar^2}{2mL^2},\quad n=1,2,3,\dots.
+\]
+This simple model illustrates quantization of energy due to spatial confinement.
+
+\subsection{Position Eigenstates and Wave Function}
+Position eigenstates satisfy 
+\[
+\hat{x}\,|x\rangle = x\,|x\rangle \quad (6.1)
+\]
+with the completeness relation 
+\[
+\int_{-\infty}^{\infty} dx\, |x\rangle \langle x| = \mathbb{I} \quad (6.4)
+\]
+A general state is written as
+\[
+|\psi\rangle = \int_{-\infty}^{\infty} dx\, \psi(x)\, |x\rangle,\quad \psi(x)=\langle x|\psi\rangle \quad (6.3),(6.11)
+\]
+Normalization imposes
+\[
+\langle \psi|\psi\rangle = \int_{-\infty}^{\infty} dx\, |\psi(x)|^2 =1 \quad (6.9)
+\]
+and 
+\[
+\langle x|x'\rangle = \delta(x-x') \quad (6.6)
+\]
+
+\subsection{The Translation Operator}
+Define the translation operator $T(a)$ by its action
+\[
+T(a)\,|x\rangle = |x+a\rangle \quad (6.15)
+\]
+so that on an arbitrary state,
+\[
+T(a)|\psi\rangle = \int dx\, \psi(x)\, |x+a\rangle = \int dx'\,\psi(x'-a)\, |x'\rangle \quad (6.16)
+\]
+yielding the translated wave function
+\[
+\psi_a(x)=\langle x|T(a)|\psi\rangle=\psi(x-a) \quad (6.18)
+\]
+Unitarity requires 
+\[
+T^\dagger(a)T(a)=\mathbb{I} \quad (6.19)
+\]
+
+\subsection{Generator of Translations and Momentum Operator}
+The infinitesimal translation operator is
+\[
+T(dx)= 1 -\frac{i}{\hbar}\,\hat{p}_x\,dx \quad (6.24)
+\]
+with
+\[
+T(dx)|x\rangle = |x+dx\rangle \quad (6.25)
+\]
+Thus, by Taylor expansion, one finds
+\[
+\hat{p}_x = -i\hbar\,\frac{d}{dx} \quad (6.45)
+\]
+The commutator follows from the expansion:
+\[
+[\hat{x},\hat{p}_x] = i\hbar \quad (6.31)
+\]
+Ehrenfest's theorem gives
+\[
+\frac{d}{dt}\langle \hat{x}\rangle = \frac{\langle \hat{p}_x\rangle}{m} \quad (6.33)
+\]
+and the uncertainty principle
+\[
+\Delta x\,\Delta p_x \ge \frac{\hbar}{2} \quad (6.37)
+\]
+
+\subsection{Momentum Space and Fourier Transform}
+A general state can also be expanded in momentum eigenstates:
+\[
+|\psi\rangle = \int_{-\infty}^{\infty} dp\, \phi(p)\,|p\rangle,\quad \phi(p)=\langle p|\psi\rangle \quad (6.47)
+\]
+with normalization 
+\[
+\langle p|p'\rangle = \delta(p-p')\quad \text{and}\quad \int dp\,|\phi(p)|^2=1 \quad (6.49)
+\]
+The position representation of a momentum eigenstate is obtained via
+\[
+\langle x|p\rangle = N\, e^{ipx/\hbar} \quad (6.51)
+\]
+Normalization using
+\[
+\langle p|p'\rangle = \int dx\, \langle p|x\rangle \langle x|p'\rangle = |N|^2 \, 2\pi\hbar\, \delta(p-p')
+\]
+yields
+\[
+N = \frac{1}{\sqrt{2\pi\hbar}} \quad (6.54)
+\]
+Thus, the Fourier transform pair is
+\[
+\phi(p)= \frac{1}{\sqrt{2\pi\hbar}} \int dx\, e^{-ipx/\hbar}\,\psi(x),
+\]
+\[
+ \psi(x)= \frac{1}{\sqrt{2\pi\hbar}} \int dp\, e^{ipx/\hbar}\,\phi(p) \quad (6.57)
+\]
+
+\subsection{Gaussian Wave Packet}
+A Gaussian wave packet is defined by
+\[
+\psi(x)= N\, e^{-x^2/a^2} \quad (6.59)
+\]
+Normalization requires
+\[
+|N|^2\int_{-\infty}^{\infty} dx\, e^{-2x^2/a^2} =1 \quad \Rightarrow\quad |N|^2 = \sqrt{\frac{2}{\pi a^2}} \quad (6.60)
+\]
+The probability density is then
+\[
+|\psi(x)|^2 = \sqrt{\frac{2}{\pi a^2}}\, e^{-2x^2/a^2} \quad (6.62)
+\]
+The uncertainty in position is computed via
+\[
+\langle x^2\rangle = \int dx\, x^2\, |\psi(x)|^2,\quad \Delta x = \sqrt{\langle x^2\rangle} \quad (6.67)
+\]
+Similarly, one calculates the momentum-space wave function by Fourier transforming:
+\[
+\phi(p)= \frac{1}{\sqrt{2\pi\hbar}} \int dx\, e^{-ipx/\hbar}\, \psi(x)
+\]
+yielding another Gaussian:
+\[
+|\phi(p)|^2 = \sqrt{\frac{a^2}{2\pi\hbar^2}}\, e^{-2p^2a^2/\hbar^2} \quad (6.69)
+\]
+Thus, the uncertainties satisfy
+\[
+\Delta x\, \Delta p_x = \frac{\hbar}{2} \quad (6.72)
+\]
+and the Gaussian is a minimum uncertainty state.
+
+\section{Assignment 4}
+
+\subsection{Problem 1}
+A system is described by the Hamiltonian
+\[
+H = \begin{pmatrix}
+2 & 1 \\
+1 & 0
+\end{pmatrix}.
+\]
+At $t=0$, the system is in the state
+\[
+|\alpha\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}.
+\]
+\begin{enumerate}
+\item[(a)] Find $|\alpha,t\rangle = U(t)|\alpha\rangle$ with $U(t) = e^{-iHt/\hbar}$.
+\item[(b)] Compute the probability of finding the system in
+\[
+|\beta\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}1 \\ 1\end{pmatrix}
+\]
+at time $t$.
+\end{enumerate}
+
+\subsubsection*{Solution}
+\[
+\text{Eigenvalues: } \lambda_{\pm} = 1 \pm \sqrt{2}.
+\]
+\[
+H|E_{\pm}\rangle = \lambda_{\pm} |E_{\pm}\rangle.
+\]
+One can choose normalized eigenvectors
+\[
+|E_+\rangle = \frac{1}{\sqrt{2(2 - \sqrt{2})}}
+\begin{pmatrix}
+1 \\
+\sqrt{2}-1
+\end{pmatrix}, 
+\]
+\[
+|E_-\rangle = \frac{1}{\sqrt{4 + 2\sqrt{2}}}
+\begin{pmatrix}
+1 \\
+-(1+\sqrt{2})
+\end{pmatrix}.
+\]
+Expand $|\alpha\rangle$:
+\[
+|\alpha\rangle = c_+|E_+\rangle + c_-|E_-\rangle, \quad
+c_+ = \frac{1}{\sqrt{2(2 - \sqrt{2})}}, \quad
+c_- = \frac{1}{\sqrt{4 + 2\sqrt{2}}}.
+\]
+Then
+\[
+|\alpha,t\rangle = e^{-iHt/\hbar}|\alpha\rangle
+= c_+ e^{-i\lambda_+ t/\hbar} |E_+\rangle
++ c_- e^{-i\lambda_- t/\hbar} |E_-\rangle.
+\]
+Probability of finding $|\beta\rangle$:
+\(
+P_\beta(t) = \bigl|\langle \beta | \alpha,t \rangle \bigr|^2
+= \left|\frac{1}{\sqrt{2}}
+\begin{pmatrix}1 & 1\end{pmatrix}
+\left(
+c_+ e^{-i\lambda_+ t/\hbar}\,|E_+\rangle
++ c_- e^{-i\lambda_- t/\hbar}\,|E_-\rangle
+\right)\right|^2.
+\)
+
+\subsection{Problem 4.4}
+A beam of spin-$\tfrac12$ particles with speed $v_0$ passes through two SG$_z$ devices. The first transmits $S_z=+\tfrac{\hbar}{2}$ and filters out $S_z=-\tfrac{\hbar}{2}$. The second transmits $S_z=-\tfrac{\hbar}{2}$ and filters out $S_z=+\tfrac{\hbar}{2}$. Between them is a region of length $l_0$ with a uniform magnetic field $B_0$ in the $x$~direction. Determine the smallest $l_0$ so that $25\%$ of the particles transmitted by the first SG$_z$ device are transmitted by the second. Express $l_0$ in terms of $\omega_0 = \frac{e g B_0}{m c}$ and $v_0$.
+
+\subsubsection*{Solution}
+Initial transmitted state: $|+\hat{z}\rangle$. In a field along $\hat{x}$, the spin precesses about $x$ with angular frequency $\omega_0$. The probability of finding $|-\hat{z}\rangle$ after time $T$ is
+\[
+P_{-\hat{z}} = \sin^2\bigl(\tfrac{\omega_0 T}{2}\bigr).
+\]
+We require $P_{-\hat{z}} = \tfrac14$, so
+\[
+\sin^2\bigl(\tfrac{\omega_0 T}{2}\bigr) = \tfrac14
+\;\;\Longrightarrow\;\;
+\sin\bigl(\tfrac{\omega_0 T}{2}\bigr) = \tfrac12
+\;\;\Longrightarrow\;\;
+\tfrac{\omega_0 T}{2} = \tfrac{\pi}{6}
+\;\;\Longrightarrow\;\;
+T = \tfrac{\pi}{3\,\omega_0}.
+\]
+Since $T = \tfrac{l_0}{v_0}$, the smallest positive $l_0$ is
+\[
+l_0 = v_0 \cdot \tfrac{\pi}{3\,\omega_0}.
+\]
+
+\subsection{Problem 4.5}
+A beam of spin-$\tfrac12$ particles in $|+\hat{z}\rangle$ enters a uniform magnetic field $B_0$ in the $x$--$z$ plane at angle $\theta$ to the $z$~axis. At time $T$, the particles enter an SG$_y$ device. Find the probability of measuring $S_y = +\tfrac{\hbar}{2}$. Check $\theta=0$ and $\theta=\tfrac{\pi}{2}$.
+
+\subsubsection*{Solution}
+Precession about $\hat{n} = (\sin\theta,0,\cos\theta)$ by angle $\omega_0 T$. The final spin direction (classical analog) of an initial $|+\hat{z}\rangle$ is
+\[
+\hat{z}' = \hat{z}\cos(\omega_0 T)
++ (\hat{n}\times \hat{z})\sin(\omega_0 T)
++ \hat{n}\,[\hat{n}\cdot \hat{z}]\,[1-\cos(\omega_0 T)].
+\]
+With $\hat{n}\times\hat{z} = -\sin\theta\,\hat{y}$, one finds the $y$-component of $\hat{z}'$ is $-\sin\theta\,\sin(\omega_0 T)$. The probability of $S_y=+\tfrac{\hbar}{2}$ is
+\[
+P_{+\hat{y}} = \tfrac12 \bigl[1 + \hat{y}\cdot\hat{z}'\bigr]
+= \tfrac12 \bigl[1 - \sin\theta\,\sin(\omega_0 T)\bigr].
+\]
+For $\theta=0$, $P_{+\hat{y}}=\tfrac12$. For $\theta=\tfrac{\pi}{2}$,
+$P_{+\hat{y}} = \tfrac12 \bigl[1 - \sin(\omega_0 T)\bigr]$.
+
+\subsection{Problem 4.6}
+Verify that the expectation values (4.22), (4.28), (4.30) for a spin-$\tfrac12$ precessing in a uniform $B_0$ along $z$ satisfy (4.16).
+
+\subsubsection*{Solution}
+For $B_0$ in the $z$~direction, the Heisenberg equations (or Bloch equations) yield
+\[
+\frac{d}{dt}\langle S_x\rangle = \omega_0\,\langle S_y\rangle, \quad
+\frac{d}{dt}\langle S_y\rangle = -\,\omega_0\,\langle S_x\rangle, \quad
+\frac{d}{dt}\langle S_z\rangle = 0.
+\]
+The known solutions:
+\[
+\langle S_x\rangle(t) = \langle S_x\rangle(0)\cos(\omega_0 t)
+- \langle S_y\rangle(0)\sin(\omega_0 t),
+\]
+\[
+\langle S_y\rangle(t) = \langle S_y\rangle(0)\cos(\omega_0 t)
++ \langle S_x\rangle(0)\sin(\omega_0 t),
+\]
+\[
+\langle S_z\rangle(t) = \langle S_z\rangle(0),
+\]
+satisfy the above differential equations, verifying (4.16).
+
+\section{Assignment 5}
+
+\subsection{Problem 4.6}
+Verify that the expectation values (4.23), (4.28), (4.30) for a spin-$\tfrac12$ particle precessing in a uniform magnetic field $B_0$ in the $z$-direction satisfy (4.16).
+
+\subsubsection*{Solution}
+For a spin-$\tfrac12$ in a uniform $B_0 \hat{z}$, the Heisenberg equations (or Bloch equations) yield
+\[
+\frac{d}{dt}\langle S_x\rangle = \omega_0 \langle S_y\rangle, 
+\quad
+\frac{d}{dt}\langle S_y\rangle = -\omega_0 \langle S_x\rangle, 
+\quad
+\frac{d}{dt}\langle S_z\rangle = 0,
+\]
+where $\omega_0 = \frac{g e B_0}{2 m c}$ (in Gaussian units, for example). The general solutions are
+\[
+\langle S_x\rangle(t) 
+= \langle S_x\rangle(0)\cos(\omega_0 t) 
+- \langle S_y\rangle(0)\sin(\omega_0 t),
+\]
+\[
+\langle S_y\rangle(t) 
+= \langle S_y\rangle(0)\cos(\omega_0 t) 
++ \langle S_x\rangle(0)\sin(\omega_0 t),
+\]
+\[
+\langle S_z\rangle(t) = \langle S_z\rangle(0).
+\]
+These satisfy (4.16) and match the forms (4.23), (4.28), (4.30).
+
+\subsection{Problem 4.7}
+Use the data in Fig.~4.3 (precession frequency $\approx 807.5\,\text{kHz}$ in a magnetic field of $60\,\text{G}$) to determine the $g$ factor of the muon.
+
+\subsubsection*{Solution}
+For a muon with mass $m_\mu$, the precession frequency is 
+\[
+\omega = \frac{g\,e\,B}{2 m_\mu c}
+\quad (\text{cgs units}).
+\]
+From the figure, $\omega \approx 2\pi \times 807.5\times 10^3\,\text{s}^{-1}$ and $B=60\,\text{G}$. Solve for $g$:
+\[
+g 
+= \frac{2\,m_\mu\,c\,\omega}{e\,B}.
+\]
+Inserting numerical values for $m_\mu$, $e$, $c$, and $B$ gives the muon $g$ factor.
+
+\subsection{Problem 4.8}
+A spin-$\tfrac12$ particle, initially in a state with $S_n = \tfrac{\hbar}{2}$, where $\mathbf{n} = \sin\theta\,\hat{i} + \cos\theta\,\hat{k}$, is in a constant magnetic field $B_0$ in the $z$ direction. Determine the state of the particle at time $t$ and how $\langle S_x \rangle$, $\langle S_y \rangle$, and $\langle S_z \rangle$ vary with time.
+
+\subsubsection*{Solution}
+The initial state $|+\mathbf{n}\rangle$ can be written in the $S_z$ eigenbasis. Let $\omega_0 = \frac{g e B_0}{2 m c}$. Time evolution is governed by
+\[
+U(t) = e^{-\tfrac{i}{\hbar} \omega_0 S_z\,t}.
+\]
+In the $|+\mathbf{n}\rangle$ basis, 
+\[
+|\psi(t)\rangle 
+= U(t)\,|+\mathbf{n}\rangle
+= e^{-\tfrac{i}{\hbar}\omega_0 S_z t}\,|+\mathbf{n}\rangle.
+\]
+The expectation values follow the Bloch-vector rotation about $\hat{z}$:
+\(
+\langle S_x\rangle(t) 
+= \tfrac{\hbar}{2}\sin\theta \cos(\omega_0 t), 
+\quad
+\langle S_y\rangle(t) 
+= \tfrac{\hbar}{2}\sin\theta \sin(\omega_0 t),
+\quad
+\langle S_z\rangle(t) 
+= \tfrac{\hbar}{2}\cos\theta.
+\)
+
+\subsection{Problem 4.9}
+Derive Rabi's formula (4.45). The probability of inducing a transition from the spin-up state to the spin-down state is given by
+\[
+\bigl|\,-\hat{z}\,\bigl|\psi(t)\rangle\bigr|^2 
+= \frac{\omega^2/4}{(\omega_0 - \omega)^2 + \omega^2/4}
+\,\sin^2\!\Bigl(\tfrac{1}{2}\sqrt{(\omega_0-\omega)^2 + \omega^2/4}\,t\Bigr).
+\]
+
+\subsubsection*{Solution}
+Consider a two-level system with Hamiltonian in the rotating frame:
+\[
+H_\text{rot} 
+= \frac{\hbar}{2}(\omega_0 - \omega)\sigma_z 
++ \frac{\hbar \omega}{2}\sigma_x.
+\]
+The eigenvalues differ by 
+\[
+\hbar\sqrt{(\omega_0-\omega)^2 + \omega^2/4}.
+\]
+If the system starts in $|\!+\hat{z}\rangle$, standard time-evolution calculations in this basis yield Rabi's formula for the transition probability to $|\!-\hat{z}\rangle$ as above.
+
+\section{Assignment 6}
+
+\subsection{Problem 5.1}
+Take the spin Hamiltonian for the hydrogen atom in an external magnetic field $B_0$ along $z$:
+\[
+\hat{H} 
+= \frac{2A}{\hbar^2}\,\mathbf{S}_1 \cdot \mathbf{S}_2 \;+\; \omega_0\,S_{1z},
+\]
+with 
+\(
+\omega_0 
+= \frac{g\,e\,B_0}{2\,m\,c}
+\)
+and the proton coupling neglected due to its large mass.
+
+\subsubsection*{Solution}
+Use
+\[
+\mathbf{S}_1 \cdot \mathbf{S}_2 
+= \frac{1}{2}\bigl(S^2 - S_1^2 - S_2^2\bigr),
+\quad
+S_1^2 = S_2^2 = \tfrac{3}{4}\hbar^2.
+\]
+Hence
+\[
+\frac{2A}{\hbar^2}\,\mathbf{S}_1 \cdot \mathbf{S}_2
+= \frac{A}{\hbar^2}\Bigl(S^2 - \tfrac{3}{2}\hbar^2\Bigr).
+\]
+For two spin-$\tfrac12$ particles, $S=1$ (triplet) or $S=0$ (singlet). Then
+\[
+S=1:\quad S^2 = 2\hbar^2 
+\;\Longrightarrow\; 
+\frac{A}{\hbar^2}\bigl(2\hbar^2 - \tfrac{3}{2}\hbar^2\bigr)
+= \tfrac12 A,
+\]
+\[
+S=0:\quad S^2 = 0 
+\;\Longrightarrow\; 
+\frac{A}{\hbar^2}\bigl(0 - \tfrac{3}{2}\hbar^2\bigr)
+= -\tfrac{3}{2}A.
+\]
+Label electron spin up/down as $|\!\uparrow\rangle,|\!\downarrow\rangle$. The product states and energies from $\omega_0\,S_{1z}$ are:
+\[
+|\,\uparrow\uparrow\rangle:\quad E = \tfrac12 A \;+\;\omega_0\,\tfrac{\hbar}{2},
+\quad
+|\,\uparrow\downarrow\rangle + |\,\downarrow\uparrow\rangle:\quad E = \tfrac12 A \;+\;0,
+\]
+\[
+|\,\downarrow\downarrow\rangle: E = \tfrac12 A \;-\;\omega_0\,\tfrac{\hbar}{2},
+\text{(singlet)}\;\; 
+\frac{1}{\sqrt{2}}\bigl(|\,\uparrow\downarrow\rangle - |\,\downarrow\uparrow\rangle\bigr):
+E = -\tfrac{3}{2}A.
+\]
+In the limiting cases:
+\[
+A \gg \hbar\omega_0: \text{(hyperfine dominates; Zeeman shift is small)},
+\]
+\[
+A \ll \hbar\omega_0: \text{(Zeeman term dominates; hyperfine is a perturbation)}.
+\]
+
+\subsection{Problem 5.3}
+Express the total-spin-$0$ (singlet) state of two spin-$\tfrac12$ particles in terms of 
+\(
+|+\mathbf{n},-\mathbf{n}\rangle
+\)
+and 
+\(
+|-\mathbf{n},+\mathbf{n}\rangle
+\)
+where
+\[
+|\!+\mathbf{n}\rangle
+= \cos\!\bigl(\tfrac{\theta}{2}\bigr)\,|\!+z\rangle 
+\;+\; e^{i\phi}\,\sin\!\bigl(\tfrac{\theta}{2}\bigr)\,|\!-z\rangle,
+\]
+\[
+|\!-\mathbf{n}\rangle
+= \sin\!\bigl(\tfrac{\theta}{2}\bigr)\,|\!+z\rangle
+\;-\; e^{i\phi}\,\cos\!\bigl(\tfrac{\theta}{2}\bigr)\,|\!-z\rangle.
+\]
+
+\subsubsection*{Solution}
+The singlet is
+\[
+|\psi_{s=0}\rangle 
+= \frac{1}{\sqrt{2}}
+\Bigl(
+|\uparrow\downarrow\rangle 
+- |\downarrow\uparrow\rangle
+\Bigr).
+\]
+Rewrite each $|\uparrow\rangle,|\downarrow\rangle$ in terms of $|\!+\mathbf{n}\rangle,|\!-\mathbf{n}\rangle$. Collect terms to express 
+\(
+|\psi_{s=0}\rangle
+\)
+as a linear combination of 
+\(
+|+\mathbf{n},-\mathbf{n}\rangle
+\)
+and
+\(
+|-\mathbf{n},+\mathbf{n}\rangle
+\).
+One finds a form (up to overall phases) such as
+\[
+|\psi_{s=0}\rangle
+= \frac{1}{\sqrt{2}}
+\bigl(
+e^{-i\phi}\,|+\mathbf{n},-\mathbf{n}\rangle
+- e^{+i\phi}\,|-\mathbf{n},+\mathbf{n}\rangle
+\bigr),
+\]
+with trigonometric factors from $\theta/2$ included.  
+
+\subsection{Problem 5.4}
+At $t=0$, an electron and a positron form a total spin-$0$ state in a uniform magnetic field $B_0$ along $z$. If their interaction is neglected, the spin Hamiltonian is
+\[
+\hat{H} = \omega_0\bigl(S_{1z} - S_{2z}\bigr),
+\]
+where $S_1$ is the electron spin, $S_2$ is the positron spin, and $\omega_0$ is a constant.
+
+\subsubsection*{Solution}
+The product states $|\uparrow\uparrow\rangle,\,|\uparrow\downarrow\rangle,\,|\downarrow\uparrow\rangle,\,|\downarrow\downarrow\rangle$ have eigenvalues of $S_{1z}-S_{2z}$ as $0,\,+\hbar,\,-\hbar,\,0$, respectively. The singlet at $t=0$ is
+\[
+|\psi(0)\rangle 
+= \frac{1}{\sqrt{2}}\bigl(|\uparrow\downarrow\rangle - |\downarrow\uparrow\rangle\bigr).
+\]
+Time evolution:
+\[
+|\uparrow\downarrow\rangle \;\longrightarrow\; e^{-i\omega_0 t}|\uparrow\downarrow\rangle,
+\quad
+|\downarrow\uparrow\rangle \;\longrightarrow\; e^{+i\omega_0 t}|\downarrow\uparrow\rangle.
+\]
+Hence
+\[
+|\psi(t)\rangle 
+= \frac{1}{\sqrt{2}}
+\Bigl(
+e^{-i\omega_0 t}\,|\uparrow\downarrow\rangle 
+- e^{+i\omega_0 t}\,|\downarrow\uparrow\rangle
+\Bigr).
+\]
+The period of oscillation is $T = \pi/\omega_0$ (phase shift $2\pi$ in the relative term). Measuring $S_{1x}$ and $S_{2x}$ in the state $|\psi(t)\rangle$ involves writing $|\uparrow\rangle,|\downarrow\rangle$ in the $|\pm x\rangle$ basis:
+\[
+|\pm x\rangle 
+= \frac{1}{\sqrt{2}}\bigl(|\uparrow\rangle \pm |\downarrow\rangle\bigr).
+\]
+Compute $\langle +x,+x|\psi(t)\rangle$ and square its magnitude to obtain the probability that both measurements yield $+\tfrac{\hbar}{2}$.
+
+\subsection{Problem 5.6}
+Take the spin Hamiltonian of positronium (electron-positron bound state) in an external magnetic field $B_0$ along $z$:
+\[
+\hat{H}
+= \frac{2A}{\hbar^2}\,\mathbf{S}_1\cdot\mathbf{S}_2
+\;+\;
+\omega_0\,\bigl(S_{1z} - S_{2z}\bigr).
+\]
+Determine the energy eigenvalues.
+
+\subsubsection*{Solution}
+The term
+\(
+\frac{2A}{\hbar^2}\,\mathbf{S}_1 \cdot \mathbf{S}_2
+\)
+alone splits the two-particle spin states into the triplet ($+\tfrac12 A$) and singlet ($-\tfrac32 A$). The Zeeman-like term 
+\(
+\omega_0\,(S_{1z}-S_{2z})
+\)
+is diagonal in the product basis $|\uparrow\uparrow\rangle$, $|\uparrow\downarrow\rangle$, $|\downarrow\uparrow\rangle$, $|\downarrow\downarrow\rangle$, giving energies $0,\,+\hbar\omega_0,\,-\hbar\omega_0,\,0$ respectively. The full $4\times 4$ Hamiltonian in that basis combines these contributions. One finds four eigenvalues, which can be labeled by their product-state content:
+\[
+|\,\uparrow\uparrow\rangle:\quad E = +\tfrac12 A,
+\quad
+|\,\downarrow\downarrow\rangle:\quad E = +\tfrac12 A,
+\]
+\[
+|\,\uparrow\downarrow\rangle:\quad E = +\tfrac12 A + \hbar\omega_0,
+\quad
+|\,\downarrow\uparrow\rangle:\quad E = +\tfrac12 A - \hbar\omega_0,
+\]
+\[
+\text{(possible mixing in the subspace if hyperfine and field terms compete),}
+\]
+and the singlet component $S=0$ at $E=-\tfrac32 A$ may also shift or mix if $\omega_0$ distinguishes electron and positron spins. Diagonalizing fully in the product basis yields the exact eigenvalues, which reduce to $\pm \tfrac12 A$ (triplet manifold) and $-\tfrac32 A$ (singlet) when $\omega_0=0$.
+
+\section{Assignment 7}
+
+\subsection{Problem 5.4}
+\textit{In an EPR-type experiment, two spin-$\tfrac12$ particles are emitted in the state 
+\(
+|1,1\rangle = |+z,\,+z\rangle.
+\)
+A and B have their SG devices oriented along the $x$ axis. Determine the probabilities that the resulting measurements find the two particles in the states 
+\(
+|1,1\rangle_x,\;|1,0\rangle_x,\;|1,-1\rangle_x
+\).}
+
+\subsubsection*{Solution}
+Single-spin basis change:
+\[
+|+z\rangle 
+= \frac{1}{\sqrt{2}}\bigl(\,|+x\rangle + |-x\rangle\bigr),
+\quad
+|-z\rangle
+= \frac{1}{\sqrt{2}}\bigl(\,|+x\rangle - |-x\rangle\bigr).
+\]
+Hence,
+\[
+|+z,+z\rangle 
+= \frac{1}{2}
+\Bigl(
+|+x,+x\rangle 
++ |+x,-x\rangle 
++ |-x,+x\rangle 
++ |-x,-x\rangle
+\Bigr).
+\]
+Recall the total spin-$1$ states in the $x$ basis:
+\[
+|1,1\rangle_x = |+x,+x\rangle,\quad
+|1,-1\rangle_x = |-x,-x\rangle,
+\]
+\[
+|1,0\rangle_x = \frac{1}{\sqrt{2}}\bigl(\,|+x,-x\rangle + |-x,+x\rangle\bigr).
+\]
+The amplitude of \(|+x,+x\rangle\) in \(|+z,+z\rangle\) is \(1/2\). Hence 
+\(\;P_{(1,1)_x} = \bigl|\tfrac{1}{2}\bigr|^2 = \tfrac{1}{4}\).
+Similarly, the amplitude of \(|-x,-x\rangle\) is also \(1/2\), giving 
+\(\;P_{(1,-1)_x} = \tfrac{1}{4}\).
+For \(|1,0\rangle_x\), we collect the \(|+x,-x\rangle\) and \(|-x,+x\rangle\) terms. Each appears with amplitude \(1/2\), so in the combination 
+\(\tfrac{1}{\sqrt{2}}\bigl(|+x,-x\rangle + |-x,+x\rangle\bigr)\) 
+the total amplitude is 
+\(\tfrac{1}{2}+\tfrac{1}{2} = 1\) (divided by \(\sqrt{2}\)), 
+yielding an overall amplitude \(\tfrac{1}{\sqrt{2}}\). 
+Hence 
+\(\;P_{(1,0)_x} = \bigl|\tfrac{1}{\sqrt{2}}\bigr|^2 = \tfrac{1}{2}\).
+Thus,
+\[
+P_{(1,1)_x} = \tfrac{1}{4},\quad
+P_{(1,0)_x} = \tfrac{1}{2},\quad
+P_{(1,-1)_x} = \tfrac{1}{4}.
+\]
+
+\subsection{Problem 5.8}
+\textit{Measurements of the spin components along two arbitrary directions $\mathbf{a}$ and $\mathbf{b}$ are performed on two spin-$\tfrac12$ particles in the singlet state \((0,0)\). The results of each measurement are denoted by $\pm1$. Defining
+\[
+P_{\pm\pm}(\mathbf{a},\mathbf{b}) \;=\; 
+\text{Prob}\bigl(\pm1 \text{ along } \mathbf{a} \text{ for particle 1, and } \pm1 
+\]
+\[
+\text{ along } \mathbf{b} \text{ for particle 2}\bigr),
+\]
+the correlation function is 
+\[
+E(\mathbf{a},\mathbf{b}) 
+= P_{++}(\mathbf{a},\mathbf{b})
++ P_{--}(\mathbf{a},\mathbf{b})
+- P_{+-}(\mathbf{a},\mathbf{b})
+- P_{-+}(\mathbf{a},\mathbf{b}).
+\]
+Show that 
+\(
+E(\mathbf{a},\mathbf{b}) 
+= -\,\mathbf{a}\cdot\mathbf{b}
+= -\cos\theta_{\mathbf{ab}}.
+\)}
+
+\subsubsection*{Solution}
+The singlet state for two spin-$\tfrac12$ particles can be written
+\[
+|\psi_{\text{singlet}}\rangle 
+= \frac{1}{\sqrt{2}}\Bigl(\,|\uparrow\downarrow\rangle - |\downarrow\uparrow\rangle\Bigr).
+\]
+Define the spin-$\tfrac12$ operator components along a direction $\mathbf{n}$ by 
+\(\sigma_{\mathbf{n}} = \boldsymbol{\sigma}\cdot\mathbf{n}\), 
+where $\boldsymbol{\sigma}$ are the Pauli matrices. The measurement outcome is $\pm1$ for each $\sigma_{\mathbf{n}}$. One finds
+\[
+\langle \sigma_{\mathbf{a}} \otimes \sigma_{\mathbf{b}} \rangle_{\text{singlet}}
+= -\,\mathbf{a}\cdot\mathbf{b}.
+\]
+The correlation function $E(\mathbf{a},\mathbf{b})$ is precisely the expectation value of the product of outcomes, giving
+\[
+E(\mathbf{a},\mathbf{b}) 
+= -\,\mathbf{a}\cdot\mathbf{b} 
+= -\,\cos(\theta_{\mathbf{ab}}).
+\]
+
+\subsection{Problem 5.9}
+\textit{Show that for $\mathbf{a} = \mathbf{b}$, $E(\mathbf{a},\mathbf{b}) = -1$, and for $\mathbf{b}=-\mathbf{a}$, $E(\mathbf{a},\mathbf{b}) = +1$. More generally, if $\mathbf{a}$ makes angle $\alpha$ with the $z$ axis and $\mathbf{b}$ makes angle $\beta$, then
+\[
+E(\mathbf{a},\mathbf{b}) = -\cos(\alpha - \beta).
+\]}
+
+\subsubsection*{Solution}
+From $E(\mathbf{a},\mathbf{b}) = -\,\mathbf{a}\cdot\mathbf{b}$:
+\[
+\mathbf{a} = \mathbf{b}
+\;\Longrightarrow\;
+\mathbf{a}\cdot\mathbf{b} = 1 
+\;\Longrightarrow\;
+E(\mathbf{a},\mathbf{b}) = -1.
+\]
+\[
+\mathbf{b} = -\mathbf{a}
+\;\Longrightarrow\;
+\mathbf{a}\cdot\mathbf{b} = -1 
+\;\Longrightarrow\;
+E(\mathbf{a},\mathbf{b}) = +1.
+\]
+If $\mathbf{a}$ has polar angle $\alpha$ and $\mathbf{b}$ has polar angle $\beta$, their dot product is $\cos(\alpha-\beta)$. Hence
+\[
+E(\mathbf{a},\mathbf{b}) 
+= -\,\cos(\alpha-\beta).
+\]
+
+\subsection{Problem 5.10}
+\textit{As noted in Section~5.5, tests of the Bell inequalities are typically carried out on pairs of correlated photons. Compare the results with those for spin-$\tfrac12$ particles in Problem~5.8.}
+
+\subsubsection*{Solution}
+For spin-$\tfrac12$ singlet pairs, the correlation is 
+\(
+E(\mathbf{a},\mathbf{b}) = -\mathbf{a}\cdot\mathbf{b}.
+\)
+For photon polarizations in the corresponding ``singlet''-like state (two-photon polarization entanglement), one finds a dependence of the form 
+\(\cos\bigl(2\,\theta_{\mathbf{ab}}\bigr)\)
+due to the two-valued nature of linear polarization angles. This difference in functional dependence ($\cos \theta$ versus $\cos 2\theta$) is characteristic of spin-$\tfrac12$ versus photon polarization correlation measurements.
+
+\section{Assignment 8}
+
+\subsection{Problem 6.5}
+A wave packet is defined in momentum space by
+\[
+\langle p|\psi\rangle =
+\begin{cases}
+0, & p < -\tfrac{P}{2},\\[6pt]
+N, & -\tfrac{P}{2} < p < \tfrac{P}{2},\\[6pt]
+0, & p > \tfrac{P}{2}.
+\end{cases}
+\]
+\subsubsection*{Solution}
+\textbf{(a)}~Normalization requires
+\[
+\int_{-\infty}^{+\infty} \bigl|\langle p|\psi\rangle\bigr|^2 \,dp
+\;=\;
+\int_{-P/2}^{+P/2} N^2\,dp
+\;=\; N^2\,P
+\;=\;1
+\]
+\[
+\;\Longrightarrow\;
+N \;=\;\frac{1}{\sqrt{P}}.
+\]
+
+\noindent
+\textbf{(b)}~The position-space wavefunction follows from the inverse Fourier transform:
+\[
+\psi(x)
+=\langle x|\psi\rangle
+= \frac{1}{\sqrt{2\pi\hbar}}
+\int_{-P/2}^{P/2}
+N\,e^{\tfrac{i p x}{\hbar}}\;dp
+\]
+\[
+  \;=\;
+\frac{N}{\sqrt{2\pi\hbar}}
+\left[\int_{-P/2}^{P/2} e^{\tfrac{i p x}{\hbar}}\,dp\right].
+\]
+With $N=1/\sqrt{P}$, one obtains
+\[
+\psi(x)
+= \frac{1}{\sqrt{2\pi\hbar P}}
+\,\frac{2\hbar}{x}\,
+\sin\!\Bigl(\tfrac{P\,x}{2\hbar}\Bigr).
+\]
+(Up to a possible phase factor for $x\neq 0$, and $\psi(0)$ defined by the limiting value of $\sin z/z$.)
+
+\noindent
+\textbf{(c)}~Sketching $\langle p|\psi\rangle$ gives a rectangle of width $P$ in momentum space. Its transform $\psi(x)$ is proportional to $\sin\bigl(\tfrac{P x}{2\hbar}\bigr)/x$, resembling a sinc-type function. One may estimate
+\[
+\Delta p \;\approx\; \frac{P}{2}
+\quad\text{and}\quad
+\Delta x \;\approx\; \frac{\hbar}{P},
+\]
+so that
+\(
+\Delta x\,\Delta p
+\)
+is of order $\hbar$, independent of $P$ to first approximation.
+
+\subsection{Problem 6.14}
+Determine $\Delta x$, $\Delta p_x$, and the product $\Delta x\,\Delta p_x$ for a particle of mass $m$ in the ground state of the infinite square well
+\[
+V(x) = 
+\begin{cases}
+0, & 0<x<L,\\
+\infty, & \text{elsewhere}.
+\end{cases}
+\]
+
+\subsubsection*{Solution}
+\textbf{(a)}~The normalized ground-state wavefunction is
+\[
+\psi_1(x) 
+= \sqrt{\frac{2}{L}}\;\sin\!\Bigl(\tfrac{\pi x}{L}\Bigr),
+\quad
+0<x<L.
+\]
+Its expectation value $\langle x\rangle = \tfrac{L}{2}$. One computes
+\[
+\langle x^2\rangle 
+= \frac{2}{L}\int_{0}^{L} x^2 \sin^2\!\Bigl(\tfrac{\pi x}{L}\Bigr)\,dx
+= L^2\Bigl(\tfrac{1}{3} - \tfrac{1}{2\pi^2}\Bigr).
+\]
+Thus
+\[
+\Delta x^2
+= \langle x^2\rangle - \langle x\rangle^2
+= L^2\Bigl(\tfrac{1}{3} - \tfrac{1}{2\pi^2}\Bigr)
+\;-\;
+\frac{L^2}{4}
+= L^2\left(\frac{\pi^2 - 6}{12\,\pi^2}\right),
+\]
+and
+\[
+\Delta x 
+= L\,\sqrt{\frac{\pi^2 - 6}{12\,\pi^2}}
+\;=\;\frac{L}{\pi}\,\sqrt{\frac{\pi^2 - 6}{12}}.
+\]
+
+\noindent
+\textbf{(b)}~Inside the well, the kinetic energy operator $-\tfrac{\hbar^2}{2m}\tfrac{d^2}{dx^2}$ gives 
+\(\langle p^2\rangle = 2m\langle E\rangle\). 
+For $n=1$,
+\[
+E_1
+= \frac{\hbar^2\,\pi^2}{2m\,L^2}
+\quad\Longrightarrow\quad
+\langle p^2\rangle 
+= \frac{\hbar^2\,\pi^2}{L^2},
+\]
+and $\langle p\rangle=0$ for this real wavefunction. Hence
+\[
+\Delta p_x
+= \sqrt{\langle p^2\rangle}
+= \frac{\hbar\,\pi}{L}.
+\]
+
+\noindent
+\textbf{(c)}~Their product is
+\[
+\Delta x\,\Delta p_x
+= \left(\frac{L}{\pi}\,\sqrt{\frac{\pi^2 - 6}{12}}\right)
+\;\left(\frac{\hbar\,\pi}{L}\right)
+= \hbar\,\sqrt{\frac{\pi^2 - 6}{12}},
+\]
+a constant (independent of $L$) that is larger than $\tfrac{\hbar}{2}$, consistent with the uncertainty principle.
+
+
+
+\end{spacing}
+
+\end{document}
